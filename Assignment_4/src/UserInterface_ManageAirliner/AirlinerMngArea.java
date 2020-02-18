@@ -6,6 +6,8 @@
 package UserInterface_ManageAirliner;
 
 import Business.Abstract.User;
+import UserInterface.MainFrame;
+import UserInterface.LogoutScreen;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JPanel;
@@ -45,25 +47,25 @@ public class AirlinerMngArea extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAirlineDetails = new javax.swing.JTable();
         btnCreateNewFlight = new javax.swing.JButton();
         btnUpdateFlight = new javax.swing.JButton();
         btnDeleteFlight = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         titaljLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAirlineDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Flight Number", "Source", "Destination", "Departure Time", "Arrival Time"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblAirlineDetails);
 
         btnCreateNewFlight.setText("Create New Flight");
         btnCreateNewFlight.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +84,11 @@ public class AirlinerMngArea extends javax.swing.JPanel {
         btnDeleteFlight.setText("Delete Airliner");
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         titaljLabel1.setText("Welcome ");
 
@@ -140,6 +147,14 @@ public class AirlinerMngArea extends javax.swing.JPanel {
         layout.next(panelRight);
     }//GEN-LAST:event_btnUpdateFlightActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        //MainFrame main= new MainFrame();
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.add(new LogoutScreen(user));
+        layout.next(panelRight);
+        
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateNewFlight;
@@ -147,7 +162,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUpdateFlight;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblAirlineDetails;
     private javax.swing.JLabel titaljLabel1;
     // End of variables declaration//GEN-END:variables
 }
