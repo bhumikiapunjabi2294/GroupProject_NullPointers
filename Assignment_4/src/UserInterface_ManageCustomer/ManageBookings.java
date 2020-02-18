@@ -5,6 +5,12 @@
  */
 package UserInterface_ManageCustomer;
 
+import Business.Abstract.User;
+import UserInterface.LogoutScreen;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JPanel;
+
 /**
  *
  * @author User
@@ -14,8 +20,13 @@ public class ManageBookings extends javax.swing.JPanel {
     /**
      * Creates new form BookingHistory
      */
-    public ManageBookings() {
+     private User user;
+    List<User> list;
+    JPanel panelRight;
+    public ManageBookings(JPanel panelRight,User user) {
         initComponents();
+        this.panelRight=panelRight;
+        this.user=user;
     }
 
     /**
@@ -30,18 +41,18 @@ public class ManageBookings extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tblBkngHstry = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
+        btnCnclBkngs = new javax.swing.JButton();
+        btnViewBkngs = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Past Bookings");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblBkngHstry.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -52,15 +63,30 @@ public class ManageBookings extends javax.swing.JPanel {
                 "Name", "Contact", "Email", "Flight Number", "Seat Number"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblBkngHstry);
 
-        jButton1.setText(">>Back");
+        btnBack.setText(">>Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancel Booking");
+        btnCnclBkngs.setText("Cancel Booking");
 
-        jButton4.setText("View Booking");
+        btnViewBkngs.setText("View Booking");
+        btnViewBkngs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBkngsActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Logout");
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -72,15 +98,15 @@ public class ManageBookings extends javax.swing.JPanel {
                         .addContainerGap(15, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(118, 118, 118)
-                                    .addComponent(jButton2))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBack)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnViewBkngs)
+                                    .addComponent(btnCnclBkngs))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5)))
+                        .addComponent(btnLogout)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(122, 122, 122)
@@ -92,29 +118,50 @@ public class ManageBookings extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton5))
+                    .addComponent(btnBack)
+                    .addComponent(btnLogout))
                 .addGap(7, 7, 7)
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jButton4)
+                .addComponent(btnViewBkngs)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnCnclBkngs)
                 .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+       
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.add(new LogoutScreen(user));
+        layout.next(panelRight);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnViewBkngsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBkngsActionPerformed
+        
+         CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.add(new FlightBookedDetails(panelRight, user));
+        layout.next(panelRight);
+    }//GEN-LAST:event_btnViewBkngsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCnclBkngs;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnViewBkngs;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblBkngHstry;
     // End of variables declaration//GEN-END:variables
 }
