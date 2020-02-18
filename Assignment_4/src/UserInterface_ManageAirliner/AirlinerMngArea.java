@@ -5,6 +5,11 @@
  */
 package UserInterface_ManageAirliner;
 
+import Business.Abstract.User;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JPanel;
+
 /**
  *
  * @author User
@@ -14,8 +19,20 @@ public class AirlinerMngArea extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel2
      */
-    public AirlinerMngArea() {
+    private User user;
+    List<User> list;
+    JPanel panelRight;
+
+    public AirlinerMngArea(JPanel panelRight, User user) {
         initComponents();
+        this.panelRight=panelRight;
+        this.user = user;
+        initialize();
+
+    }
+
+    private void initialize() {
+        titaljLabel1.setText(titaljLabel1.getText() + " " + user.getUserName() + " !!!");
     }
 
     /**
@@ -29,10 +46,11 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnCreateNewFlight = new javax.swing.JButton();
+        btnUpdateFlight = new javax.swing.JButton();
+        btnDeleteFlight = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        titaljLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -47,60 +65,89 @@ public class AirlinerMngArea extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Create new Airliner");
+        btnCreateNewFlight.setText("Create New Flight");
+        btnCreateNewFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateNewFlightActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Update Airliner");
+        btnUpdateFlight.setText("Update Airliner");
+        btnUpdateFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateFlightActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Delete Airliner");
+        btnDeleteFlight.setText("Delete Airliner");
 
-        jButton4.setText("Logout");
+        btnLogout.setText("Logout");
+
+        titaljLabel1.setText("Welcome ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jButton1)
+                .addComponent(btnCreateNewFlight)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnDeleteFlight)
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(146, 146, 146)
-                .addComponent(jButton2)
+                .addComponent(btnUpdateFlight)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titaljLabel1)
+                        .addGap(286, 286, 286)
+                        .addComponent(btnLogout))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jButton4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogout)
+                    .addComponent(titaljLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(btnCreateNewFlight)
+                    .addComponent(btnDeleteFlight))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnUpdateFlight)
                 .addGap(43, 43, 43))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateNewFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewFlightActionPerformed
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.add(new CreateNewFlight(panelRight,user));
+        layout.next(panelRight);
+
+    }//GEN-LAST:event_btnCreateNewFlightActionPerformed
+
+    private void btnUpdateFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateFlightActionPerformed
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.add(new CreateNewFlight(panelRight,user));
+        layout.next(panelRight);
+    }//GEN-LAST:event_btnUpdateFlightActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnCreateNewFlight;
+    private javax.swing.JButton btnDeleteFlight;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnUpdateFlight;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel titaljLabel1;
     // End of variables declaration//GEN-END:variables
 }
