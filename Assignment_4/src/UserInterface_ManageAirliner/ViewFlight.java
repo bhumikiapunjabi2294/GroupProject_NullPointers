@@ -5,6 +5,11 @@
  */
 package UserInterface_ManageAirliner;
 
+import Business.Abstract.User;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JPanel;
+
 /**
  *
  * @author User
@@ -13,9 +18,13 @@ public class ViewFlight extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
-     */
-    public ViewFlight() {
+     */private User user;
+    List<User> list;
+    JPanel panelRight;
+    public ViewFlight(JPanel panelRight,User user) {
         initComponents();
+        this.panelRight=panelRight;
+        this.user=user;
     }
 
     /**
@@ -44,7 +53,7 @@ public class ViewFlight extends javax.swing.JPanel {
         jTextField7 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -82,7 +91,12 @@ public class ViewFlight extends javax.swing.JPanel {
 
         jButton2.setText("Save");
 
-        jButton3.setText(">>Back");
+        btnBack.setText(">>Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Logout");
 
@@ -131,7 +145,7 @@ public class ViewFlight extends javax.swing.JPanel {
                         .addGap(0, 103, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jButton3)
+                        .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)))
                 .addContainerGap())
@@ -144,7 +158,7 @@ public class ViewFlight extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(btnBack)
                     .addComponent(jButton4))
                 .addGap(4, 4, 4)
                 .addComponent(jLabel1)
@@ -184,11 +198,17 @@ public class ViewFlight extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
