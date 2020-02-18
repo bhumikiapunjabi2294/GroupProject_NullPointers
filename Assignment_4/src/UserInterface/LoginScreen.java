@@ -9,6 +9,7 @@ import Business.Abstract.User;
 import Business.Users.Customer;
 import Business.Users.Airliner;
 import UserInterface_ManageAirliner.AirlinerMngArea;
+import UserInterface_ManageCustomer.CustomerMngArea;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -110,7 +111,11 @@ public class LoginScreen extends javax.swing.JPanel {
      //   String passWord = u;
         if (b==true){
          CardLayout layout = (CardLayout)panelRight.getLayout();
+         if(list.get(0).getRole()=="AIRLINER"){
         panelRight.add(new AirlinerMngArea(panelRight,list.get(value)));
+         }else{
+             panelRight.add(new CustomerMngArea(panelRight,list.get(value)));
+         }
         layout.next(panelRight);
         }else{
             JOptionPane.showMessageDialog(null, "Password is incorrect");
