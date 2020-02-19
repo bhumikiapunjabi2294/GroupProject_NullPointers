@@ -5,30 +5,53 @@
  */
 package Business;
 
-import Business.Abstract.User;
-import Business.Users.Airliner;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
- * @author AEDSpring2019
+ * @author mayur
  */
 public class AirlinerDirectory {
+    public ArrayList<Airliner> airlinerList;
     
-    private List<User> airlinerList;
-    
-    public AirlinerDirectory(){
-        airlinerList = new ArrayList<>();
-    }
+    public AirlinerDirectory()
+    {
+        this.airlinerList = new ArrayList<Airliner>();
+        Airliner airliner1 = new Airliner("Jet Blue", "Canada");
+        Airliner airliner2 = new Airliner("Air India", "India");
+        Airliner airliner3 = new Airliner("Delta", "Atlanta");
+        airlinerList.add(airliner1);
+        airlinerList.add(airliner2);
+        airlinerList.add(airliner3);
+    } 
 
-    public List<User> getAirlinerList() {
+    public ArrayList<Airliner> getAirlinerList() {
         return airlinerList;
     }
 
-    public void setAirlinerList(List<User> airlinerList) {
+    public void setAirlinerList(ArrayList<Airliner> airlinerList) {
         this.airlinerList = airlinerList;
     }
     
+    public Airliner addAirliner(String airlinerName, String airlinerHeadquaters) {
+       Airliner airliner = new Airliner(airlinerName, airlinerHeadquaters);
+       airlinerList.add(airliner);
+       return airliner;
+    }
+         
+    public void deleteAirliner(Airliner airliner) {
+        airlinerList.remove(airliner);
+    }
+            
+    
+    public Airliner searchAirliner(String airlinerName){
+        for(Airliner airliner:airlinerList) {
+            if(airliner.getAirlinerName().equalsIgnoreCase(airlinerName)) {
+                return airliner;
+            }
+        }
+        return null;
+    }
+ 
     
 }
