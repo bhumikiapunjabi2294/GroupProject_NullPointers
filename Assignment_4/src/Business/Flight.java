@@ -5,14 +5,14 @@
  */
 package Business;
 
+
 import java.util.ArrayList;
 
 /**
  *
- * @author AEDSpring2019
+ * @author gulat
  */
-public class Flight implements Comparable<Flight> {
-
+public class Flight {
     private String airlinerName;
     private String flightNumber;
     private String source;
@@ -22,11 +22,10 @@ public class Flight implements Comparable<Flight> {
     private double flightPrice;
     private int totalSeats;
     private int availableSeats;
-    //private ArrayList<Seats> seatList;
-    //private Seats seat;
-
+    private ArrayList<Seats> seatList;
+    private Seats seat;
     public Flight(String airlinerName,String flightNumber,String source,String destination,String departureTime,String arrivalTime,double flightPrice,int totalSeats ){
-        //seatList = new ArrayList<>();
+        seatList = new ArrayList<>();
         this.airlinerName = airlinerName;
         this.flightNumber = flightNumber;
         this.source = source;
@@ -35,9 +34,56 @@ public class Flight implements Comparable<Flight> {
         this.arrivalTime =arrivalTime;
         this.flightPrice = flightPrice;
         this.totalSeats = totalSeats;
-        //seatList=createSeats(totalSeats);
+        seatList=createSeats(totalSeats);
         this.availableSeats = totalSeats;
         
+        
+    }
+    
+    public ArrayList<Seats> createSeats(int totalSeats){
+        int numCols = 6;
+        int rows = 0;
+        int cols = 1;
+        char col;
+        String window = "Window";
+        String middle = "Middle";
+        String aisle = "Aisle";
+        
+        String seatNumber;
+        while (rows < Math.floor(totalSeats/numCols)) {
+            rows++;
+            cols=1;
+            col='A';
+        while (cols <= numCols) {
+            seat = new Seats();
+            String column = String.valueOf(col);
+            String row = String.valueOf(rows);
+            seatNumber = row + column;            
+            seat.setSeatNumber(seatNumber);
+                switch (col) {
+                    case 'A':
+                    case 'F':
+                        seat.setSeatPosition(window);
+                        break;
+                    case 'B':
+                    case 'E':
+                        seat.setSeatPosition(middle);
+                        break;
+                    default:
+                        seat.setSeatPosition(aisle);
+                        break;
+                }
+            seat.setSeatAvailability(true);
+           
+            col++;
+            cols++;
+            seatList.add(seat);
+        }
+        
+    }
+        
+        
+        return seatList;
     }
 
     public String getAirlinerName() {
@@ -47,7 +93,7 @@ public class Flight implements Comparable<Flight> {
     public void setAirlinerName(String airlinerName) {
         this.airlinerName = airlinerName;
     }
-
+    
     public String getFlightNumber() {
         return flightNumber;
     }
@@ -88,6 +134,24 @@ public class Flight implements Comparable<Flight> {
         this.arrivalTime = arrivalTime;
     }
 
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    public ArrayList<Seats> getSeatList() {
+        return seatList;
+    }
+
+    public void setSeatList(ArrayList<Seats> seatList) {
+        this.seatList = seatList;
+    }
+
+   
+
     public double getFlightPrice() {
         return flightPrice;
     }
@@ -104,23 +168,7 @@ public class Flight implements Comparable<Flight> {
         this.totalSeats = totalSeats;
     }
 
-    public int getAvailableSeats() {
-        return availableSeats;
+    public String toString(){
+        return this.flightNumber;
     }
-
-    public void setAvailableSeats(int availableSeats) {
-        this.availableSeats = availableSeats;
-    }
-    
-    
-    
-    
-        @Override
-        public int compareTo(Flight o) 
-        {
-        return this.airlinerName.compareTo(o.getAirlinerName());
-        }
-        
-        
-    
 }
