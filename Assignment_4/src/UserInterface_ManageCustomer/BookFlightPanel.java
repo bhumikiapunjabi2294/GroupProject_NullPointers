@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Gunjan
+ * @author Yash
  */
 public class BookFlightPanel extends javax.swing.JPanel {
 
@@ -357,9 +357,9 @@ public class BookFlightPanel extends javax.swing.JPanel {
         Component[] comps= cardSequenceJPanel.getComponents();
         for(Component c:comps)
         {
-            if(c instanceof BookFlightWorkAreaJPanel)
+            if(c instanceof FlightSearchArea)
             {
-                BookFlightWorkAreaJPanel panel=(BookFlightWorkAreaJPanel) c;
+                FlightSearchArea panel=(FlightSearchArea) c;
                 panel.populateTable();
             }
         }

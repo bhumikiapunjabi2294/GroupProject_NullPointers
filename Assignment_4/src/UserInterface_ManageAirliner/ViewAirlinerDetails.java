@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
  *
- * @author mayur
+ * @author Bhumika
  */
 public class ViewAirlinerDetails extends javax.swing.JPanel {
 
@@ -178,7 +178,7 @@ public class ViewAirlinerDetails extends javax.swing.JPanel {
         cardSequenceJPanel.remove(this);
         Component[] componentArray = cardSequenceJPanel.getComponents();
         Component component = componentArray[componentArray.length-1];
-        AirlinersMngWorkAreaJPanel panel = (AirlinersMngWorkAreaJPanel) component;
+        AirlinerMngArea panel = (AirlinerMngArea) component;
         panel.populateAirlinersTable();
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.previous(cardSequenceJPanel);

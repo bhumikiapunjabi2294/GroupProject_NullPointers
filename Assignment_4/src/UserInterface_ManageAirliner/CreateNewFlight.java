@@ -7,7 +7,7 @@ package UserInterface_ManageAirliner;
 
 import Business.Airliner;
 import Business.TravelAgency;
-import UserInterface.ManageTravelAgency.TravelAgencyMngWorkAreaJPanel;
+import UserInterface_ManageTravelAgency.TravelAgencyMngArea;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.regex.Matcher;
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author gulat
+ * @author Bhumika
  */
 public class CreateNewFlight extends javax.swing.JPanel {
 
@@ -278,9 +278,9 @@ public class CreateNewFlight extends javax.swing.JPanel {
         Component[] comps= cardSequenceJPanel.getComponents();
         for(Component c:comps)
         {
-            if(c instanceof AirlinersMngWorkAreaJPanel)
+            if(c instanceof AirlinerMngArea)
             {
-                AirlinersMngWorkAreaJPanel panel=(AirlinersMngWorkAreaJPanel) c;
+                AirlinerMngArea panel=(AirlinerMngArea) c;
                 panel.calculateFleetSize();
                 panel.populateAirlinersTable();
             }

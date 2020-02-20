@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author mayur
+ * @author Bhumika
  */
 public class AirlinerMngArea extends javax.swing.JPanel {
 
@@ -222,7 +222,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
     private void btnCreateNewAirlinerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNewAirlinerActionPerformed
         // TODO add your handling code here:
-        CreateNewAirlinerJPanel panel = new CreateNewAirlinerJPanel(cardSequenceJPanel,travelAgency);
+        CreateNewAirliner panel = new CreateNewAirliner(cardSequenceJPanel,travelAgency);
         cardSequenceJPanel.add("CreateNewAirliner", panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
@@ -236,7 +236,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
          }
          else {
            Airliner airliner = (Airliner)tblAirliner.getValueAt(selectedRow,0);
-           ViewAirlinerDetailsJPanel panel = new ViewAirlinerDetailsJPanel(cardSequenceJPanel,airliner);
+           ViewAirlinerDetails panel = new ViewAirlinerDetails(cardSequenceJPanel,airliner);
            cardSequenceJPanel.add("ViewAirlinerDetailsJPanel",panel);
            CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
            layout.next(cardSequenceJPanel);
@@ -273,7 +273,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
          }
         else{
         Airliner airliner = (Airliner)tblAirliner.getValueAt(selectedRow,0);
-        CreateNewFlightJpanel panel = new CreateNewFlightJpanel(cardSequenceJPanel, airliner);
+        CreateNewFlight panel = new CreateNewFlight(cardSequenceJPanel, airliner);
         cardSequenceJPanel.add("CreateNewFlightJPanel", panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);

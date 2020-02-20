@@ -7,7 +7,7 @@ package UserInterface_ManageAirliner;
 import Business.Airliner;
 import Business.AirlinerDirectory;
 import Business.Flight;
-import UserInterface.ManageTravelAgency.ViewFlightJpanel;
+import UserInterface_ManageTravelAgency.ViewFlight;
 import Business.TravelAgency;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author mayur
+ * @author Bhumika
  */
 public class CreateNewAirliner extends javax.swing.JPanel {
 
@@ -160,7 +160,7 @@ public class CreateNewAirliner extends javax.swing.JPanel {
        cardSequenceJPanel.remove(this);
        Component[] componentArray = cardSequenceJPanel.getComponents();
        Component component = componentArray[componentArray.length-1];
-       AirlinersMngWorkAreaJPanel panel = (AirlinersMngWorkAreaJPanel) component;
+       AirlinerMngArea panel = (AirlinerMngArea) component;
        panel.populateAirlinersTable();
        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
        layout.previous(cardSequenceJPanel);
