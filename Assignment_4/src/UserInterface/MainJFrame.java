@@ -9,6 +9,7 @@ import UserInterface_ManageAirliner.AirlinerMngArea;
 import UserInterface_ManageCustomer.CustomersMngArea;
 import UserInterface_ManageTravelAgency.TravelAgencyMngArea;
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 /**
  *
  * @author User
@@ -39,6 +40,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnAirliner = new javax.swing.JButton();
         btnCustomer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        RightJpanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,15 +99,17 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
+        RightJpanel.setLayout(new java.awt.CardLayout());
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 628, Short.MAX_VALUE)
+            .addComponent(RightJpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addComponent(RightJpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -115,7 +119,7 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,16 +131,27 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTravelAgencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTravelAgencyActionPerformed
+      //  JPanel cardSequenceJPanel = null;
         // TODO add your handling code here:
-        
+        TravelAgencyMngArea panel = new TravelAgencyMngArea(RightJpanel,travelAgency);
+        RightJpanel.add("TavelagencyMngArea",panel);
+        CardLayout layout = (CardLayout) RightJpanel.getLayout();
+        layout.next(RightJpanel);
     }//GEN-LAST:event_btnTravelAgencyActionPerformed
 
     private void btnAirlinerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAirlinerActionPerformed
-        
+         AirlinerMngArea panel = new AirlinerMngArea(RightJpanel,travelAgency);
+        RightJpanel.add("AirlinerMngArea",panel);
+        CardLayout layout = (CardLayout) RightJpanel.getLayout();
+        layout.next(RightJpanel);
     }//GEN-LAST:event_btnAirlinerActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
         // TODO add your handling code here:
+        CustomersMngArea panel = new CustomersMngArea(RightJpanel,travelAgency);
+        RightJpanel.add("CustomersMngArea",panel);
+        CardLayout layout = (CardLayout) RightJpanel.getLayout();
+        layout.next(RightJpanel);
        
     }//GEN-LAST:event_btnCustomerActionPerformed
 
@@ -176,6 +191,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel RightJpanel;
     private javax.swing.JButton btnAirliner;
     private javax.swing.JButton btnCustomer;
     private javax.swing.JButton btnTravelAgency;
