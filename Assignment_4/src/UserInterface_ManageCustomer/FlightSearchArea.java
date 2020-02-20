@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Gunjan
+ * @author Yash
  */
 public class FlightSearchArea extends javax.swing.JPanel {
 

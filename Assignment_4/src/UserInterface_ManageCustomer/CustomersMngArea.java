@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Gunjan
+ * @author Yash
  */
 public class CustomersMngArea extends javax.swing.JPanel {
 
@@ -99,7 +99,7 @@ public class CustomersMngArea extends javax.swing.JPanel {
 
     private void btnBookFlightsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookFlightsActionPerformed
         // TODO add your handling code here:
-        BookFlightWorkAreaJPanel panel = new BookFlightWorkAreaJPanel(cardSequenceJPanel,travelAgency);
+        FlightSearchArea panel = new FlightSearchArea(cardSequenceJPanel,travelAgency);
         cardSequenceJPanel.add("BookFlightWorkAreaJPanel",panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
@@ -108,7 +108,7 @@ public class CustomersMngArea extends javax.swing.JPanel {
 
     private void btnViewPastBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPastBookingsActionPerformed
         // TODO add your handling code here:
-        ManagePastBookingsJPanel panel = new ManagePastBookingsJPanel(cardSequenceJPanel,travelAgency);
+        ManageBookings panel = new ManageBookings(cardSequenceJPanel,travelAgency);
         cardSequenceJPanel.add("ManagePastBookingsJPanel" , panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
