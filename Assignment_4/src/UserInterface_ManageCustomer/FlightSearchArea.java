@@ -5,19 +5,87 @@
  */
 package UserInterface_ManageCustomer;
 
+import Business.Airliner;
+import Business.Flight;
+import Business.TravelAgency;
+import java.awt.CardLayout;
+import java.util.HashSet;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author User
+ * @author Yash
  */
 public class FlightSearchArea extends javax.swing.JPanel {
 
     /**
-     * Creates new form FlightBookingScreen
+     * Creates new form BookFlightWorkAreaJPanel
      */
-    public FlightSearchArea() {
+    private JPanel cardSequenceJPanel;
+    private TravelAgency travelAgency;
+    
+    public FlightSearchArea(JPanel cardSequenceJPanel, TravelAgency travelAgency) {
         initComponents();
+        this.cardSequenceJPanel = cardSequenceJPanel;
+        this.travelAgency = travelAgency;
+        populateTable();
+        populateLocation();
+                
     }
+    
+     public void populateTable() {
+    DefaultTableModel dtm = (DefaultTableModel)tbltravelagency.getModel();
+        dtm.setRowCount(0);
+        for(Airliner airliner:travelAgency.getAirlinerDirectory().getAirlinerList()) {
+            int i=0;
+            int count = 0;
+            for(Flight flight:airliner.getFlightList()) {
+            
+            if(airliner.getAirlinerName().equals(flight.getAirlinerName())){
+            Object[] row = new Object[8];
+            row[0]=airliner.getAirlinerName();
+            row[1]=flight;
+            row[2]=airliner.getFlightList().get(i).getSource();
+            row[3]=airliner.getFlightList().get(i).getDestination();
+            row[4]=airliner.getFlightList().get(i).getDepartureTime();
+            row[5]=airliner.getFlightList().get(i).getArrivalTime();
+            row[6]=airliner.getFlightList().get(i).getFlightPrice();
+            row[7]=airliner.getFlightList().get(i).getAvailableSeats();
+            dtm.addRow(row);
+            count++;
+            }
+            i++;
+            }
+            airliner.setAirlinerFleetSize(count);
+        }
+            
+}
 
+     private void populateLocation(){
+         HashSet <String> source = new HashSet<>();
+         HashSet <String> destination = new HashSet<>();
+         for(Airliner airliner:travelAgency.getAirlinerDirectory().getAirlinerList()){
+            int i=0;
+            for(Flight flight:airliner.getFlightList()) { 
+                source.add(airliner.getFlightList().get(i).getSource());
+                destination.add(airliner.getFlightList().get(i).getDestination());
+                i++;
+                }
+            }
+         
+         for(String distinctSource : source){
+             comboBoxSource.addItem(distinctSource);
+             
+         }
+          for(String distinctDestination : destination){
+             comboBoxDestination.addItem(distinctDestination);
+             
+         }
+        
+   
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,181 +95,372 @@ public class FlightSearchArea extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        Destination = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        lblFrom = new javax.swing.JLabel();
+        lblMinPrice = new javax.swing.JLabel();
+        lblMaxPrice = new javax.swing.JLabel();
+        lblTo = new javax.swing.JLabel();
+        lblTime = new javax.swing.JLabel();
+        btnBookAFlight = new javax.swing.JButton();
+        lblPastBookings = new javax.swing.JLabel();
+        txtMinPrice = new javax.swing.JTextField();
+        txtMaxPrice = new javax.swing.JTextField();
+        comboBoxTime = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbltravelagency = new javax.swing.JTable();
+        btnSearchFlight = new javax.swing.JButton();
+        comboBoxDestination = new javax.swing.JComboBox<>();
+        comboBoxSource = new javax.swing.JComboBox<>();
+        btnClear = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        setBackground(new java.awt.Color(22, 72, 128));
+        setPreferredSize(new java.awt.Dimension(1111, 765));
+
+        btnBack.setBackground(new java.awt.Color(245, 245, 246));
+        btnBack.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(78, 114, 175));
+        btnBack.setText("< Back");
+        btnBack.setPreferredSize(new java.awt.Dimension(93, 31));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        lblFrom.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblFrom.setForeground(new java.awt.Color(255, 255, 255));
+        lblFrom.setText("From ");
+
+        lblMinPrice.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblMinPrice.setForeground(new java.awt.Color(255, 255, 255));
+        lblMinPrice.setText("Min Price");
+
+        lblMaxPrice.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblMaxPrice.setForeground(new java.awt.Color(255, 255, 255));
+        lblMaxPrice.setText("Max Price");
+
+        lblTo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblTo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTo.setText("To");
+
+        lblTime.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblTime.setForeground(new java.awt.Color(255, 255, 255));
+        lblTime.setText("Time");
+
+        btnBookAFlight.setBackground(new java.awt.Color(245, 245, 246));
+        btnBookAFlight.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnBookAFlight.setForeground(new java.awt.Color(78, 114, 175));
+        btnBookAFlight.setText("Book Flight");
+        btnBookAFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookAFlightActionPerformed(evt);
+            }
+        });
+
+        lblPastBookings.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        lblPastBookings.setForeground(new java.awt.Color(255, 255, 255));
+        lblPastBookings.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPastBookings.setText("SELECT BEST FLIGHT");
+
+        txtMinPrice.setBackground(new java.awt.Color(245, 245, 246));
+        txtMinPrice.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+
+        txtMaxPrice.setBackground(new java.awt.Color(245, 245, 246));
+        txtMaxPrice.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+
+        comboBoxTime.setBackground(new java.awt.Color(245, 245, 246));
+        comboBoxTime.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        comboBoxTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Morning", "Afternoon", "Evening ", "Night" }));
+
+        tbltravelagency.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Flight Name", "Flight Number", "Source", "Destination", "Price(USD)", "Departure Time", "Arrival Time", "Available Seats"
+                "Airliner", "Flight Number", "Source", "Destination", "Departure time", "Arrival Time", "Price", "Available Seats"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Morning", "Afternoon", "Evening", "Night" }));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbltravelagency);
+        if (tbltravelagency.getColumnModel().getColumnCount() > 0) {
+            tbltravelagency.getColumnModel().getColumn(1).setResizable(false);
+            tbltravelagency.getColumnModel().getColumn(2).setResizable(false);
+            tbltravelagency.getColumnModel().getColumn(3).setResizable(false);
+            tbltravelagency.getColumnModel().getColumn(4).setResizable(false);
+            tbltravelagency.getColumnModel().getColumn(5).setResizable(false);
+            tbltravelagency.getColumnModel().getColumn(6).setResizable(false);
+            tbltravelagency.getColumnModel().getColumn(7).setResizable(false);
+        }
 
-        jLabel1.setText("Timing-");
+        btnSearchFlight.setBackground(new java.awt.Color(245, 245, 246));
+        btnSearchFlight.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnSearchFlight.setForeground(new java.awt.Color(78, 114, 175));
+        btnSearchFlight.setText("Search Flight");
+        btnSearchFlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchFlightActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxDestination.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxDestinationActionPerformed(evt);
+            }
+        });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxSource.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxSourceActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Source:");
-
-        Destination.setText("Destination:");
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setText("Search Flight");
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setText("Book Flight");
-
-        jButton4.setText("Clear Search");
-
-        jLabel3.setText("Max Price:");
-
-        jLabel4.setText("Min Price:");
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel5.setText(" Flight Search");
-
-        jButton1.setText(">>Back");
+        btnClear.setBackground(new java.awt.Color(245, 245, 246));
+        btnClear.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(78, 114, 175));
+        btnClear.setText("Clear Search");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblPastBookings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addGap(107, 107, 107))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBookAFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(450, 450, 450))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMinPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboBoxSource, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMinPrice, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(comboBoxTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(170, 170, 170)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblMaxPrice))
+                                .addGap(45, 45, 45)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(comboBoxDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMaxPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSearchFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnClear)))
+                        .addGap(141, 141, 141))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(Destination)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1027, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(jButton3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPastBookings)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxDestination, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxSource, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMinPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMinPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaxPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel5))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(Destination)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4)
-                            .addComponent(jButton2))))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboBoxTime)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnSearchFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btnBookAFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+       cardSequenceJPanel.remove(this);
+       CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+       layout.previous(cardSequenceJPanel);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnBookAFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAFlightActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tbltravelagency.getSelectedRow();
+         if(selectedRow<0) {
+             JOptionPane.showMessageDialog(null, "Please select a row from table first to view flight details","Warning",JOptionPane.WARNING_MESSAGE);
+         }
+         else {
+        Flight flight = (Flight)tbltravelagency.getValueAt(selectedRow, 1);
+        BookFlightPanel panel = new BookFlightPanel(cardSequenceJPanel,flight,travelAgency);
+        cardSequenceJPanel.add("BookFlight",panel);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+         }
+    }//GEN-LAST:event_btnBookAFlightActionPerformed
+
+    private void btnSearchFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchFlightActionPerformed
+        // TODO add your handling code here:
+      try{  
+        String source= String.valueOf(comboBoxSource.getSelectedItem());
+        String destination = String.valueOf(comboBoxDestination.getSelectedItem());
+        double minPrice;
+        double maxPrice;
+        if(txtMinPrice.getText().equals("") || txtMaxPrice.getText().equals("")){
+            minPrice = 0.0;
+            maxPrice = 0.0;
+        }
+        else {
+              minPrice = Double.parseDouble(txtMinPrice.getText());               
+              maxPrice = Double.parseDouble(txtMaxPrice.getText());
+        }
+        
+        String time = String.valueOf(comboBoxTime.getSelectedItem());
+        int timeMin =0;
+        int timeMax =0;
+        
+        if(time.equalsIgnoreCase("Morning")){
+            timeMin = 6;
+            timeMax =12;
+            
+        }else if(time.equalsIgnoreCase("Afternoon")){
+            timeMin = 12;
+            timeMax =18;
+        
+        }else if(time.equalsIgnoreCase("Evening")){
+            timeMin = 18;
+            timeMax =24;
+        
+        }else if(time.equalsIgnoreCase("Night")){
+            timeMin =0;
+            timeMax =6;
+        
+        }
+        
+        DefaultTableModel table = (DefaultTableModel) tbltravelagency.getModel();
+        
+        table.setRowCount(0);
+        for(Airliner airliner:travelAgency.getAirlinerDirectory().getAirlinerList()) {
+            int i=0;
+            int count = 0;
+            for(Flight flight:airliner.getFlightList()) {
+            if(airliner.getAirlinerName().equals(flight.getAirlinerName())){
+               if(flight.getSource().equals(source) && flight.getDestination().equals(destination) && flight.getFlightPrice() > minPrice && flight.getFlightPrice() < maxPrice) 
+               {
+                   
+                if(Integer.parseInt(flight.getDepartureTime().substring(0,2))>= timeMin && Integer.parseInt(flight.getDepartureTime().substring(0,2))<=timeMax ){
+                    Object[] row = new Object[8];
+                row[0]=airliner.getAirlinerName();
+                row[1]=flight;
+                row[2]=airliner.getFlightList().get(i).getSource();
+                row[3]=airliner.getFlightList().get(i).getDestination();
+                row[4]=airliner.getFlightList().get(i).getDepartureTime();
+                row[5]=airliner.getFlightList().get(i).getArrivalTime();
+                row[6]=airliner.getFlightList().get(i).getFlightPrice();
+                row[7]=airliner.getFlightList().get(i).getAvailableSeats();
+                table.addRow(row);
+                count++;
+                }
+
+                }else if(flight.getSource().equals(source) && flight.getDestination().equals(destination) && minPrice == 0.0 && maxPrice == 0.0){
+                    Object[] row = new Object[8];
+                row[0]=airliner.getAirlinerName();
+                row[1]=flight;
+                row[2]=airliner.getFlightList().get(i).getSource();
+                row[3]=airliner.getFlightList().get(i).getDestination();
+                row[4]=airliner.getFlightList().get(i).getDepartureTime();
+                row[5]=airliner.getFlightList().get(i).getArrivalTime();
+                row[6]=airliner.getFlightList().get(i).getFlightPrice();
+                row[7]=airliner.getFlightList().get(i).getAvailableSeats();
+                table.addRow(row);
+                count++;
+                    }
+            }
+
+                i++;
+            }
+            airliner.setAirlinerFleetSize(count);
+        }
+                
+      }catch(Exception e){
+          JOptionPane.showMessageDialog(null, "Please enter valid values");
+      } 
+    }//GEN-LAST:event_btnSearchFlightActionPerformed
+
+    private void comboBoxDestinationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxDestinationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxDestinationActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+        txtMaxPrice.setText("");
+        txtMinPrice.setText("");
+        comboBoxSource.setSelectedIndex(0);
+        comboBoxDestination.setSelectedIndex(0);
+        comboBoxTime.setSelectedIndex(0);
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void comboBoxSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSourceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSourceActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Destination;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBookAFlight;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnSearchFlight;
+    private javax.swing.JComboBox<String> comboBoxDestination;
+    private javax.swing.JComboBox<String> comboBoxSource;
+    private javax.swing.JComboBox<String> comboBoxTime;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblFrom;
+    private javax.swing.JLabel lblMaxPrice;
+    private javax.swing.JLabel lblMinPrice;
+    private javax.swing.JLabel lblPastBookings;
+    private javax.swing.JLabel lblTime;
+    private javax.swing.JLabel lblTo;
+    private javax.swing.JTable tbltravelagency;
+    private javax.swing.JTextField txtMaxPrice;
+    private javax.swing.JTextField txtMinPrice;
     // End of variables declaration//GEN-END:variables
 }
