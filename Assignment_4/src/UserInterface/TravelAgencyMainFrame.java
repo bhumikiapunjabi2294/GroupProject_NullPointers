@@ -5,9 +5,9 @@
  */
 package UserInterface;
 import Business.TravelAgency;
-import UserInterface.ManageAirliners.AirlinersMngWorkAreaJPanel;
-import UserInterface.ManageCustomers.CustomersMngWorkAreaJPanel;
-import UserInterface.ManageTravelAgency.TravelAgencyMngWorkAreaJPanel;
+import UserInterface_ManageAirliner.AirlinerMngArea;
+import UserInterface_ManageCustomer.CustomersMngArea;
+import UserInterface_ManageTravelAgency.TravelAgencyMngArea;
 import java.awt.CardLayout;
 
 /**
@@ -90,7 +90,7 @@ public class TravelAgencyMainFrame extends javax.swing.JFrame {
         jSplitPanel.setLeftComponent(leftJPanel);
 
         cardSequenceJPanel.setBackground(new java.awt.Color(22, 72, 128));
-        cardSequenceJPanel.setLayout(new java.awt.CardLayout());
+        cardSequenceJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jSplitPanel.setRightComponent(cardSequenceJPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,7 +109,7 @@ public class TravelAgencyMainFrame extends javax.swing.JFrame {
 
     private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
          //TODO add your handling code here:
-        CustomersMngWorkAreaJPanel panel = new CustomersMngWorkAreaJPanel(cardSequenceJPanel,travelAgency);
+        CustomersMngArea panel = new CustomersMngArea(cardSequenceJPanel,travelAgency);
         cardSequenceJPanel.add("CustomersMngWorkAreaJPanel",panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
@@ -117,7 +117,7 @@ public class TravelAgencyMainFrame extends javax.swing.JFrame {
 
     private void btnTravelAgencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTravelAgencyActionPerformed
         // TODO add your handling code here:
-        TravelAgencyMngWorkAreaJPanel panel = new TravelAgencyMngWorkAreaJPanel(cardSequenceJPanel,travelAgency);
+        TravelAgencyMngArea panel = new TravelAgencyMngArea(cardSequenceJPanel,travelAgency);
         cardSequenceJPanel.add("TravelAgencyMngWorkAreaJPanel", panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
@@ -125,7 +125,7 @@ public class TravelAgencyMainFrame extends javax.swing.JFrame {
 
     private void btnAirlinersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAirlinersActionPerformed
         // TODO add your handling code here:
-        AirlinersMngWorkAreaJPanel panel = new AirlinersMngWorkAreaJPanel(cardSequenceJPanel,travelAgency);
+        AirlinerMngArea panel = new AirlinerMngArea(cardSequenceJPanel,travelAgency);
         cardSequenceJPanel.add("AirlinersMngWorkAreaJPanel", panel);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
