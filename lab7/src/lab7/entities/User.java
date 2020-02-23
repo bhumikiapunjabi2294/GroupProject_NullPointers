@@ -17,6 +17,10 @@ public class User {
     private String firstName;
     private String lastName;
     private List<Comment> comments;
+    private int totalPost;
+    private int totalLikes;
+    private int totalComments;
+    private int overAll;
 
     public User(int id, String firstName, String lastName) {
         this.id = id;
@@ -24,6 +28,39 @@ public class User {
         this.lastName = lastName;
         this.comments = new ArrayList<>();
     }
+
+    public int getOverAll() {
+        return overAll;
+    }
+
+    public void setOverAll(int overAll) {
+        this.overAll = overAll;
+    }
+    
+    public int getTotalPost() {
+        return totalPost;
+    }
+
+    public void setTotalPost(int totalPost) {
+        this.totalPost = totalPost;
+    }
+
+    public int getTotalLikes() {
+        return totalLikes;
+    }
+
+    public void setTotalLikes(int totalLikes) {
+        this.totalLikes = totalLikes;
+    }
+
+    public int getTotalComments() {
+        return totalComments;
+    }
+
+    public void setTotalComments(int totalComments) {
+        this.totalComments = totalComments;
+    }
+    
 
     public String getFirstName() {
         return firstName;
