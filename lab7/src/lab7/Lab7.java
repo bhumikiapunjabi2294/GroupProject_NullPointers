@@ -96,5 +96,13 @@ public class Lab7 {
         helper.userWithMostLikes();
         
         helper.getFiveMostLikedComment();
+        helper.mostLikedComment();
+        helper.postWithMostComments();
+        
+        helper.topFiveInactiveUserbyTotalComments();
+        helper.userWithLeastPosts();
+        helper.userWithMostLikes();
+        helper.topFiveInActiveUserOverall();
+        helper.topFiveProActiveUserOverall();
     }
 }
