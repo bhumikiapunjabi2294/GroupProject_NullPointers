@@ -63,7 +63,7 @@ public class ManageBookings extends javax.swing.JPanel {
         tblPastBookings = new javax.swing.JTable();
         btnDeleteBooking = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(22, 72, 128));
+        setBackground(new java.awt.Color(0, 153, 153));
         setPreferredSize(new java.awt.Dimension(1111, 765));
 
         lblPastBookings.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -73,7 +73,7 @@ public class ManageBookings extends javax.swing.JPanel {
 
         btnBack.setBackground(new java.awt.Color(245, 245, 246));
         btnBack.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(78, 114, 175));
+        btnBack.setForeground(new java.awt.Color(0, 0, 204));
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +108,7 @@ public class ManageBookings extends javax.swing.JPanel {
 
         btnDeleteBooking.setBackground(new java.awt.Color(245, 245, 246));
         btnDeleteBooking.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnDeleteBooking.setForeground(new java.awt.Color(78, 114, 175));
+        btnDeleteBooking.setForeground(new java.awt.Color(0, 0, 204));
         btnDeleteBooking.setText("Cancel Booking");
         btnDeleteBooking.setMaximumSize(new java.awt.Dimension(155, 31));
         btnDeleteBooking.setMinimumSize(new java.awt.Dimension(155, 31));

@@ -44,7 +44,7 @@ public class CustomersMngArea extends javax.swing.JPanel {
         btnBookFlights = new javax.swing.JButton();
         btnViewPastBookings = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(22, 72, 128));
+        setBackground(new java.awt.Color(0, 153, 153));
         setPreferredSize(new java.awt.Dimension(1111, 765));
 
         lblManageCustomers.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
@@ -54,7 +54,7 @@ public class CustomersMngArea extends javax.swing.JPanel {
 
         btnBookFlights.setBackground(new java.awt.Color(245, 245, 246));
         btnBookFlights.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnBookFlights.setForeground(new java.awt.Color(78, 114, 175));
+        btnBookFlights.setForeground(new java.awt.Color(0, 0, 204));
         btnBookFlights.setText("Book Flights");
         btnBookFlights.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +64,7 @@ public class CustomersMngArea extends javax.swing.JPanel {
 
         btnViewPastBookings.setBackground(new java.awt.Color(245, 245, 246));
         btnViewPastBookings.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnViewPastBookings.setForeground(new java.awt.Color(78, 114, 175));
+        btnViewPastBookings.setForeground(new java.awt.Color(0, 0, 204));
         btnViewPastBookings.setText("View Past Bookings");
         btnViewPastBookings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +78,7 @@ public class CustomersMngArea extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblManageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(457, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnViewPastBookings, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBookFlights, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))

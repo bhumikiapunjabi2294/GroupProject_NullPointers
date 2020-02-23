@@ -16,6 +16,7 @@ public class Airliner {
     private String airlinerHeadquaters;
     private int airlinerFleetSize;
     public ArrayList<Flight> flightList;
+    private int airplane;
     
     public Airliner(String airlinerName, String airlinerHeadquaters)
     {
@@ -45,6 +46,14 @@ public class Airliner {
        flightList.add(flight9);
        flightList.add(flight10);
 
+    }
+
+    public int getAirplane() {
+        return airplane;
+    }
+
+    public void setAirplane(int airplane) {
+        this.airplane = airplane;
     }
 
     public ArrayList<Flight> getFlightList() {

@@ -96,8 +96,8 @@ public class ViewFlight extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 255, 255));
-        setForeground(new java.awt.Color(0, 0, 204));
+        setBackground(new java.awt.Color(0, 153, 153));
+        setForeground(new java.awt.Color(255, 255, 255));
 
         btnBack.setBackground(new java.awt.Color(245, 245, 246));
         btnBack.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -110,7 +110,7 @@ public class ViewFlight extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("VIEW FLIGHT DETAILS");
 
@@ -121,11 +121,11 @@ public class ViewFlight extends javax.swing.JPanel {
         txtAirlinerName.setPreferredSize(new java.awt.Dimension(200, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Airliner Name :");
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Flight Number:");
 
         txtFlightNumber.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -139,11 +139,11 @@ public class ViewFlight extends javax.swing.JPanel {
         txtFlightSource.setPreferredSize(new java.awt.Dimension(200, 30));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Source:");
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Destination:");
 
         txtFlightDestination.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -157,11 +157,11 @@ public class ViewFlight extends javax.swing.JPanel {
         txtFlightDeparture.setPreferredSize(new java.awt.Dimension(200, 30));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Departure Time:");
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Arrival Time:");
 
         txtFlightArrival.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -180,11 +180,11 @@ public class ViewFlight extends javax.swing.JPanel {
         txtprice.setPreferredSize(new java.awt.Dimension(200, 30));
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Price Of Seat :");
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Total Seats :");
 
         txtTotalSeats.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N

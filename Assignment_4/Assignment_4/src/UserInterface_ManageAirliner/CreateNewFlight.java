@@ -85,7 +85,7 @@ public class CreateNewFlight extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         txtprice = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(22, 72, 128));
+        setBackground(new java.awt.Color(0, 153, 153));
 
         lblHeading.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         lblHeading.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,7 +94,7 @@ public class CreateNewFlight extends javax.swing.JPanel {
 
         btnBack.setBackground(new java.awt.Color(245, 245, 246));
         btnBack.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(78, 114, 175));
+        btnBack.setForeground(new java.awt.Color(0, 0, 204));
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +104,7 @@ public class CreateNewFlight extends javax.swing.JPanel {
 
         btnCreate.setBackground(new java.awt.Color(245, 245, 246));
         btnCreate.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnCreate.setForeground(new java.awt.Color(78, 114, 175));
+        btnCreate.setForeground(new java.awt.Color(0, 0, 204));
         btnCreate.setText("Create Flight");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -78,7 +78,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
         btnSearchAirliner = new javax.swing.JButton();
         btnClearSearch = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(22, 72, 128));
+        setBackground(new java.awt.Color(0, 153, 153));
 
         lblHeading.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         lblHeading.setForeground(new java.awt.Color(255, 255, 255));
@@ -110,7 +110,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
         btnCreateNewAirliner.setBackground(new java.awt.Color(245, 245, 246));
         btnCreateNewAirliner.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnCreateNewAirliner.setForeground(new java.awt.Color(78, 114, 175));
+        btnCreateNewAirliner.setForeground(new java.awt.Color(0, 0, 204));
         btnCreateNewAirliner.setText("Create new Airliner");
         btnCreateNewAirliner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +120,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
         btnViewAirlinerDetails.setBackground(new java.awt.Color(245, 245, 246));
         btnViewAirlinerDetails.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnViewAirlinerDetails.setForeground(new java.awt.Color(78, 114, 175));
+        btnViewAirlinerDetails.setForeground(new java.awt.Color(0, 0, 204));
         btnViewAirlinerDetails.setText("View Airliner Details");
         btnViewAirlinerDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +130,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
         btnDeleteAirliner.setBackground(new java.awt.Color(245, 245, 246));
         btnDeleteAirliner.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnDeleteAirliner.setForeground(new java.awt.Color(78, 114, 175));
+        btnDeleteAirliner.setForeground(new java.awt.Color(0, 0, 204));
         btnDeleteAirliner.setText("Delete Airliner");
         btnDeleteAirliner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +140,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
         btnAddFlight.setBackground(new java.awt.Color(245, 245, 246));
         btnAddFlight.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnAddFlight.setForeground(new java.awt.Color(78, 114, 175));
+        btnAddFlight.setForeground(new java.awt.Color(0, 0, 204));
         btnAddFlight.setText("Add Flight to Airliner");
         btnAddFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +153,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
         btnSearchAirliner.setBackground(new java.awt.Color(245, 245, 246));
         btnSearchAirliner.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnSearchAirliner.setForeground(new java.awt.Color(78, 114, 175));
+        btnSearchAirliner.setForeground(new java.awt.Color(0, 0, 204));
         btnSearchAirliner.setText("Search Airliner");
         btnSearchAirliner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +163,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
 
         btnClearSearch.setBackground(new java.awt.Color(245, 245, 246));
         btnClearSearch.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnClearSearch.setForeground(new java.awt.Color(78, 114, 175));
+        btnClearSearch.setForeground(new java.awt.Color(0, 0, 204));
         btnClearSearch.setText("Clear Search");
         btnClearSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
