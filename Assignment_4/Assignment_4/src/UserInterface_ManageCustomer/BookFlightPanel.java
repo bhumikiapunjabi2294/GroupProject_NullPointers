@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -98,7 +99,7 @@ public class BookFlightPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         lblName = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(22, 72, 128));
+        setBackground(new java.awt.Color(0, 153, 153));
 
         lblFlightNumber.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblFlightNumber.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,7 +115,7 @@ public class BookFlightPanel extends javax.swing.JPanel {
 
         btnBack.setBackground(new java.awt.Color(245, 245, 246));
         btnBack.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(78, 114, 175));
+        btnBack.setForeground(new java.awt.Color(0, 0, 204));
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,7 +257,7 @@ public class BookFlightPanel extends javax.swing.JPanel {
 
         btnBookAFlight.setBackground(new java.awt.Color(245, 245, 246));
         btnBookAFlight.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnBookAFlight.setForeground(new java.awt.Color(78, 114, 175));
+        btnBookAFlight.setForeground(new java.awt.Color(0, 0, 204));
         btnBookAFlight.setText("Book Flight");
         btnBookAFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,6 +395,7 @@ public class BookFlightPanel extends javax.swing.JPanel {
             {
                 JOptionPane.showMessageDialog(null, "Email should be the form of xxx123@xxx.xxx");
                 txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED));
+                txtPhone.setBorder(new LineBorder(Color.BLACK, 0));
                 lblEmail.setForeground(Color.RED);
                 return;
             }else if(customerName.equals(" "))
@@ -401,6 +403,8 @@ public class BookFlightPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Please Enter your Name");
                 txtFlightNumber.setBorder(BorderFactory.createLineBorder(Color.RED));
                 lblFlightNumber.setForeground(Color.RED);
+                txtPhone.setBorder(new LineBorder(Color.BLACK, 0));
+                txtEmail.setBorder(new LineBorder(Color.BLACK, 0));
                 return;
             }
             else{
