@@ -77,6 +77,7 @@ public class AirlinerMngArea extends javax.swing.JPanel {
         txtSearchAirliner = new javax.swing.JTextField();
         btnSearchAirliner = new javax.swing.JButton();
         btnClearSearch = new javax.swing.JButton();
+        btnAddPlanes = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(22, 72, 128));
 
@@ -171,24 +172,34 @@ public class AirlinerMngArea extends javax.swing.JPanel {
             }
         });
 
+        btnAddPlanes.setText("Add Planes");
+        btnAddPlanes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPlanesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblHeading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(245, 245, 245)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnCreateNewAirliner)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnViewAirlinerDetails)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnDeleteAirliner, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
-                        .addComponent(btnAddFlight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAddPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCreateNewAirliner)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnViewAirlinerDetails)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnDeleteAirliner, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+                            .addComponent(btnAddFlight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(txtSearchAirliner, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +227,9 @@ public class AirlinerMngArea extends javax.swing.JPanel {
                 .addComponent(btnClearSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(btnAddFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(166, 166, 166))
+                .addGap(26, 26, 26)
+                .addComponent(btnAddPlanes)
+                .addGap(117, 117, 117))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -317,9 +330,30 @@ public class AirlinerMngArea extends javax.swing.JPanel {
         txtSearchAirliner.setText("");
     }//GEN-LAST:event_btnClearSearchActionPerformed
 
+    private void btnAddPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPlanesActionPerformed
+         try{
+           
+        int selectedRow = tblAirliner.getSelectedRow();
+        if(selectedRow<0) {
+             JOptionPane.showMessageDialog(null, "Please select a row from table first to view flight details","Warning",JOptionPane.WARNING_MESSAGE);
+         }
+        else{
+        Airliner airliner = (Airliner)tblAirliner.getValueAt(selectedRow,0);
+        CreateNewPlane panel = new CreateNewPlane(cardSequenceJPanel, airliner);
+        cardSequenceJPanel.add("CreateNewPlaneJPanel", panel);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+        }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Please select a row from table first to view flight details","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddPlanesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddFlight;
+    private javax.swing.JButton btnAddPlanes;
     private javax.swing.JButton btnClearSearch;
     private javax.swing.JButton btnCreateNewAirliner;
     private javax.swing.JButton btnDeleteAirliner;

@@ -6,6 +6,7 @@
 package Business;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,14 +17,17 @@ public class Airliner {
     private String airlinerHeadquaters;
     private int airlinerFleetSize;
     public ArrayList<Flight> flightList;
+    private int airlinerPlaneSize;
+    public ArrayList<Planes> planeList;
     
     public Airliner(String airlinerName, String airlinerHeadquaters)
     {
+       planeList = new ArrayList<Planes>();
        flightList = new ArrayList<Flight>();
        this.airlinerName = airlinerName;
        this.airlinerHeadquaters = airlinerHeadquaters;
        
-       Flight flight1 = new Flight("Jet Blue","EM-1283", "DUBAI", "BOSTON", "20:00", "23:00", 450, 25);
+       /*Flight flight1 = new Flight("Jet Blue","EM-1283", "DUBAI", "BOSTON", "20:00", "23:00", 450, 25,"22/10/2019","23/10/2019");
        Flight flight2 = new Flight("Air India","Q-328", "MUMBAI", "BOSTON", "08:00", "23:00", 650, 250);
        Flight flight3 = new Flight("Air India","J-3243", "DOHA", "NEWYORK", "10:00", "20:00", 500, 150);
        Flight flight4 = new Flight("Air India","BA-233", "DUBAI", "CHICAGO", "06:00", "04:00", 450, 200);
@@ -43,10 +47,26 @@ public class Airliner {
        flightList.add(flight7);
        flightList.add(flight8);
        flightList.add(flight9);
-       flightList.add(flight10);
+       flightList.add(flight10);*/
 
     }
 
+    public int getAirlinerPlaneSize() {
+        return airlinerPlaneSize;
+    }
+
+    public void setAirlinerPlaneSize(int airlinerPlaneSize) {
+        this.airlinerPlaneSize = airlinerPlaneSize;
+    }
+
+    public ArrayList<Planes> getPlaneList() {
+        return planeList;
+    }
+
+    public void setPlaneList(ArrayList<Planes> planeList) {
+        this.planeList = planeList;
+    }
+    
     public ArrayList<Flight> getFlightList() {
         return flightList;
     }
@@ -79,14 +99,21 @@ public class Airliner {
         this.airlinerFleetSize = airlinerFleetSize;
     }
     
-    public Flight addFlight(String airlinerName, String flightNumber, String source, String destination, String departureTime, String arrivalTime, double flightPrice, int totalSeats) {
-       Flight flight = new Flight(airlinerName, flightNumber, source, destination, departureTime, arrivalTime, flightPrice, totalSeats);
+    public Flight addFlight(String airlinerName, String flightNumber, String source, String destination, String departureTime, String arrivalTime, double flightPrice, int totalSeats,Date DepDate,Date ArrDate) {
+       Flight flight = new Flight(airlinerName, flightNumber, source, destination, departureTime, arrivalTime, flightPrice, totalSeats,DepDate,ArrDate);
        flightList.add(flight);
        return flight;
     }
-    
+    public Planes addPlane(String airlinerName,String planeName, int totalSeats){
+        Planes plane=new Planes(airlinerName,planeName,totalSeats);
+        planeList.add(plane);
+        return plane;
+    }
     public void deleteFlight(Flight flight) {
         flightList.remove(flight);
+    }
+    public void deletePlane(Planes plane){
+        planeList.remove(plane);
     }
      
      

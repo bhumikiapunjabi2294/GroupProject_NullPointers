@@ -6,14 +6,23 @@
 package UserInterface_ManageAirliner;
 
 import Business.Airliner;
+import Business.Flight;
 import Business.TravelAgency;
 import UserInterface_ManageTravelAgency.TravelAgencyMngArea;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import Business.Planes;
+import java.security.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 
 /**
  *
@@ -28,11 +37,16 @@ public class CreateNewFlight extends javax.swing.JPanel {
     private Airliner airliner;
     private TravelAgency travelAgency;
     CreateNewFlight(JPanel cardSequenceJpanel, Airliner airliner) {
+        
         initComponents();
         this.cardSequenceJPanel = cardSequenceJpanel;
         this.airliner = airliner;
         txtAirlinerName.setEnabled(false);
         txtAirlinerName.setText(airliner.getAirlinerName());
+        
+        populateFlight();
+        txtTotalSeats.setEnabled(false);
+        txtTotalSeats.setText(Integer.toString(airliner.getPlaneList().get(ComboBox.getSelectedIndex()).getTotalSeats()));
     }
     
         public boolean checkString(String string){
@@ -55,6 +69,23 @@ public class CreateNewFlight extends javax.swing.JPanel {
        boolean b = m.matches();
        return b;
     }
+    
+     private void populateFlight(){
+         HashSet <String> planes = new HashSet<>();
+         
+       //  for(Airliner airliner:travelAgency.getAirlinerDirectory().getAirlinerList()){
+            int i=0;
+            for(Planes Plane:airliner.getPlaneList()) { 
+                planes.add(airliner.getPlaneList().get(i).getPlaneName());
+                i++;
+                }
+          //  }
+         
+         for(String plane : planes){
+             ComboBox.addItem(plane);
+             
+         }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,6 +115,9 @@ public class CreateNewFlight extends javax.swing.JPanel {
         txtFlightSource = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtprice = new javax.swing.JTextField();
+        ComboBox = new javax.swing.JComboBox<>();
+        depDate = new org.jdesktop.swingx.JXDatePicker();
+        arrDate = new org.jdesktop.swingx.JXDatePicker();
 
         setBackground(new java.awt.Color(22, 72, 128));
 
@@ -183,20 +217,30 @@ public class CreateNewFlight extends javax.swing.JPanel {
         txtprice.setForeground(new java.awt.Color(78, 114, 175));
         txtprice.setPreferredSize(new java.awt.Dimension(200, 30));
 
+        ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(446, 446, 446)
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(depDate, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arrDate, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(61, 61, 61)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(446, 446, 446)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(208, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -229,7 +273,13 @@ public class CreateNewFlight extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 593, Short.MAX_VALUE)
+                .addGap(124, 124, 124)
+                .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(166, 166, 166)
+                .addComponent(depDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(arrDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,9 +345,47 @@ public class CreateNewFlight extends javax.swing.JPanel {
         String destination = txtFlightDestination.getText();
         String departure = txtFlightDeparture.getText();
         String arrival = txtFlightArrival.getText();
+        Date DepDate=depDate.getDate();
+        Date ArrDate=arrDate.getDate();
+        
+       
         try{
+            
             Double price = Double.parseDouble(txtprice.getText());
             int totalSeats = Integer.parseInt(txtTotalSeats.getText());
+            int j=ComboBox.getSelectedIndex();
+            for(int i=0;i<airliner.getFlightList().size();i++){
+                        int dep=Integer.parseInt(departure.substring(0, 2));
+                        int arr=1+Integer.parseInt(arrival.substring(0, 2));
+                        
+                        int past_arr=1+Integer.parseInt(airliner.getFlightList().get(i).getArrivalTime().substring(0, 2));
+                        int past_dep=Integer.parseInt(airliner.getFlightList().get(i).getDepartureTime().substring(0, 2));
+                       
+                if(airliner.getFlightList().get(j)==airliner.getFlightList().get(i)){
+                       
+                    if(airliner.getFlightList().get(j).getDepDate()==airliner.getFlightList().get(i).getDepDate()){
+                        if(dep>past_dep && dep<past_arr){
+                            JOptionPane.showMessageDialog(null, "Flight is already scheduled");
+                            throw new Exception("Problem with Scheduling");
+                        }else if(arr>past_dep && arr<past_arr){
+                            JOptionPane.showMessageDialog(null, "Flight is already scheduled");
+                            throw new Exception("Problem with Scheduling");
+                        }
+                    }else if(airliner.getFlightList().get(j).getDepDate()==airliner.getFlightList().get(i).getArrDate()){
+                        if( dep<past_arr){
+                            JOptionPane.showMessageDialog(null, "Flight is already scheduled");
+                            throw new Exception("Problem with Scheduling");
+                        }
+                    }else if(airliner.getFlightList().get(j).getArrDate()==airliner.getFlightList().get(i).getDepDate()){
+                        if( arr>past_dep){
+                            JOptionPane.showMessageDialog(null, "Flight is already scheduled");
+                            throw new Exception("Problem with Scheduling");
+                        }
+                    }
+                   
+                }
+            }
+        
             
         if(!checkFlightNumber(flightNumber)){
             JOptionPane.showMessageDialog(null, "Please enter valid flight number : XX-XXXX");
@@ -314,20 +402,24 @@ public class CreateNewFlight extends javax.swing.JPanel {
         else if(!checkString(destination)){
             JOptionPane.showMessageDialog(null, "Please enter valid destination");
         }
+           
+        
         else {
-            airliner.addFlight(airlinerName, flightNumber, source, destination, departure, arrival, price, totalSeats);
+            airliner.addFlight(airlinerName, flightNumber, source, destination, departure, arrival, price, totalSeats,DepDate,ArrDate);
             txtFlightNumber.setText("");
             txtFlightSource.setText("");
             txtFlightDestination.setText("");
             txtFlightDeparture.setText("");
             txtFlightArrival.setText("");
             txtprice.setText("");
-            txtTotalSeats.setText("");
+            txtTotalSeats.setText(Integer.toString(airliner.getPlaneList().get(ComboBox.getSelectedIndex()).getTotalSeats()));
             JOptionPane.showMessageDialog(null, "Flight successfully added");
         }
         }
         catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Price and Total seats should be a number");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Flight is already scheduled");
         }
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -335,10 +427,18 @@ public class CreateNewFlight extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFlightArrivalActionPerformed
 
+    private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
+        // TODO add your handling code here:
+         txtTotalSeats.setText(Integer.toString(airliner.getPlaneList().get(ComboBox.getSelectedIndex()).getTotalSeats()));
+    }//GEN-LAST:event_ComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBox;
+    private org.jdesktop.swingx.JXDatePicker arrDate;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
+    private org.jdesktop.swingx.JXDatePicker depDate;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

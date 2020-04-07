@@ -171,6 +171,11 @@ public class FlightSearchArea extends javax.swing.JPanel {
         comboBoxTime.setBackground(new java.awt.Color(245, 245, 246));
         comboBoxTime.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         comboBoxTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Morning", "Afternoon", "Evening ", "Night" }));
+        comboBoxTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTimeActionPerformed(evt);
+            }
+        });
 
         tbltravelagency.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -442,6 +447,10 @@ public class FlightSearchArea extends javax.swing.JPanel {
     private void comboBoxSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSourceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxSourceActionPerformed
+
+    private void comboBoxTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxTimeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

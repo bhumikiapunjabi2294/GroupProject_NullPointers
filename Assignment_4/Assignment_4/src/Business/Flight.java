@@ -7,6 +7,7 @@ package Business;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -23,9 +24,29 @@ public class Flight {
     private int totalSeats;
     private int availableSeats;
     private ArrayList<Seats> seatList;
+    private Date DepDate;
+    private Date ArrDate;
+
+    public Date getDepDate() {
+        return DepDate;
+    }
+
+    public void setDepDate(Date DepDate) {
+        this.DepDate = DepDate;
+    }
+
+    public Date getArrDate() {
+        return ArrDate;
+    }
+
+    public void setArrDate(Date ArrDate) {
+        this.ArrDate = ArrDate;
+    }
     private Seats seat;
-    public Flight(String airlinerName,String flightNumber,String source,String destination,String departureTime,String arrivalTime,double flightPrice,int totalSeats ){
+    public Flight(String airlinerName,String flightNumber,String source,String destination,String departureTime,String arrivalTime,double flightPrice,int totalSeats,Date DepDate,Date ArrDate ){
         seatList = new ArrayList<>();
+        this.DepDate=DepDate;
+        this.ArrDate=ArrDate;
         this.airlinerName = airlinerName;
         this.flightNumber = flightNumber;
         this.source = source;
@@ -168,6 +189,7 @@ public class Flight {
         this.totalSeats = totalSeats;
     }
 
+    @Override
     public String toString(){
         return this.flightNumber;
     }

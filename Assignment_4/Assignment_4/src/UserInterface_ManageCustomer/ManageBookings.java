@@ -33,6 +33,7 @@ public class ManageBookings extends javax.swing.JPanel {
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.travelAgency = travelAgency;
         populatePastBookingsJTable();
+        
     }
     
     private void populatePastBookingsJTable(){
