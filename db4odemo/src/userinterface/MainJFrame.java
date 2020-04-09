@@ -51,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         loginJLabel = new javax.swing.JLabel();
         logoutJButton = new javax.swing.JButton();
         container = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +116,13 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanel1);
 
         container.setLayout(new java.awt.CardLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/Covid-19 Logo.png"))); // NOI18N
+        container.add(jLabel3, "card2");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Images/Covid-19 Logo.png"))); // NOI18N
+
+        // Code adding the component to the parent container - not shown here
+
         jSplitPane1.setRightComponent(container);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -238,6 +246,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton loginJButton;

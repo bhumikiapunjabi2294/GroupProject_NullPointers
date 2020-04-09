@@ -5,7 +5,7 @@
  */
 package Business.Organization;
 
-import Business.Role.EmergencyServicesAdminRole;
+import Business.Role.EmergencyServicesAdministrativeRole;
 import Business.Role.EmergencyServicesManagerRole;
 import Business.Role.Role;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class EmergencyServicesManagerOrganization extends Organization{
 
     public EmergencyServicesManagerOrganization() {
-         super(Organization.Type.EmergencyServicesManager.getValue());;
+         super(Organization.Type.EmergencyServicesManager.getValue());
     }
     @Override
     public ArrayList<Role> getSupportedRole() {

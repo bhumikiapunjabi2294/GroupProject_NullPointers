@@ -22,7 +22,9 @@ public abstract class Role {
         LabAssistant("Lab Assistant"),
         EmergencyServicesAdmin("EmergencyServices Admin"),
         Abulance("Ambulance"),
-        EmergencyServicesManager("Emergency Services Manager");
+        EmergencyServicesManager("Emergency Services Manager"),
+        NGOAdmin("NGO Admin"),
+        NGO("NGO");
         
         private String value;
         private RoleType(String value){
