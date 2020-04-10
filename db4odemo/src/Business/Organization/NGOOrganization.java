@@ -4,13 +4,14 @@
  */
 package Business.Organization;
 
-import Business.Role.VolunteerRole;
+import Business.Role.NGOAdministrativeRole;
+import Business.Role.PatientRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author yash
  */
 public class NGOOrganization extends Organization{
 
@@ -21,7 +22,7 @@ public class NGOOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new VolunteerRole());
+        roles.add(new NGOAdministrativeRole());
         return roles;
     }
      

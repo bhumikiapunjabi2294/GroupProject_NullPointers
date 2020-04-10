@@ -12,6 +12,7 @@ import Business.Organization.DoctorOrganization;
 import Business.Organization.NGOOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -21,11 +22,11 @@ import javax.swing.JPanel;
 public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
-    private NGOOrganization organization;
+    private Organization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
 
-    public NGOWorkAreaJPanel(JPanel userProcessContainer, NGOOrganization organization, Enterprise enterprise, UserAccount account) {
+    public NGOWorkAreaJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account) {
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
@@ -33,7 +34,6 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
          initComponents();
     }
 
-  
 
 
     /**
@@ -45,19 +45,118 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        UpdatePatientsBtn = new javax.swing.JButton();
+        RemovePatientBtn = new javax.swing.JButton();
+        AddPatientBtn = new javax.swing.JButton();
+
+        jLabel1.setText("Welcome to NGO!!");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Patient Name", "Username", "Password"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        UpdatePatientsBtn.setText("Update Patients");
+
+        RemovePatientBtn.setText("Remove Patient");
+        RemovePatientBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemovePatientBtnActionPerformed(evt);
+            }
+        });
+
+        AddPatientBtn.setText("Add Patient");
+        AddPatientBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddPatientBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(UpdatePatientsBtn)
+                        .addGap(78, 78, 78)
+                        .addComponent(RemovePatientBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(AddPatientBtn)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdatePatientsBtn)
+                    .addComponent(RemovePatientBtn))
+                .addGap(38, 38, 38)
+                .addComponent(AddPatientBtn)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AddPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPatientBtnActionPerformed
+
+        ManagePatientJPanel managePatientJPanel = new ManagePatientJPanel(userProcessContainer, organization, enterprise, userAccount);
+        userProcessContainer.add("managePatientJPanel", managePatientJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_AddPatientBtnActionPerformed
+
+    private void RemovePatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovePatientBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RemovePatientBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddPatientBtn;
+    private javax.swing.JButton RemovePatientBtn;
+    private javax.swing.JButton UpdatePatientsBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
