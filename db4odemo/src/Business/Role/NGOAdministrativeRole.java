@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
+import userinterface.NGORole.NGOWorkAreaJPanel;
 
 /**
  *
@@ -20,6 +21,6 @@ public class NGOAdministrativeRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
+        return new NGOWorkAreaJPanel(userProcessContainer, organization ,enterprise, account);
     }
 }
