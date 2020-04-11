@@ -5,7 +5,10 @@
  */
 package userinterface.NGORole;
 
+import Business.EcoSystem;
+import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
@@ -13,7 +16,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author bhumika
+ * @author yash
  */
 public class ManagePatientJPanel extends javax.swing.JPanel {
 
@@ -24,34 +27,44 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
     private Organization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
+    private EcoSystem business;
+    private Network network;
     
     
-    
-    public ManagePatientJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account) {
+    public ManagePatientJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account, EcoSystem business,Network network) {
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
+        this.business = business;
+     
         initComponents();
         populatecombobox();
+      //  populateDocCombo(enterprise);
     }
     private void populatecombobox(){
         HospitalJComboBox.removeAllItems();
-        for (Organization us : enterprise.getOrganizationDirectory().getOrganizationList()){
-            System.out.println(us.getSupportedRole());
-            //System.out.println(us.get);
-            System.out.println("________________________________________________");
-            System.out.println(us.getUserAccountDirectory().getUserAccountList());
-            System.out.println("________________________________________________");
-            
-            System.out.println(enterprise.getEnterpriseType().getValue());
-            System.out.println("________________________________________________");
-            System.out.println(us.getEmployeeDirectory().getEmployeeList());
         
+        for (Network network : business.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if(enterprise.getEnterpriseType().toString().equals("Hospital")){
+                    HospitalJComboBox.addItem(enterprise);
+                    //populateDocCombo(enterprise);
+                    
+                }
+            }
         }
-//        for(String er : enterprise.getEnterpriseType().getValue()){
-//            
-//        }
+    }
+    private void populateDocCombo(Enterprise en){
+        doctorComboBox.removeAllItems();
+        for (Organization organization : en.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization.getSupportedRole().toString().equals("[Business.Role.DoctorRole]")) {
+                        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
+                            doctorComboBox.addItem(employee.getName());
+                            System.out.println(organization.getEmployeeDirectory().getEmployeeList());
+                        }
+                    }
+        }
     }
 
    
@@ -74,6 +87,8 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         UpdateBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         HospitalJComboBox = new javax.swing.JComboBox();
+        doctorComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         NameLbl.setText("Name:");
 
@@ -101,10 +116,29 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         });
 
         UpdateBtn.setText("Update");
+        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Select Hospital : ");
 
         HospitalJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        HospitalJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HospitalJComboBoxActionPerformed(evt);
+            }
+        });
+
+        doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        doctorComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Select doctor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,7 +157,9 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                         .addComponent(AddBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addComponent(jLabel1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -132,7 +168,8 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                     .addComponent(UsernameTxt, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(NameTxt, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(PasswordTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(HospitalJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(HospitalJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(doctorComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -154,7 +191,14 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(HospitalJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(doctorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddBtn)
                     .addComponent(UpdateBtn))
@@ -174,6 +218,25 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_AddBtnActionPerformed
 
+    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UpdateBtnActionPerformed
+
+    private void doctorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_doctorComboBoxActionPerformed
+
+    private void HospitalJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HospitalJComboBoxActionPerformed
+        Enterprise enterprise = (Enterprise) HospitalJComboBox.getSelectedItem();
+        
+        if(enterprise!= null){
+             populateDocCombo(enterprise);
+             
+        }
+        
+       
+    }//GEN-LAST:event_HospitalJComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;
@@ -185,6 +248,8 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
     private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel UsernameLbl;
     private javax.swing.JTextField UsernameTxt;
+    private javax.swing.JComboBox<String> doctorComboBox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

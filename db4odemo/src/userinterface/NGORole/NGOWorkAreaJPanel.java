@@ -5,8 +5,10 @@
  */
 package userinterface.NGORole;
 
+import Business.EcoSystem;
 import userinterface.AmbulanceRole.*;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.AmbulanceOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.NGOOrganization;
@@ -25,12 +27,16 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private Organization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
+    private EcoSystem business;
+    private Network network;
 
-    public NGOWorkAreaJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account) {
+    public NGOWorkAreaJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account, EcoSystem business, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
+        this.business = business;
+        this.network = network;
          initComponents();
     }
 
@@ -139,7 +145,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
 
     private void AddPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPatientBtnActionPerformed
 
-        ManagePatientJPanel managePatientJPanel = new ManagePatientJPanel(userProcessContainer, organization, enterprise, userAccount);
+        ManagePatientJPanel managePatientJPanel = new ManagePatientJPanel(userProcessContainer, organization, enterprise, userAccount, business,network);
         userProcessContainer.add("managePatientJPanel", managePatientJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
