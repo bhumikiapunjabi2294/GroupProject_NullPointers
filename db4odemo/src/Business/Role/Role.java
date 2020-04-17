@@ -6,6 +6,7 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
@@ -22,7 +23,10 @@ public abstract class Role {
         LabAssistant("Lab Assistant"),
         EmergencyServicesAdmin("EmergencyServices Admin"),
         Abulance("Ambulance"),
-        EmergencyServicesManager("Emergency Services Manager");
+        EmergencyServicesManager("Emergency Services Manager"),
+        NGOAdmin("NGO Admin"),
+        Patient("Patient"),
+        NGO("NGO");
         
         private String value;
         private RoleType(String value){
@@ -43,7 +47,8 @@ public abstract class Role {
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 
-            EcoSystem business);
+            EcoSystem business,
+            Network network);
 
     @Override
     public String toString() {

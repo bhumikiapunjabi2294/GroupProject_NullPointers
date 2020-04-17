@@ -65,13 +65,18 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         String EnrepriseType =  enterprise.getEnterpriseType().toString();
         String s = "Emergency Services";
         String h = "Hospital";
+        String n= "NGO";
         organizationJComboBox.removeAllItems();
         if(EnrepriseType.equals(s)){
            // System.out.println("yash");
         for (Type type : Organization.Type.values()){
             if (!type.getValue().equals(Type.Admin.getValue()) && 
                     !type.getValue().equals(Type.EmergencyServicesAdmin.getValue()) &&
+                    !type.getValue().equals(Type.EmergencyServicesManager.getValue()) &&
+                    !type.getValue().equals(Type.NGO.getValue()) &&
                     !type.getValue().equals(Type.Doctor.getValue()) &&
+                    !type.getValue().equals(Type.NGOAdmin.getValue()) &&
+                    !type.getValue().equals(Type.Patient.getValue()) &&
                     !type.getValue().equals(Type.Lab.getValue())){
                 organizationJComboBox.addItem(type);
              //   System.out.println("bhumika");
@@ -82,11 +87,31 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             for (Type type : Organization.Type.values()){
                 if (!type.getValue().equals(Type.Admin.getValue()) && 
                         !type.getValue().equals(Type.EmergencyServicesAdmin.getValue()) &&
-                        !type.getValue().equals(Type.Ambulance.getValue())){
+                        !type.getValue().equals(Type.Ambulance.getValue())  &&
+                     !type.getValue().equals(Type.EmergencyServicesManager.getValue()) &&
+                     !type.getValue().equals(Type.NGO.getValue()) &&
+                      !type.getValue().equals(Type.Patient.getValue()) &&
+                      !type.getValue().equals(Type.NGOAdmin.getValue())  ){
                     organizationJComboBox.addItem(type);
               //      System.out.println("abhi");
                  }
             }
+        }else if(EnrepriseType.equals(n)){
+            System.out.println("bhumi");
+             for (Type type : Organization.Type.values()){
+                if (!type.getValue().equals(Type.Admin.getValue()) && 
+                        !type.getValue().equals(Type.EmergencyServicesAdmin.getValue()) &&
+                        !type.getValue().equals(Type.Ambulance.getValue()) &&
+                        !type.getValue().equals(Type.Doctor.getValue()) &&
+                    !type.getValue().equals(Type.Lab.getValue()) &&
+                     !type.getValue().equals(Type.EmergencyServicesManager.getValue()) &&
+                     !type.getValue().equals(Type.Patient.getValue()) &&
+                     !type.getValue().equals(Type.NGO.getValue())){
+                    organizationJComboBox.addItem(type);
+              //      System.out.println("abhi");
+                 }
+             }
+            
         }
         
     }
@@ -162,7 +187,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 308, -1, -1));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 308, -1, 20));
 
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {

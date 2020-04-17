@@ -7,6 +7,7 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.AmbulanceOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
@@ -22,7 +23,7 @@ import userinterface.DoctorRole.DoctorWorkAreaJPanel;
 public class AmbulanceRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, Network network) {
         return new AmbulanceWorkAreaJPanel(userProcessContainer, account, (AmbulanceOrganization)organization, enterprise);
     }
     

@@ -7,18 +7,20 @@ package Business;
 
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Organization.OrganizationDirectory;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import java.util.ArrayList;
 
 /**
  *
- * @author MyPC1
+ * @author yash
  */
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private ArrayList<Network> networkList;
+ 
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();

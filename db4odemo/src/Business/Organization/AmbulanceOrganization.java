@@ -7,7 +7,7 @@ package Business.Organization;
 
 import Business.Role.AmbulanceRole;
 import Business.Role.DoctorRole;
-import Business.Role.EmergencyServicesAdminRole;
+import Business.Role.EmergencyServicesAdministrativeRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 

@@ -22,4 +22,5 @@ public class HospitalEnterprise extends Enterprise {
         return null;
     }
     
+    
 }
