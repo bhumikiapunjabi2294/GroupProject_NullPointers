@@ -13,9 +13,11 @@ import Business.Organization.AmbulanceOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.NGOOrganization;
 import Business.Organization.Organization;
+import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -38,8 +40,23 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         this.business = business;
         this.network = network;
          initComponents();
+         populateTbl();
     }
-
+    public void populateTbl(){
+        DefaultTableModel model = (DefaultTableModel) patientTbl.getModel();
+        model.setRowCount(0);
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {                
+                if(ua.getRole().toString().equals("Business.Role.PatientRole")){
+                Object row[] = new Object[3];
+                row[0] = ua;
+                row[1] = ua.getUsername();
+                row[2] = ua.getPassword();
+                ((DefaultTableModel) patientTbl.getModel()).addRow(row);
+                }
+            }
+        }
+    }
 
 
     /**
@@ -53,14 +70,14 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        patientTbl = new javax.swing.JTable();
         UpdatePatientsBtn = new javax.swing.JButton();
         RemovePatientBtn = new javax.swing.JButton();
         AddPatientBtn = new javax.swing.JButton();
 
         jLabel1.setText("Welcome to NGO!!");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        patientTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -86,7 +103,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(patientTbl);
 
         UpdatePatientsBtn.setText("Update Patients");
 
@@ -163,6 +180,6 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton UpdatePatientsBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable patientTbl;
     // End of variables declaration//GEN-END:variables
 }
