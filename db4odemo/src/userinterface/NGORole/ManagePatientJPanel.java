@@ -102,32 +102,36 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         doctorComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NameLbl.setText("Name:");
-        add(NameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 41, -1, -1));
+        add(NameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 50, -1));
 
         UsernameLbl.setText("Username:");
-        add(UsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 64, -1, -1));
+        add(UsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
 
         PasswordLbl.setText("Password:");
-        add(PasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 114, -1, -1));
+        add(PasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
         NameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameTxtActionPerformed(evt);
             }
         });
-        add(NameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 38, 57, -1));
-        add(UsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 64, 57, -1));
+        add(NameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 57, -1));
+        add(UsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 57, -1));
 
         PasswordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordTxtActionPerformed(evt);
             }
         });
-        add(PasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 111, 57, -1));
+        add(PasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 57, -1));
 
         AddBtn.setText("Add ");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +139,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 AddBtnActionPerformed(evt);
             }
         });
-        add(AddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
+        add(AddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
 
         UpdateBtn.setText("Update");
         UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -143,10 +147,10 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 UpdateBtnActionPerformed(evt);
             }
         });
-        add(UpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
+        add(UpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, -1, -1));
 
         jLabel1.setText("Select Hospital : ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 172, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
         HospitalJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         HospitalJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +158,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 HospitalJComboBoxActionPerformed(evt);
             }
         });
-        add(HospitalJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 169, -1, -1));
+        add(HospitalJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
 
         doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         doctorComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -162,10 +166,10 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 doctorComboBoxActionPerformed(evt);
             }
         });
-        add(doctorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 197, -1, -1));
+        add(doctorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
 
         jLabel2.setText("Select doctor");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 195, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +177,18 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/symptoms-cough.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 420, 430));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/symptoms-fever.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/symptoms-shortnessOfBreath.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 400, 430));
     }// </editor-fold>//GEN-END:initComponents
 
     private void NameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTxtActionPerformed
@@ -284,5 +299,8 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> doctorComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

@@ -59,6 +59,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         container.setLayout(new java.awt.CardLayout());
 
+        jLabel3.setBackground(new java.awt.Color(153, 204, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/datadoc woking.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         container.add(jLabel3, "card2");
