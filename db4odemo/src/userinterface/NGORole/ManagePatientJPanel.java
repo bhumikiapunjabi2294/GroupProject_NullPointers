@@ -19,6 +19,7 @@ import Business.Role.Role.RoleType;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.PatientsAllocatedWorkRequest;
+import Business.UserAccount.PatientAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -222,7 +223,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         String Emp = NameTxt.getText();
         Employee employee = business.getEmployeeDirectory().createEmployee(NameTxt.getText());
         UserAccount ua = organization.getUserAccountDirectory().createUserAccount(userName, password, employee, new PatientRole());
-        
+      //  PatientAccount pa = organization.getUserAccountDirectory().createUserAccount(userName, password, employee, new PatientRole());
         
         String message = "";
         

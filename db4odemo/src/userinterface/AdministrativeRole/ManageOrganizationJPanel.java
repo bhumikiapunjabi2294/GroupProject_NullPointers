@@ -72,7 +72,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         for (Type type : Organization.Type.values()){
             if (!type.getValue().equals(Type.Admin.getValue()) && 
                     !type.getValue().equals(Type.EmergencyServicesAdmin.getValue()) &&
-                    !type.getValue().equals(Type.EmergencyServicesManager.getValue()) &&
+                   // !type.getValue().equals(Type.EmergencyServicesManager.getValue()) &&
                     !type.getValue().equals(Type.NGO.getValue()) &&
                     !type.getValue().equals(Type.Doctor.getValue()) &&
                     !type.getValue().equals(Type.NGOAdmin.getValue()) &&
@@ -212,7 +212,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
         Type type = (Type) organizationJComboBox.getSelectedItem();
+        System.out.println(type);
         directory.createOrganization(type);
+        System.out.println(directory.getOrganizationList());
         populateTable();
     }//GEN-LAST:event_addJButtonActionPerformed
 
