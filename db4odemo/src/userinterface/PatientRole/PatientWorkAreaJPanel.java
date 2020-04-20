@@ -8,7 +8,13 @@ package userinterface.PatientRole;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.VitalSign.VitalSign;
+import Business.WorkQueue.PatientsAllocatedWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userinterface.DoctorRole.RequestLabTestJPanel;
 
 /**
  *
@@ -19,10 +25,37 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PatientWorkAreaJPanel
      */
+    private JPanel userProcessContainer;
+    private  Organization organization;
+    private Enterprise enterprise;
+    private UserAccount account;
+    
     public PatientWorkAreaJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account) {
+        
+        this.userProcessContainer= userProcessContainer;
+        this.organization= organization;
+        this.enterprise= enterprise;
+        this.account= account;
         initComponents();
+        populateTable();
+       
     }
-
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) VitalSignsJTable.getModel();
+        System.out.println(account.getPatientAccount().getVitalSignHistory().getVitalSigns());
+        model.setRowCount(0);
+        for (VitalSign vitalSign  : account.getPatientAccount().getVitalSignHistory().getVitalSigns()){
+            System.out.println(vitalSign);
+            Object[] row = new Object[5];
+            row[0] = vitalSign.getBodyTemperature();
+            row[2] = vitalSign.getRespiratoryRate();
+            row[3] = vitalSign.getCoughType();
+            row[1] = vitalSign.getHeadache();
+            row[4] = vitalSign.getMusclePain();
+            
+            model.addRow(row);
+            }
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,20 +68,102 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        VitalSignsJTable = new javax.swing.JTable();
+        PersonalInfoBtn = new javax.swing.JButton();
+        addBTN1 = new javax.swing.JButton();
+        refreshjButton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Welcome to the hospital Patients!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(153, 153, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/PatientGIF.gif"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 630, 430));
+
+        VitalSignsJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Body Temp", "Headache", "Respiratory Rate", "Cough Type", "Muscle Pain"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(VitalSignsJTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 800, 90));
+
+        PersonalInfoBtn.setText("Personal Info");
+        PersonalInfoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PersonalInfoBtnActionPerformed(evt);
+            }
+        });
+        add(PersonalInfoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, -1, -1));
+
+        addBTN1.setText("ADD");
+        addBTN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBTN1ActionPerformed(evt);
+            }
+        });
+        add(addBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
+
+        refreshjButton.setText("Refresh");
+        refreshjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshjButtonActionPerformed(evt);
+            }
+        });
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTN1ActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("AddVitalSign", new AddVitalSign(userProcessContainer, account, enterprise));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_addBTN1ActionPerformed
+
+    private void refreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButtonActionPerformed
+        populateTable();
+        System.out.println(account.getPersonalInformation().getContactNum()  + "sdjcoisnmdkcnskdcnk");
+    }//GEN-LAST:event_refreshjButtonActionPerformed
+
+    private void PersonalInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonalInfoBtnActionPerformed
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("AddPersonalInfo", new AddPersonalInformation(userProcessContainer, account, enterprise));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_PersonalInfoBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PersonalInfoBtn;
+    private javax.swing.JTable VitalSignsJTable;
+    private javax.swing.JButton addBTN1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refreshjButton;
     // End of variables declaration//GEN-END:variables
 }
