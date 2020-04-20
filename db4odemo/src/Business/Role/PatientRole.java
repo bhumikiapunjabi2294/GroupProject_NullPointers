@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.NGOOrganization;
 import Business.Organization.Organization;
+import Business.UserAccount.PatientAccount;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.NGORole.NGOWorkAreaJPanel;

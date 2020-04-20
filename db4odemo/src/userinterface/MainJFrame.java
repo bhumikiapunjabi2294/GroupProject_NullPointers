@@ -14,12 +14,17 @@ import java.awt.CardLayout;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+
 /**
  *
- * @author Lingfeng
+ * @author Yash
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -29,6 +34,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private Network network;
+    static JMenuBar mb; 
+    static JMenu x; 
+    static JFrame f; 
+    static JPanel p;
+  
+    static JMenuItem m1, m2, m3; 
 
     public MainJFrame()  {
         initComponents();
@@ -58,6 +69,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -121,8 +134,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         container.setLayout(new java.awt.CardLayout());
 
+        jLabel3.setBackground(new java.awt.Color(153, 204, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/datadoc woking.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
         container.add(jLabel3, "card2");
 
         jSplitPane1.setRightComponent(container);
@@ -236,6 +249,40 @@ public class MainJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+         f = new JFrame("Menu demo"); 
+  
+         p = new JPanel();
+        // create a menubar 
+        mb = new JMenuBar(); 
+  
+        // create a menu 
+        x = new JMenu("Menu"); 
+  
+        // create menuitems 
+        m1 = new JMenuItem("MenuItem1"); 
+        m2 = new JMenuItem("MenuItem2"); 
+        m3 = new JMenuItem("MenuItem3"); 
+  
+        // add menu items to menu 
+        x.add(m1); 
+        x.add(m2); 
+        x.add(m3); 
+  
+        // add menu to menu bar 
+        mb.add(x); 
+        f.setLayout(new CardLayout());
+        f.add(p);
+        // add menubar to frame 
+        f.setJMenuBar(mb); 
+  
+        // set the size of the frame 
+        f.setSize(500, 500); 
+        f.setUndecorated(true); 
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      //  addComponentsToPane(f.getContentPane());
+        //f.pack();
+       // f.setVisible(true); 
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
