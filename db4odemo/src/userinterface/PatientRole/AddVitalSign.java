@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.VitalSign.VitalSign;
 import java.awt.CardLayout;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -62,15 +63,18 @@ public class AddVitalSign extends javax.swing.JPanel {
 
         jLabel6.setText("jLabel6");
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        bodyTemperatureTxtfield.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         bodyTemperatureTxtfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bodyTemperatureTxtfieldActionPerformed(evt);
             }
         });
-        add(bodyTemperatureTxtfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 80, -1));
+        add(bodyTemperatureTxtfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 80, -1));
 
+        vitalsignjBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         vitalsignjBtn.setText("Add vital sign");
         vitalsignjBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,19 +83,26 @@ public class AddVitalSign extends javax.swing.JPanel {
         });
         add(vitalsignjBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("BodyTemperature :");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-        add(respiratoryRateTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 80, -1));
 
+        respiratoryRateTxtField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        add(respiratoryRateTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 80, -1));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setText("Respiratory Rate :");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setText("Cough Type :");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel4.setText("Muscle Pain :");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel7.setText("Headache :");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
@@ -103,14 +114,17 @@ public class AddVitalSign extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        MusclepaincomboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         MusclepaincomboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "YES", "NO" }));
-        add(MusclepaincomboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+        add(MusclepaincomboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
 
+        HeadacheComboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         HeadacheComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "YES", "NO" }));
-        add(HeadacheComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+        add(HeadacheComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
 
+        coughtTypeComboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         coughtTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DRY COUGH", "WET COUGH", "CHRONIC COUGH" }));
-        add(coughtTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
+        add(coughtTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void bodyTemperatureTxtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bodyTemperatureTxtfieldActionPerformed
@@ -141,6 +155,7 @@ public class AddVitalSign extends javax.swing.JPanel {
         VitalSign v = account.getPatientAccount().getVitalSignHistory().createVitalSign(Float.parseFloat(bodyTemperatureTxtfield. getText()), Float.parseFloat(respiratoryRateTxtField. getText()), coughtTypeComboBox.getSelectedItem().toString(), b, a, java.time.LocalDateTime.now().toString(), "");
         System.out.println(v); 
         
+        JOptionPane.showMessageDialog(null, "Vital Signs added!!");
         bodyTemperatureTxtfield.setText("");
         respiratoryRateTxtField.setText("");
     }//GEN-LAST:event_vitalsignjBtnActionPerformed

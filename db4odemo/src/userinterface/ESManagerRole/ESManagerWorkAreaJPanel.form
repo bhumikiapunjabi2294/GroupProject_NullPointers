@@ -114,6 +114,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="assignAmbulancejButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Assign Ambulance"/>
       </Properties>
       <Events>
@@ -127,6 +130,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="refreshjButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Refresh"/>
       </Properties>
       <Events>

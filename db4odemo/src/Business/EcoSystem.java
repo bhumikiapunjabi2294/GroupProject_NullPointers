@@ -57,7 +57,8 @@ public class EcoSystem extends Organization{
             return false;
         }
         for(Network network:networkList){
-            
+        //if(network.getName().equalsIgnoreCase())
+           // return false;
         }
         return true;
     }

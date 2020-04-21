@@ -67,6 +67,7 @@ public class MoniteredPatientsJPanel extends javax.swing.JPanel {
         sendForRequestButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         patientsListJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -92,6 +93,7 @@ public class MoniteredPatientsJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 799, 180));
 
+        sendForRequestButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         sendForRequestButton.setText("Send to Lab test");
         sendForRequestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

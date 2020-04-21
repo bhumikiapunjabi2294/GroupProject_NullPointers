@@ -71,6 +71,7 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
         assignjButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ambulancejTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -103,6 +104,7 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 42, -1, 90));
 
+        assignjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         assignjButton.setText("Assign");
         assignjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

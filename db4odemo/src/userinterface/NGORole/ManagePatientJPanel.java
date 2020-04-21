@@ -105,30 +105,43 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        NameLbl.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         NameLbl.setText("Name:");
-        add(NameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 50, -1));
+        add(NameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 80, -1));
 
+        UsernameLbl.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         UsernameLbl.setText("Username:");
-        add(UsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
+        add(UsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
 
+        PasswordLbl.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         PasswordLbl.setText("Password:");
-        add(PasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
+        add(PasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
 
+        NameTxt.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         NameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameTxtActionPerformed(evt);
             }
         });
-        add(NameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 57, -1));
-        add(UsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 57, -1));
+        add(NameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 120, -1));
 
+        UsernameTxt.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        UsernameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsernameTxtActionPerformed(evt);
+            }
+        });
+        add(UsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 120, -1));
+
+        PasswordTxt.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         PasswordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordTxtActionPerformed(evt);
             }
         });
-        add(PasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 57, -1));
+        add(PasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, -1));
 
+        AddBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         AddBtn.setText("Add ");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,9 +150,11 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         });
         add(AddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Select Hospital : ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
+        HospitalJComboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         HospitalJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         HospitalJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +163,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         });
         add(HospitalJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
 
+        doctorComboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         doctorComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +172,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         });
         add(doctorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setText("Select doctor");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
 
@@ -236,13 +253,16 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getWorkRequestList().add(request);
             o.getWorkQueue().getWorkRequestList().add(request);
             
+        JOptionPane.showMessageDialog(null, "Patient Account Created!!Login and add Vital Signs to get it checked from Doctor!!");
+        UsernameTxt.setText("");
+        PasswordTxt.setText("");
+        NameTxt.setText(""); 
+            
      }
        }catch (NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Please enter value in the fields", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
       } 
-       UsernameTxt.setText("");
-        PasswordTxt.setText("");
-        NameTxt.setText(""); 
+       
     }//GEN-LAST:event_AddBtnActionPerformed
 
     private void doctorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorComboBoxActionPerformed
@@ -265,6 +285,10 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
+
+    private void UsernameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsernameTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
