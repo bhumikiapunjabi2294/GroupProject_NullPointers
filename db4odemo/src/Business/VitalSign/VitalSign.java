@@ -20,6 +20,7 @@ public class VitalSign {
     private Boolean headache;
     private String date;
     private String healthCondition;
+    private String status;
 
     public float getBodyTemperature() {
         return bodyTemperature;
@@ -76,6 +77,15 @@ public class VitalSign {
     public void setHealthCondition(String healthCondition) {
         this.healthCondition = healthCondition;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     @Override
     public String toString() {
         return healthCondition;

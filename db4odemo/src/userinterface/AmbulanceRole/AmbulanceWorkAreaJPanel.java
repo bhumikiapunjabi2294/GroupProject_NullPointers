@@ -9,7 +9,11 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AmbulanceOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.CallingESWorkRequest;
+import Business.WorkQueue.PatientsAllocatedWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,6 +32,31 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
          initComponents();
+         populateTable();
+    }
+    
+    public void populateTable(){
+         DefaultTableModel model = (DefaultTableModel) patientjTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            
+            Object[] row = new Object[7];
+          //UserAccount u = ((PatientsAllocatedWorkRequest) request).getPatientAccount();
+            UserAccount ua = ((CallingESWorkRequest) request).getPatientAccount();
+            System.out.println(ua);
+            row[0] = request;
+            row[1] = ua.getPersonalInformation().getName();
+            System.out.println(ua.getPersonalInformation().getName());
+            row[2] = ua.getPersonalInformation().getAddress();
+            row[3] = ua.getPersonalInformation().getContactNum();
+            row[4] = ((CallingESWorkRequest) request).getHospital();
+            row[5] = request.getSender();
+            row[6] = request.getStatus();
+          
+            
+            model.addRow(row);
+        }
     }
 
     
@@ -44,42 +73,114 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        patientjTable = new javax.swing.JTable();
+        ProcessBtn = new javax.swing.JButton();
+        DelivredButton = new javax.swing.JButton();
+        refreshjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Ambulance on way!!");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 11, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ambulance_coverGIF.gif"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)))
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(108, Short.MAX_VALUE))
-        );
+        patientjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Patient Name", "Addrees", "Phone Number", "Hospital Name", "Doctor Name", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(patientjTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 42, 610, 90));
+
+        ProcessBtn.setText("Process");
+        ProcessBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProcessBtnActionPerformed(evt);
+            }
+        });
+        add(ProcessBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, -1, -1));
+
+        DelivredButton.setText("Delivered");
+        DelivredButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelivredButtonActionPerformed(evt);
+            }
+        });
+        add(DelivredButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, -1, -1));
+
+        refreshjButton.setText("Refresh");
+        refreshjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshjButtonActionPerformed(evt);
+            }
+        });
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void DelivredButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelivredButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = patientjTable.getSelectedRow();
+        //account.get
+        if (selectedRow < 0) {
+            return;
+        }
+        //CallingESWorkRequest request = (CallingESWorkRequest)patientjTable.getValueAt(selectedRow, 0);
+        WorkRequest req= (WorkRequest)patientjTable.getValueAt(selectedRow, 0);
+        req.setStatus("Patient has been droped to the hospital!!!");
+    }//GEN-LAST:event_DelivredButtonActionPerformed
+
+    private void ProcessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = patientjTable.getSelectedRow();
+        //account.get
+        if (selectedRow < 0) {
+            return;
+        }
+       WorkRequest req= (WorkRequest)patientjTable.getValueAt(selectedRow, 0);
+        req.setStatus("Ambulance on the way!!!!!!");
+
+    }//GEN-LAST:event_ProcessBtnActionPerformed
+
+    private void refreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButtonActionPerformed
+        populateTable();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DelivredButton;
+    private javax.swing.JButton ProcessBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable patientjTable;
+    private javax.swing.JButton refreshjButton;
     // End of variables declaration//GEN-END:variables
 }

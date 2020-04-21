@@ -15,6 +15,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.PatientRole.AddVitalSign;
+import Business.VitalSign.VitalSign;
 
 /**
  *
@@ -42,28 +43,62 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText(enterprise.getName());
         populateRequestTable();
         populatePatientTable();
+       // checkNotification();
     }
-    
+    public void checkNotification(int count){
+        for(int i=0 ; i<=count;i++ ){
+            UserAccount ac = (UserAccount)patientsListJTable.getValueAt(i, 0);
+            
+               for(VitalSign v: ac.getPatientAccount().getVitalSignHistory().getVitalSigns())
+               {
+                   String s = "no";
+                   if(v.getStatus().equals(s)){
+                       
+                   }
+               }
+            
+        }
+        
+    }
     public void populatePatientTable(){
         DefaultTableModel model = (DefaultTableModel) patientsListJTable.getModel();
         
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            System.out.println(request.getSender().getRole());
+            //System.out.println(request.getSender().getRole());
             if(request.getSender().getRole().toString().equals("Business.Role.NGOAdministrativeRole")){
             Object[] row = new Object[4];
             UserAccount u = ((PatientsAllocatedWorkRequest) request).getPatientAccount();
             row[0] = u;
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
+            row[1] = request.getSender();
+            row[3] = u.getPatientAccount().getCondition();
            // String result = ((LabTestWorkRequest) request).getTestResult();
-          //  row[3] = result == null ? "Waiting" : result;
+//            
+           // checkNotification(model.getRowCount());
+           // for(int i=0 ; i<=model.getRowCount();i++ ){
+           // UserAccount ac = (UserAccount)patientsListJTable.getValueAt(i, 0);
+            
+               for(VitalSign v: u.getPatientAccount().getVitalSignHistory().getVitalSigns())
+               {
+                   String s = "no";
+                   if(v.getStatus().equals(s)){
+                       row[2] = "Waiting for Doctor to Check";
+                   }else{
+                       row[2] = "Checked";
+                   }
+              // }
+              
+            
+        }
             
             model.addRow(row);
+            
             }
         }
-        System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-        System.out.println(userAccount.getWorkQueue().getWorkRequestList());
+       // System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+       // System.out.println(userAccount.getWorkQueue().getWorkRequestList());
+        System.out.println(model.getRowCount());
+        
     }
 
     
@@ -72,7 +107,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            System.out.println(request.getSender().getRole());
+         //   System.out.println(request.getSender().getRole());
             if(request.getSender().getRole().toString().equals("Business.Role.DoctorRole")){
             Object[] row = new Object[4];
             row[0] = request.getMessage();
@@ -84,8 +119,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
             }
         }
-        System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-        System.out.println(userAccount.getWorkQueue().getWorkRequestList());
+       // System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+       // System.out.println(userAccount.getWorkQueue().getWorkRequestList());
     }
 
     
@@ -238,7 +273,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
        // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
         UserAccount ac = (UserAccount)patientsListJTable.getValueAt(selectedRow, 0);
         
-        System.out.println(enterprise);
+        //System.out.println(enterprise);
         CheckPatientsWorkArea checkPatientsWorkArea = new CheckPatientsWorkArea(userProcessContainer, ac ,userAccount, business,enterprise);
         userProcessContainer.add("CheckPatientsWorkArea", checkPatientsWorkArea);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

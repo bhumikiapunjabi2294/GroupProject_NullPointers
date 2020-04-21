@@ -38,49 +38,44 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem business;
     private Network network;
-    
-    
-    public ManagePatientJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account, EcoSystem business,Network network) {
+
+    public ManagePatientJPanel(JPanel userProcessContainer, Organization organization, Enterprise enterprise, UserAccount account, EcoSystem business, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
         this.business = business;
-     
+
         initComponents();
         populatecombobox();
-      //  populateDocCombo(enterprise);
+        //  populateDocCombo(enterprise);
     }
-    private void populatecombobox(){
+
+    private void populatecombobox() {
         HospitalJComboBox.removeAllItems();
-        
+
         for (Network network : business.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                if(enterprise.getEnterpriseType().toString().equals("Hospital")){
+                if (enterprise.getEnterpriseType().toString().equals("Hospital")) {
                     HospitalJComboBox.addItem(enterprise);
                     //populateDocCombo(enterprise);
-                    
+
                 }
             }
         }
     }
-    private void populateDocCombo(Enterprise en){
+
+    private void populateDocCombo(Enterprise en) {
         doctorComboBox.removeAllItems();
         for (Organization organization : en.getOrganizationDirectory().getOrganizationList()) {
-                    if (organization.getSupportedRole().toString().equals("[Business.Role.DoctorRole]")) {
-//                        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()) {
-//                            doctorComboBox.addItem(employee.getName());
-//                            //System.out.println(organization.getEmployeeDirectory().getEmployeeList());
-//                        }
-                    for(UserAccount u : organization.getUserAccountDirectory().getUserAccountList())
-                    {
-                        doctorComboBox.addItem(u.toString());
-                    }
-                    }
+            if (organization.getSupportedRole().toString().equals("[Business.Role.DoctorRole]")) {
+                for (UserAccount u : organization.getUserAccountDirectory().getUserAccountList()) {
+                    doctorComboBox.addItem(u.toString());
+                }
+            }
         }
     }
 
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,7 +92,6 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         UsernameTxt = new javax.swing.JTextField();
         PasswordTxt = new javax.swing.JTextField();
         AddBtn = new javax.swing.JButton();
-        UpdateBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         HospitalJComboBox = new javax.swing.JComboBox();
         doctorComboBox = new javax.swing.JComboBox<>();
@@ -141,14 +135,6 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
             }
         });
         add(AddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
-
-        UpdateBtn.setText("Update");
-        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateBtnActionPerformed(evt);
-            }
-        });
-        add(UpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, -1, -1));
 
         jLabel1.setText("Select Hospital : ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
@@ -200,22 +186,22 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordTxtActionPerformed
 
-    public UserAccount getUser(String s){
+    public UserAccount getUser(String s) {
         System.out.println("popopopopopopopopopopopopopopopopopo");
-         UserAccount a = new UserAccount();
-         for(Network network : business.getNetworkList()){
-             for(Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()){
-                 for(Organization o : e.getOrganizationDirectory().getOrganizationList()){
-                     for(UserAccount u : o.getUserAccountDirectory().getUserAccountList()){
-                         if(s.equals(u.getUsername())){
-                           a=u;
+        UserAccount a = new UserAccount();
+        for (Network network : business.getNetworkList()) {
+            for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
+                        if (s.equals(u.getUsername())) {
+                            a = u;
                             System.out.println(a);
                         }
-                     }
-                 }
-             }
-         }
-         return a;
+                    }
+                }
+            }
+        }
+        return a;
     }
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         String userName = UsernameTxt.getText();
@@ -223,46 +209,23 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         String Emp = NameTxt.getText();
         Employee employee = business.getEmployeeDirectory().createEmployee(NameTxt.getText());
         UserAccount ua = organization.getUserAccountDirectory().createUserAccount(userName, password, employee, new PatientRole());
-      //  PatientAccount pa = organization.getUserAccountDirectory().createUserAccount(userName, password, employee, new PatientRole());
-        
+
+        ua.getPatientAccount().setCondition("Not Yet Reviewed by Doctor");
         String message = "";
-        
+
         PatientsAllocatedWorkRequest request = new PatientsAllocatedWorkRequest();
         request.setMessage(message);
         request.setSender(userAccount);
-        System.out.println(doctorComboBox.getSelectedItem());
+       // System.out.println(doctorComboBox.getSelectedItem());
         UserAccount o = getUser(doctorComboBox.getSelectedItem().toString());
-   
+
         request.setReceiver(o);
         request.setStatus("Sent");
         request.setPatientAccount(ua);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
         o.getWorkQueue().getWorkRequestList().add(request);
-        System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
-        
-//        Organization org = null;
-//        
-//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-//            if (organization instanceof DoctorOrganization){
-//                org = organization;
-//                
-//                System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooo");
-//                break;
-//            }
-//        }
-//        if (org!=null){
-//            org.getWorkQueue().getWorkRequestList().add(request);
-//            userAccount.getWorkQueue().getWorkRequestList().add(request);
-//            System.out.println("ooooooooooooooooooooooooooooooooooooooooooooooo");
-//        }
-//
-//      
-      
-    }//GEN-LAST:event_AddBtnActionPerformed
 
-    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UpdateBtnActionPerformed
+    }//GEN-LAST:event_AddBtnActionPerformed
 
     private void doctorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorComboBoxActionPerformed
         // TODO add your handling code here:
@@ -270,13 +233,13 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
 
     private void HospitalJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HospitalJComboBoxActionPerformed
         Enterprise enterprise = (Enterprise) HospitalJComboBox.getSelectedItem();
-        
-        if(enterprise!= null){
-             populateDocCombo(enterprise);
-             
+
+        if (enterprise != null) {
+            populateDocCombo(enterprise);
+
         }
-        
-       
+
+
     }//GEN-LAST:event_HospitalJComboBoxActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -293,7 +256,6 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField NameTxt;
     private javax.swing.JLabel PasswordLbl;
     private javax.swing.JTextField PasswordTxt;
-    private javax.swing.JButton UpdateBtn;
     private javax.swing.JLabel UsernameLbl;
     private javax.swing.JTextField UsernameTxt;
     private javax.swing.JButton backJButton;

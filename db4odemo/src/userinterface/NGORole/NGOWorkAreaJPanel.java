@@ -48,10 +48,11 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {                
                 if(ua.getRole().toString().equals("Business.Role.PatientRole")){
-                Object row[] = new Object[3];
+                Object row[] = new Object[4];
                 row[0] = ua;
                 row[1] = ua.getUsername();
                 row[2] = ua.getPassword();
+                row[3]=  "Patient Added! yet to add vital sign";
                 ((DefaultTableModel) patientTbl.getModel()).addRow(row);
                 }
             }
@@ -71,32 +72,33 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         patientTbl = new javax.swing.JTable();
-        UpdatePatientsBtn = new javax.swing.JButton();
-        RemovePatientBtn = new javax.swing.JButton();
         AddPatientBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        RefreshBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Welcome to NGO!!");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
         patientTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Patient Name", "Username", "Password"
+                "Patient Name", "Username", "Password", "status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -109,14 +111,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(patientTbl);
 
-        UpdatePatientsBtn.setText("Update Patients");
-
-        RemovePatientBtn.setText("Remove Patient");
-        RemovePatientBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemovePatientBtnActionPerformed(evt);
-            }
-        });
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 404, 290));
 
         AddPatientBtn.setText("Add Patient");
         AddPatientBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -124,60 +119,21 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 AddPatientBtnActionPerformed(evt);
             }
         });
+        add(AddPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/assistingHand.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 297, 1001, 247));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/NGO.gif"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 225));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1001, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(308, 308, 308)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(164, 164, 164))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)
-                                .addGap(190, 190, 190)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UpdatePatientsBtn)
-                            .addComponent(RemovePatientBtn)
-                            .addComponent(AddPatientBtn)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(452, 452, 452)
-                        .addComponent(jLabel1)))
-                .addContainerGap(657, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(UpdatePatientsBtn)
-                        .addGap(16, 16, 16)
-                        .addComponent(AddPatientBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RemovePatientBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
-        );
+        RefreshBtn.setText("Refresh");
+        RefreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshBtnActionPerformed(evt);
+            }
+        });
+        add(RefreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPatientBtnActionPerformed
@@ -189,15 +145,15 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_AddPatientBtnActionPerformed
 
-    private void RemovePatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemovePatientBtnActionPerformed
+    private void RefreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RemovePatientBtnActionPerformed
+        populateTbl();
+    }//GEN-LAST:event_RefreshBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddPatientBtn;
-    private javax.swing.JButton RemovePatientBtn;
-    private javax.swing.JButton UpdatePatientsBtn;
+    private javax.swing.JButton RefreshBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
