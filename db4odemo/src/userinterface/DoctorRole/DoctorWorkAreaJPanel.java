@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.PatientRole.AddVitalSign;
 import Business.VitalSign.VitalSign;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,20 +66,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
-            //System.out.println(request.getSender().getRole());
             if(request.getSender().getRole().toString().equals("Business.Role.NGOAdministrativeRole")){
             Object[] row = new Object[4];
             UserAccount u = ((PatientsAllocatedWorkRequest) request).getPatientAccount();
             row[0] = u;
             row[1] = request.getSender();
             row[3] = u.getPatientAccount().getCondition();
-           // String result = ((LabTestWorkRequest) request).getTestResult();
-//            
-           // checkNotification(model.getRowCount());
-           // for(int i=0 ; i<=model.getRowCount();i++ ){
-           // UserAccount ac = (UserAccount)patientsListJTable.getValueAt(i, 0);
-            
-               for(VitalSign v: u.getPatientAccount().getVitalSignHistory().getVitalSigns())
+            for(VitalSign v: u.getPatientAccount().getVitalSignHistory().getVitalSigns())
                {
                    String s = "no";
                    if(v.getStatus().equals(s)){
@@ -86,17 +80,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                    }else{
                        row[2] = "Checked";
                    }
-              // }
-              
-            
         }
             
             model.addRow(row);
-            
             }
         }
-       // System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-       // System.out.println(userAccount.getWorkQueue().getWorkRequestList());
         System.out.println(model.getRowCount());
         
     }
@@ -119,8 +107,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
             }
         }
-       // System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-       // System.out.println(userAccount.getWorkQueue().getWorkRequestList());
     }
 
     
@@ -265,19 +251,20 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void checkPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPatientBtnActionPerformed
         
          int selectedRow = patientsListJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
-            return;
-        }
-        
-       // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to Check the Patient ?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                
         UserAccount ac = (UserAccount)patientsListJTable.getValueAt(selectedRow, 0);
-        
-        //System.out.println(enterprise);
         CheckPatientsWorkArea checkPatientsWorkArea = new CheckPatientsWorkArea(userProcessContainer, ac ,userAccount, business,enterprise);
         userProcessContainer.add("CheckPatientsWorkArea", checkPatientsWorkArea);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        }
+        }else {
+            JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_checkPatientBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

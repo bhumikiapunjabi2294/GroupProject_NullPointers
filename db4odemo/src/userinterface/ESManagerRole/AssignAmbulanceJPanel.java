@@ -11,6 +11,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CallingESWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,10 +46,7 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
             
             if(o.getSupportedRole().toString().equals("[Business.Role.AmbulanceRole]")){
             for(UserAccount u : o.getUserAccountDirectory().getUserAccountList()){
-           // System.out.println(o.getSupportedRole().toString());
-            
-        
-          
+           
             Object[] row = new Object[1];
             
             row[0] = u;
@@ -124,16 +122,19 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
 
     private void assignjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignjButtonActionPerformed
         int selectedRow = ambulancejTable.getSelectedRow();
-       //account.get
-        if (selectedRow < 0){
-            return;
-        }
-      
-        // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to Confirm Assigning the Ambulance ?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) { 
+       
         UserAccount a = (UserAccount) ambulancejTable.getValueAt(selectedRow, 0);
         a.getWorkQueue().getWorkRequestList().add(wr);
         wr.setReceiver(a);
         wr.setStatus("Ambulance assigned to pickup patient!!");
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_assignjButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

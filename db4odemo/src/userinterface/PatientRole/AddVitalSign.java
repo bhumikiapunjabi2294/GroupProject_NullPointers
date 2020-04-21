@@ -139,11 +139,10 @@ public class AddVitalSign extends javax.swing.JPanel {
             a = false;
         }
         VitalSign v = account.getPatientAccount().getVitalSignHistory().createVitalSign(Float.parseFloat(bodyTemperatureTxtfield. getText()), Float.parseFloat(respiratoryRateTxtField. getText()), coughtTypeComboBox.getSelectedItem().toString(), b, a, java.time.LocalDateTime.now().toString(), "");
-        System.out.println(v);        
-       // patientAccount =(PatientAccount) account;
-       
-      // VitalSign v = ((PatientAccount) account).getVitalSignHistory().createVitalSign(Float.parseFloat(bodyTemperatureTxtfield. getText()), Float.parseFloat(respiratoryRateTxtField. getText()), coughtTypeComboBox.getSelectedItem().toString(), b, a, java.time.LocalDateTime.now().toString(), "");
-       // patientAccount.getVitalSignHistory().createVitalSign(Float.parseFloat(bodyTemperatureTxtfield. getText()), Float.parseFloat(respiratoryRateTxtField. getText()), coughtTypeComboBox.getSelectedItem().toString(), b, a, java.time.LocalDateTime.now().toString(), "");
+        System.out.println(v); 
+        
+        bodyTemperatureTxtfield.setText("");
+        respiratoryRateTxtField.setText("");
     }//GEN-LAST:event_vitalsignjBtnActionPerformed
 
 

@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CallingESWorkRequest;
 import Business.WorkQueue.PatientsAllocatedWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -147,24 +148,31 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     private void DelivredButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelivredButtonActionPerformed
         // TODO add your handling code here:
         int selectedRow = patientjTable.getSelectedRow();
-        //account.get
-        if (selectedRow < 0) {
-            return;
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to complete the request ?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                WorkRequest req = (WorkRequest) patientjTable.getValueAt(selectedRow, 0);
+                req.setStatus("Patient has been droped to the hospital!!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        //CallingESWorkRequest request = (CallingESWorkRequest)patientjTable.getValueAt(selectedRow, 0);
-        WorkRequest req= (WorkRequest)patientjTable.getValueAt(selectedRow, 0);
-        req.setStatus("Patient has been droped to the hospital!!!");
     }//GEN-LAST:event_DelivredButtonActionPerformed
 
     private void ProcessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcessBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = patientjTable.getSelectedRow();
-        //account.get
-        if (selectedRow < 0) {
-            return;
-        }
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to process the request ?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
        WorkRequest req= (WorkRequest)patientjTable.getValueAt(selectedRow, 0);
         req.setStatus("Ambulance on the way!!!!!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_ProcessBtnActionPerformed
 

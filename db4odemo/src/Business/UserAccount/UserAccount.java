@@ -82,7 +82,7 @@ public class UserAccount {
     public void setPersonalInformation(PersonalInformation personalInformation) {
         this.personalInformation = personalInformation;
     }
-    public void AddPersonalInformation(String name,String Address, String ContectNum, String email){
+    public void AddPersonalInformation(String name,String Address, long ContectNum, String email){
         personalInformation.setName(name);
         personalInformation.setAddress(Address);
         personalInformation.setContactNum(ContectNum);

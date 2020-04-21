@@ -6,8 +6,10 @@
 package userinterface.PatientRole;
 
 import Business.Enterprise.Enterprise;
+import Business.UserAccount.PersonalInformation;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -103,15 +105,35 @@ public class AddPersonalInformation extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void SubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitjButtonActionPerformed
-        // TODO add your handling code here:
-//        account.getPersonalInformation().setName(nameTextField.getText());
-//        account.getPersonalInformation().setContactNum(contectNumTextField.getText());
-//        account.getPersonalInformation().setAddress(addressTextField.getText());
-//        account.getPersonalInformation().setEmailAddress(emailTextField.getText());
-        account.AddPersonalInformation(nameTextField.getText(), addressTextField.getText(), contectNumTextField.getText(), emailTextField.getText());
+       try {
+           String patientName = nameTextField.getText();
+            String address = addressTextField.getText();
+            long phone = Long.parseLong(contectNumTextField.getText());
+            String email=emailTextField.getText();
+            boolean flag = true;
+           
+            if (account.getPersonalInformation().getName().equals(patientName)) {
+                   flag = false;
+                    JOptionPane.showMessageDialog(null, "patientName: " + patientName + " already exists in the system");
+                }
+            else if (patientName.equals("")) {
+                JOptionPane.showMessageDialog(null, "Patient Name cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (address.equals("")) {
+                JOptionPane.showMessageDialog(null, "Patient Address cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (contectNumTextField.getText().length() > 10 || contectNumTextField.getText().length() < 10) {
+                JOptionPane.showMessageDialog(null, "Phone Number cannot be more or less than 10 digits", "Invalid value Error", JOptionPane.WARNING_MESSAGE);
+            }
+              else if(flag){  
+           account.AddPersonalInformation(patientName,address,phone,email);
+              }
+       }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter value in the fields", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+        } 
         
-        System.out.println(account.getPersonalInformation().getContactNum());
-        
+        nameTextField.setText("");
+        addressTextField.setText("");
+        contectNumTextField.setText("");
+        emailTextField.setText("");
         
     }//GEN-LAST:event_SubmitjButtonActionPerformed
 

@@ -55,10 +55,8 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
 
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) VitalSignsJTable.getModel();
-        //System.out.println(account.getPatientAccount().getVitalSignHistory().getVitalSigns());
         model.setRowCount(0);
         for (VitalSign vitalSign : account.getPatientAccount().getVitalSignHistory().getVitalSigns()) {
-            //System.out.println(vitalSign);
             Object[] row = new Object[7];
             row[0] = vitalSign.getBodyTemperature();
             row[2] = vitalSign.getRespiratoryRate();
@@ -160,11 +158,9 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
         int selectedRow = VitalSignsJTable.getSelectedRow();
         //account.get
         if (selectedRow < 0) {
-            return;
-        }
-
-        // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
-        VitalSign sign = (VitalSign) VitalSignsJTable.getValueAt(selectedRow, 6);
+            JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+        } VitalSign sign = (VitalSign) VitalSignsJTable.getValueAt(selectedRow, 6);
         
 
             sign.setStatus("yes");

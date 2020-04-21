@@ -12,7 +12,7 @@ package Business.UserAccount;
 public class PersonalInformation {
     private String Name;
     private String Address;
-    private String ContactNum;
+    private long ContactNum;
     private String EmailAddress; 
 
     public String getName() {
@@ -31,13 +31,14 @@ public class PersonalInformation {
         this.Address = Address;
     }
 
-    public String getContactNum() {
+    public long getContactNum() {
         return ContactNum;
     }
 
-    public void setContactNum(String ContactNum) {
+    public void setContactNum(long ContactNum) {
         this.ContactNum = ContactNum;
     }
+
 
     public String getEmailAddress() {
         return EmailAddress;

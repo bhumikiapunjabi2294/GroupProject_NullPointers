@@ -150,7 +150,6 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
     private void refreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButtonActionPerformed
         populateTable();
-        System.out.println(account.getPersonalInformation().getContactNum()  + "sdjcoisnmdkcnskdcnk");
     }//GEN-LAST:event_refreshjButtonActionPerformed
 
     private void PersonalInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonalInfoBtnActionPerformed
