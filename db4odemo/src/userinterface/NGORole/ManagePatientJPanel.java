@@ -21,6 +21,7 @@ import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.PatientsAllocatedWorkRequest;
 import Business.UserAccount.PatientAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -187,7 +188,6 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_PasswordTxtActionPerformed
 
     public UserAccount getUser(String s) {
-        System.out.println("popopopopopopopopopopopopopopopopopo");
         UserAccount a = new UserAccount();
         for (Network network : business.getNetworkList()) {
             for (Enterprise e : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -204,27 +204,45 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         return a;
     }
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
-        String userName = UsernameTxt.getText();
-        String password = PasswordTxt.getText();
-        String Emp = NameTxt.getText();
-        Employee employee = business.getEmployeeDirectory().createEmployee(NameTxt.getText());
-        UserAccount ua = organization.getUserAccountDirectory().createUserAccount(userName, password, employee, new PatientRole());
+      
+        try {
+            String userName = UsernameTxt.getText();
+            String password = PasswordTxt.getText();
+            String Emp = NameTxt.getText();
+            boolean flag = true;
+            
+            if (userName.equals("")) {
+                JOptionPane.showMessageDialog(null, "Username cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (password.equals("")) {
+                JOptionPane.showMessageDialog(null, "Passwordcannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (Emp.equals("")) {
+                JOptionPane.showMessageDialog(null, "Name cannot be blank", "Invalid value Error", JOptionPane.WARNING_MESSAGE);
+            }
+              else if(flag){ 
+            Employee employee = business.getEmployeeDirectory().createEmployee(NameTxt.getText());
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(userName, password, employee, new PatientRole());
 
-        ua.getPatientAccount().setCondition("Not Yet Reviewed by Doctor");
-        String message = "";
+            ua.getPatientAccount().setCondition("Not Yet Reviewed by Doctor");
+            String message = "";
 
-        PatientsAllocatedWorkRequest request = new PatientsAllocatedWorkRequest();
-        request.setMessage(message);
-        request.setSender(userAccount);
-       // System.out.println(doctorComboBox.getSelectedItem());
-        UserAccount o = getUser(doctorComboBox.getSelectedItem().toString());
+            PatientsAllocatedWorkRequest request = new PatientsAllocatedWorkRequest();
+            request.setMessage(message);
+            request.setSender(userAccount);
+            UserAccount o = getUser(doctorComboBox.getSelectedItem().toString());
 
-        request.setReceiver(o);
-        request.setStatus("Sent");
-        request.setPatientAccount(ua);
-        userAccount.getWorkQueue().getWorkRequestList().add(request);
-        o.getWorkQueue().getWorkRequestList().add(request);
-
+            request.setReceiver(o);
+            request.setStatus("Sent");
+            request.setPatientAccount(ua);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+            o.getWorkQueue().getWorkRequestList().add(request);
+            
+     }
+       }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please enter value in the fields", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+      } 
+       UsernameTxt.setText("");
+        PasswordTxt.setText("");
+        NameTxt.setText(""); 
     }//GEN-LAST:event_AddBtnActionPerformed
 
     private void doctorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorComboBoxActionPerformed

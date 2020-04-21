@@ -8,6 +8,7 @@ import Business.Employee.Employee;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -199,10 +200,18 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
-        
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+            if(employee.getName().equalsIgnoreCase(name)){
+                JOptionPane.showMessageDialog(null, "Name already Exists for Enterprise " , "Duplicate Field Error", JOptionPane.WARNING_MESSAGE);  
+            }
+        }
+        if(name.equals("")){
+            JOptionPane.showMessageDialog(null, "Organization Name cannot be empty" , "Empty Field Error", JOptionPane.WARNING_MESSAGE);  
+        }else{
         organization.getEmployeeDirectory().createEmployee(name);
+        }
         populateTable(organization);
-        
+        organizationJComboBox.setSelectedItem(organization);
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

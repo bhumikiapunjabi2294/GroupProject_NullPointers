@@ -8,6 +8,7 @@ import Business.EcoSystem;
 import Business.Network.Network;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -162,10 +163,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
         String name = nameJTextField.getText();
-
-        Network network = system.createAndAddNetwork();
-        network.setName(name);
-
+        if (name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Network Name cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Network network = system.createAndAddNetwork();
+            network.setName(name);
+        }
         populateNetworkTable();
     }//GEN-LAST:event_submitJButtonActionPerformed
 

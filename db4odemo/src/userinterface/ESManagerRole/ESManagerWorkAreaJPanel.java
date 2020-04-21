@@ -13,6 +13,7 @@ import Business.WorkQueue.CallingESWorkRequest;
 import Business.WorkQueue.PatientsAllocatedWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.AmbulanceRole.AmbulanceWorkAreaJPanel;
@@ -133,20 +134,19 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void assignAmbulancejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignAmbulancejButtonActionPerformed
         int selectedRow = patientJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
-            return;
-        }
-        
-       // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
-       // UserAccount ac = (UserAccount)patientJTable.getValueAt(selectedRow, 0);
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to Assign the Ambulance ?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) { 
         CallingESWorkRequest wr = (CallingESWorkRequest)patientJTable.getValueAt(selectedRow, 0);
-       
-        //System.out.println(enterprise);
         AssignAmbulanceJPanel assignAmbulanceJPanel = new AssignAmbulanceJPanel(userProcessContainer, wr, enterprise);
         userProcessContainer.add("assignAmbulanceJPanel", assignAmbulanceJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_assignAmbulancejButtonActionPerformed
 
     private void refreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButtonActionPerformed
