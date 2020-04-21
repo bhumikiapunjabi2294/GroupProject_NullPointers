@@ -113,6 +113,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 404, 280));
 
+        AddPatientBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         AddPatientBtn.setText("Add Patient");
         AddPatientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +128,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/NGO.gif"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 225));
 
+        RefreshBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         RefreshBtn.setText("Refresh");
         RefreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

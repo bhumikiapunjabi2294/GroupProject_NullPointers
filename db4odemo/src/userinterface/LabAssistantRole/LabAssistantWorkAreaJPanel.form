@@ -79,6 +79,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="assignJButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Assign to me"/>
       </Properties>
       <Events>
@@ -92,6 +95,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="processJButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Process"/>
       </Properties>
       <Events>
@@ -105,6 +111,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="refreshJButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Refresh"/>
       </Properties>
       <Events>

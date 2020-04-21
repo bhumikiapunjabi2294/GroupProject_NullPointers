@@ -140,6 +140,7 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
         GoodCndtnRadioButton = new javax.swing.JRadioButton();
         badCndtnRadioButton = new javax.swing.JRadioButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backJButton.setText("<< Back");
@@ -180,26 +181,29 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 800, 90));
 
+        submitBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
-        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
+        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, -1, -1));
 
         chooseOption.add(GoodCndtnRadioButton);
+        GoodCndtnRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         GoodCndtnRadioButton.setText("Good condition");
-        add(GoodCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+        add(GoodCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
         chooseOption.add(badCndtnRadioButton);
+        badCndtnRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         badCndtnRadioButton.setText("Bad condition");
         badCndtnRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 badCndtnRadioButtonActionPerformed(evt);
             }
         });
-        add(badCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
+        add(badCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

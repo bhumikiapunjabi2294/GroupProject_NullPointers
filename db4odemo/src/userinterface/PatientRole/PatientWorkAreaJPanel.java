@@ -40,7 +40,9 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
         HealthConditionjLabel.setText(account.getPatientAccount().getCondition());
        
+       
     }
+    
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) VitalSignsJTable.getModel();
         System.out.println(account.getPatientAccount().getVitalSignHistory().getVitalSigns());
@@ -76,12 +78,14 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         refreshjButton = new javax.swing.JButton();
         HealthConditionjLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Welcome to the hospital Patients!!");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(153, 153, 255));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/PatientGIF.gif"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 630, 430));
 
@@ -115,6 +119,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 800, 90));
 
+        PersonalInfoBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         PersonalInfoBtn.setText("Personal Info");
         PersonalInfoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +128,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(PersonalInfoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, -1, -1));
 
+        addBTN1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addBTN1.setText("ADD");
         addBTN1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +137,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(addBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
 
+        refreshjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshjButton.setText("Refresh");
         refreshjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

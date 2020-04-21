@@ -123,31 +123,35 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(patientjTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 42, 610, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 610, 90));
 
+        ProcessBtn.setBackground(new java.awt.Color(251, 251, 251));
+        ProcessBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         ProcessBtn.setText("Process");
         ProcessBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProcessBtnActionPerformed(evt);
             }
         });
-        add(ProcessBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, -1, -1));
+        add(ProcessBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, -1, -1));
 
+        DelivredButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         DelivredButton.setText("Delivered");
         DelivredButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DelivredButtonActionPerformed(evt);
             }
         });
-        add(DelivredButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, -1, -1));
+        add(DelivredButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
 
+        refreshjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshjButton.setText("Refresh");
         refreshjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshjButtonActionPerformed(evt);
             }
         });
-        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, -1, -1));
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void DelivredButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelivredButtonActionPerformed

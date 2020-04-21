@@ -72,6 +72,7 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        submitJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         submitJButton.setText("Submit Result");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,8 +81,11 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         });
         add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Result");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, -1));
+
+        resultJTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 240, -1));
 
         backJButton.setText("Back");

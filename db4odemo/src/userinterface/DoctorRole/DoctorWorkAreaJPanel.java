@@ -160,22 +160,24 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             patientsListJTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 799, 97));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 799, 97));
 
+        refreshTestJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshTestJButton.setText("Refresh");
         refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshTestJButtonActionPerformed(evt);
             }
         });
-        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 11, -1, -1));
+        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, -1));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 27, 127, 30));
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 127, 30));
 
+        valueLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 27, 158, 26));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 158, 26));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/insideHospital_GIF.gif"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 630, 376));
@@ -214,23 +216,25 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 799, 97));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 799, 97));
 
+        checkPatientBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         checkPatientBtn.setText("Check Patients");
         checkPatientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkPatientBtnActionPerformed(evt);
             }
         });
-        add(checkPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 240, -1, -1));
+        add(checkPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, -1, -1));
 
-        checkAvailablePatientsjButton.setText("check patients");
+        checkAvailablePatientsjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        checkAvailablePatientsjButton.setText("Patients Available");
         checkAvailablePatientsjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkAvailablePatientsjButtonActionPerformed(evt);
             }
         });
-        add(checkAvailablePatientsjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, -1, -1));
+        add(checkAvailablePatientsjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed

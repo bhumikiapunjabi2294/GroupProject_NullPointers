@@ -116,6 +116,7 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 660, 97));
 
+        assignAmbulancejButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         assignAmbulancejButton.setText("Assign Ambulance");
         assignAmbulancejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +125,7 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(assignAmbulancejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
+        refreshjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshjButton.setText("Refresh");
         refreshjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

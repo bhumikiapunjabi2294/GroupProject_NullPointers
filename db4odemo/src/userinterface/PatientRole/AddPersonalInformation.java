@@ -31,6 +31,20 @@ public class AddPersonalInformation extends javax.swing.JPanel {
         this.enterprise= enterprise;
         
         initComponents();
+        fillData();
+    }
+    public void fillData(){
+        nameTextField.setText(account.getPersonalInformation().getName());
+        addressTextField.setText(account.getPersonalInformation().getAddress());
+        contectNumTextField.setText(Long.toString(account.getPersonalInformation().getContactNum()));
+        emailTextField.setText(account.getPersonalInformation().getEmailAddress());
+        
+        nameTextField.setEnabled(false);
+        addressTextField.setEnabled(false);
+        contectNumTextField.setEnabled(false);
+        emailTextField.setEnabled(false);
+        
+        
     }
 
     /**
@@ -52,31 +66,45 @@ public class AddPersonalInformation extends javax.swing.JPanel {
         emailTextField = new javax.swing.JTextField();
         SubmitjButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Name :");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
-        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 70, -1));
 
+        nameTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 150, -1));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setText("Address :");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, 20));
 
+        addressTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addressTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressTextFieldActionPerformed(evt);
             }
         });
-        add(addressTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 210, 20));
+        add(addressTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 220, 30));
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setText("Phone Number :");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-        add(contectNumTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 70, -1));
 
+        contectNumTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        add(contectNumTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel4.setText("Email Address :");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
 
+        emailTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 200, -1));
+
+        SubmitjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         SubmitjButton.setText("Submit");
         SubmitjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +120,16 @@ public class AddPersonalInformation extends javax.swing.JPanel {
             }
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        btnUpdate.setBackground(new java.awt.Color(251, 251, 251));
+        btnUpdate.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addressTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextFieldActionPerformed
@@ -111,9 +149,9 @@ public class AddPersonalInformation extends javax.swing.JPanel {
             long phone = Long.parseLong(contectNumTextField.getText());
             String email=emailTextField.getText();
             boolean flag = true;
-           
-           
-            if (patientName.equals("")) {
+            if (email.equals("") || address.equals("") || patientName.equals("")) {
+                JOptionPane.showMessageDialog(null, "values cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (patientName.equals("")) {
                 JOptionPane.showMessageDialog(null, "Patient Name cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
             } else if (address.equals("")) {
                 JOptionPane.showMessageDialog(null, "Patient Address cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
@@ -122,23 +160,40 @@ public class AddPersonalInformation extends javax.swing.JPanel {
             }
               else if(flag){  
            account.AddPersonalInformation(patientName,address,phone,email);
+           JOptionPane.showMessageDialog(null, "Successfully added Personal Information");
+           
+        nameTextField.setEnabled(false);
+        addressTextField.setEnabled(false);
+        contectNumTextField.setEnabled(false);
+        emailTextField.setEnabled(false);
+        
               }
        }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter value in the fields", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
         } 
-        
-        nameTextField.setText("");
-        addressTextField.setText("");
-        contectNumTextField.setText("");
-        emailTextField.setText("");
-        
     }//GEN-LAST:event_SubmitjButtonActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        
+        nameTextField.setEnabled(true);
+        addressTextField.setEnabled(true);
+        contectNumTextField.setEnabled(true);
+        emailTextField.setEnabled(true);
+        btnUpdate.setEnabled(false);
+        
+       
+      
+            
+       
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SubmitjButton;
     private javax.swing.JTextField addressTextField;
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField contectNumTextField;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel jLabel1;
