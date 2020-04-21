@@ -7,6 +7,7 @@ package userinterface.ESManagerRole;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CallingESWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -39,17 +40,21 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
          DefaultTableModel model = (DefaultTableModel) ambulancejTable.getModel();
         
         model.setRowCount(0);
-        
+       
         for(Organization o : e.getOrganizationDirectory().getOrganizationList()){
-             System.out.println(o.getSupportedRole().toString());
+            
             if(o.getSupportedRole().toString().equals("[Business.Role.AmbulanceRole]")){
+            for(UserAccount u : o.getUserAccountDirectory().getUserAccountList()){
+           // System.out.println(o.getSupportedRole().toString());
+            
         
           
             Object[] row = new Object[1];
             
-            row[0] = o.getName();
+            row[0] = u;
             
             model.addRow(row);
+            }
             }
         }
     }
@@ -98,7 +103,7 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ambulancejTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 42, -1, 124));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 42, -1, 90));
 
         assignjButton.setText("Assign");
         assignjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +111,7 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
                 assignjButtonActionPerformed(evt);
             }
         });
-        add(assignjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 237, -1, -1));
+        add(assignjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, -1));
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,15 +123,17 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignjButtonActionPerformed
-//        int selectedRow = ambulancejTable.getSelectedRow();
-//       //account.get
-//        if (selectedRow < 0){
-//            return;
-//        }
-//      
-//        // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
-//        ambulan = () ambulancejTable.getValueAt(selectedRow, 6);
-//        String s;
+        int selectedRow = ambulancejTable.getSelectedRow();
+       //account.get
+        if (selectedRow < 0){
+            return;
+        }
+      
+        // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
+        UserAccount a = (UserAccount) ambulancejTable.getValueAt(selectedRow, 0);
+        a.getWorkQueue().getWorkRequestList().add(wr);
+        wr.setReceiver(a);
+        wr.setStatus("Ambulance assigned to pickup patient!!");
     }//GEN-LAST:event_assignjButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

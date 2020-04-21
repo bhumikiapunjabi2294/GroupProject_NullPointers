@@ -38,6 +38,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         this.account= account;
         initComponents();
         populateTable();
+        HealthConditionjLabel.setText(account.getPatientAccount().getCondition());
        
     }
     public void populateTable(){
@@ -73,6 +74,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         PersonalInfoBtn = new javax.swing.JButton();
         addBTN1 = new javax.swing.JButton();
         refreshjButton = new javax.swing.JButton();
+        HealthConditionjLabel = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -136,6 +138,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, -1, -1));
+        add(HealthConditionjLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 290, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTN1ActionPerformed
@@ -158,6 +161,7 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel HealthConditionjLabel;
     private javax.swing.JButton PersonalInfoBtn;
     private javax.swing.JTable VitalSignsJTable;
     private javax.swing.JButton addBTN1;

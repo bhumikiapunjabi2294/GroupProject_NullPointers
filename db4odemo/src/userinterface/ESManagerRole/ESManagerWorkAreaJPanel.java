@@ -45,11 +45,11 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
           
-            Object[] row = new Object[4];
-            
-            row[0] = ((CallingESWorkRequest) request).getPatientAccount();
-            row[1] = ((CallingESWorkRequest) request).getHospital();
-            row[2] = request.getStatus();
+            Object[] row = new Object[5];
+            row[0] = request;
+            row[1] = ((CallingESWorkRequest) request).getPatientAccount();
+            row[2] = ((CallingESWorkRequest) request).getHospital();
+            row[4] = request.getStatus();
             row[3] = request.getSender();
            
             
@@ -73,6 +73,7 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         patientJTable = new javax.swing.JTable();
         assignAmbulancejButton = new javax.swing.JButton();
+        refreshjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,20 +86,20 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         patientJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Patient name", "Hospital Name", "Status", "Doctor Name"
+                "ID", "Patient name", "Hospital Name", "Doctor Name", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -120,6 +121,14 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(assignAmbulancejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+
+        refreshjButton.setText("Refresh");
+        refreshjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshjButtonActionPerformed(evt);
+            }
+        });
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignAmbulancejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignAmbulancejButtonActionPerformed
@@ -133,12 +142,18 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
        // UserAccount ac = (UserAccount)patientJTable.getValueAt(selectedRow, 0);
         CallingESWorkRequest wr = (CallingESWorkRequest)patientJTable.getValueAt(selectedRow, 0);
        
-        System.out.println(enterprise);
+        //System.out.println(enterprise);
         AssignAmbulanceJPanel assignAmbulanceJPanel = new AssignAmbulanceJPanel(userProcessContainer, wr, enterprise);
         userProcessContainer.add("assignAmbulanceJPanel", assignAmbulanceJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_assignAmbulancejButtonActionPerformed
+
+    private void refreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButtonActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+        
+    }//GEN-LAST:event_refreshjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -147,5 +162,6 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable patientJTable;
+    private javax.swing.JButton refreshjButton;
     // End of variables declaration//GEN-END:variables
 }

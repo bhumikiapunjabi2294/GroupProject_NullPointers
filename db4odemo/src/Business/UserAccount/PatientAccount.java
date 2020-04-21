@@ -14,11 +14,17 @@ import Business.VitalSign.VitalSignHistory;
 public class PatientAccount {
     
     private VitalSignHistory vitalSignHistory;
-    private String Name;
-    private String Address;
-    private String ContactNum;
-    private String EmailAddress; 
-    
+   
+   
+    private String Condition;
+
+    public String getCondition() {
+        return Condition;
+    }
+
+    public void setCondition(String Condition) {
+        this.Condition = Condition;
+    }
     
     public PatientAccount() {
         

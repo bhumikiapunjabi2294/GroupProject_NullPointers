@@ -38,6 +38,7 @@ public class VitalSignHistory {
         vitalSign.setHeadache(headache);
         vitalSign.setDate(date);
         vitalSign.setHealthCondition(healthCondition);
+        vitalSign.setStatus("no");
         vitalSigns.add(vitalSign);
         
         return vitalSign;

@@ -19,6 +19,7 @@ import Business.WorkQueue.CallingESWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.PatientsAllocatedWorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,36 +31,34 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
 
     /**
      * Creates new form CheckPatientsWorkArea
-     * 
+     *
      */
-    
     private JPanel userProcessContainer;
     private UserAccount account;
-    private EcoSystem business ;
+    private EcoSystem business;
     private final Enterprise enterprise;
     private UserAccount docAccount;
-    
-    
-    public CheckPatientsWorkArea(JPanel userProcessContainer, UserAccount account,UserAccount docAccount, EcoSystem business,Enterprise enterprise) {
-        
-        this.userProcessContainer= userProcessContainer;
-        this.account= account;
-        this.docAccount= docAccount;
-        this.business=business;
-        this.enterprise= enterprise;
+
+    public CheckPatientsWorkArea(JPanel userProcessContainer, UserAccount account, UserAccount docAccount, EcoSystem business, Enterprise enterprise) {
+
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.docAccount = docAccount;
+        this.business = business;
+        this.enterprise = enterprise;
         initComponents();
-        
+
         populateTable();
         GoodCndtnRadioButton.isSelected();
-        
+
     }
-    
-    public void populateTable(){
+
+    public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) VitalSignsJTable.getModel();
-        System.out.println(account.getPatientAccount().getVitalSignHistory().getVitalSigns());
+        //System.out.println(account.getPatientAccount().getVitalSignHistory().getVitalSigns());
         model.setRowCount(0);
-        for (VitalSign vitalSign  : account.getPatientAccount().getVitalSignHistory().getVitalSigns()){
-            System.out.println(vitalSign);
+        for (VitalSign vitalSign : account.getPatientAccount().getVitalSignHistory().getVitalSigns()) {
+            //System.out.println(vitalSign);
             Object[] row = new Object[7];
             row[0] = vitalSign.getBodyTemperature();
             row[2] = vitalSign.getRespiratoryRate();
@@ -69,10 +68,8 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
             row[5] = vitalSign.getDate();
             row[6] = vitalSign;
             model.addRow(row);
-            }
+        }
     }
-   
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -160,56 +157,70 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-         int selectedRow = VitalSignsJTable.getSelectedRow();
-       //account.get
-        if (selectedRow < 0){
+        int selectedRow = VitalSignsJTable.getSelectedRow();
+        //account.get
+        if (selectedRow < 0) {
             return;
         }
-      
+
         // PatientsAllocatedWorkRequest request = (PatientsAllocatedWorkRequest)patientsListJTable.getValueAt(selectedRow, 0);
         VitalSign sign = (VitalSign) VitalSignsJTable.getValueAt(selectedRow, 6);
-        String s;
-        if (GoodCndtnRadioButton.isSelected()) {
-            s = GoodCndtnRadioButton.getText();
-        } else {
-            s = badCndtnRadioButton.getText();
+        
 
-        }
+            sign.setStatus("yes");
+            String s;
+            if (GoodCndtnRadioButton.isSelected()) {
+                s = GoodCndtnRadioButton.getText();
+            } else {
+                s = badCndtnRadioButton.getText();
 
-        sign.setHealthCondition(s);
+            }
 
-        //System.out.println(s);
-        populateTable();
-        if (s == "Bad condition") {
-            CallingESWorkRequest ws = new CallingESWorkRequest();
-            ws.setSender(docAccount);
-            ws.setStatus("Sent");
-            ws.setPatientAccount(account);
-            ws.setHospital(enterprise);
+            sign.setHealthCondition(s);
 
-            Organization org = null;
-            for (Network n : business.getNetworkList()) {
+            //System.out.println(s);
+            populateTable();
 
-                for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                    for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                        System.out.println(o);
-                        if (o instanceof EmergencyServicesManagerOrganization) {
-                            org = o;
-                         
-                            break;
+            if (s == "Bad condition") {
+                CallingESWorkRequest ws = new CallingESWorkRequest();
+                ws.setSender(docAccount);
+                ws.setStatus("Patient is Infected,please send ambulance");
+                ws.setPatientAccount(account);
+                ws.setHospital(enterprise);
+                account.getPatientAccount().setCondition("Patient is Infected,please send ambulance");
+
+                Organization org = null;
+                for (Network n : business.getNetworkList()) {
+
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                            //System.out.println(o);
+                            if (o instanceof EmergencyServicesManagerOrganization) {
+                                org = o;
+
+                                break;
+                            }
                         }
-                    }
-                        System.out.println(org+"bhbjjuhhgggjkkkkkk" );
-                        
+                        // System.out.println(org+"bhbjjuhhgggjkkkkkk" );
+
                         if (org != null) {
-                            
+                            // System.out.println(org + "yash thakkar");
                             org.getWorkQueue().getWorkRequestList().add(ws);
                             account.getWorkQueue().getWorkRequestList().add(ws);
                             System.out.println(org.getWorkQueue().getWorkRequestList());
+                            break;
                         }
-                    
+
+                    }
+                    break;
                 }
+            } else if (s == "Good condition") {
+                CallingESWorkRequest ws = new CallingESWorkRequest();
+                ws.setStatus("Patient is Normal! No worries");
+                account.getPatientAccount().setCondition("Patient is Normal! No worries");
             }
+         else {
+            JOptionPane.showMessageDialog(null, "this vital sign is already reviewed");
         }
     }//GEN-LAST:event_submitBtnActionPerformed
 
