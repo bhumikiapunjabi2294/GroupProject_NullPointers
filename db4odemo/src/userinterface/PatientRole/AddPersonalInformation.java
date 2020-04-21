@@ -67,7 +67,7 @@ public class AddPersonalInformation extends javax.swing.JPanel {
                 addressTextFieldActionPerformed(evt);
             }
         });
-        add(addressTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 70, 20));
+        add(addressTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 210, 20));
 
         jLabel3.setText("Phone Number :");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
@@ -75,7 +75,7 @@ public class AddPersonalInformation extends javax.swing.JPanel {
 
         jLabel4.setText("Email Address :");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 70, -1));
+        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
 
         SubmitjButton.setText("Submit");
         SubmitjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,11 +112,8 @@ public class AddPersonalInformation extends javax.swing.JPanel {
             String email=emailTextField.getText();
             boolean flag = true;
            
-            if (account.getPersonalInformation().getName().equals(patientName)) {
-                   flag = false;
-                    JOptionPane.showMessageDialog(null, "patientName: " + patientName + " already exists in the system");
-                }
-            else if (patientName.equals("")) {
+           
+            if (patientName.equals("")) {
                 JOptionPane.showMessageDialog(null, "Patient Name cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
             } else if (address.equals("")) {
                 JOptionPane.showMessageDialog(null, "Patient Address cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);

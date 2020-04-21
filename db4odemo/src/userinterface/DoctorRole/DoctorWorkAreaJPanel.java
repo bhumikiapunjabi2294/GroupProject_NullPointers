@@ -121,7 +121,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         patientsListJTable = new javax.swing.JTable();
-        requestTestJButton = new javax.swing.JButton();
         refreshTestJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
@@ -129,6 +128,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         workRequestJTable1 = new javax.swing.JTable();
         checkPatientBtn = new javax.swing.JButton();
+        checkAvailablePatientsjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -160,15 +160,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             patientsListJTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 799, 97));
-
-        requestTestJButton.setText("Request Test");
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
-            }
-        });
-        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 799, 97));
 
         refreshTestJButton.setText("Refresh");
         refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +214,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 63, 799, 97));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 799, 97));
 
         checkPatientBtn.setText("Check Patients");
         checkPatientBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -231,15 +223,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(checkPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 240, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
-        
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise));
-        layout.next(userProcessContainer);
-        
-    }//GEN-LAST:event_requestTestJButtonActionPerformed
+        checkAvailablePatientsjButton.setText("check patients");
+        checkAvailablePatientsjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkAvailablePatientsjButtonActionPerformed(evt);
+            }
+        });
+        add(checkAvailablePatientsjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, -1, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
 
@@ -267,7 +259,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_checkPatientBtnActionPerformed
 
+    private void checkAvailablePatientsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAvailablePatientsjButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("MoniteredPatientsJPanel", new MoniteredPatientsJPanel(userProcessContainer, userAccount, enterprise));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_checkAvailablePatientsjButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton checkAvailablePatientsjButton;
     private javax.swing.JButton checkPatientBtn;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
@@ -275,7 +275,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientsListJTable;
     private javax.swing.JButton refreshTestJButton;
-    private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable1;
     // End of variables declaration//GEN-END:variables

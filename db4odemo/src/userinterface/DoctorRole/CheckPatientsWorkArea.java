@@ -19,6 +19,14 @@ import Business.WorkQueue.CallingESWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.PatientsAllocatedWorkRequest;
 import java.awt.CardLayout;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -66,6 +74,52 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
             row[5] = vitalSign.getDate();
             row[6] = vitalSign;
             model.addRow(row);
+        }
+    }
+    
+    public void GenerateEmail(String Email){
+        String to = Email;
+
+// Add sender
+        String from = "yashthakkar248@gmail.com";
+        final String username = "yashthakkar248@gmail.com";//your Gmail username 
+        final String password = "Yt123456789@";//your Gmail password
+
+        String host = "smtp.gmail.com";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587");
+
+// Get the Session object
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            // Create a default MimeMessage object
+            Message message = new MimeMessage(session);
+
+            message.setFrom(new InternetAddress(from));
+
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(to));
+
+            message.setSubject("ALERT");
+
+            message.setText("You are Infected Due to corona virus plz stay at home we are sending ambulace to pick you up");
+
+
+            Transport.send(message);
+
+           
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -184,7 +238,7 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
                 ws.setPatientAccount(account);
                 ws.setHospital(enterprise);
                 account.getPatientAccount().setCondition("Patient is Infected,please send ambulance");
-
+                GenerateEmail(account.getPersonalInformation().getEmailAddress());
                 Organization org = null;
                 for (Network n : business.getNetworkList()) {
 

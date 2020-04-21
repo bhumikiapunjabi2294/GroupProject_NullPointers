@@ -37,22 +37,22 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
         populateTable();
     }
 
-    public void populateTable(){
-         DefaultTableModel model = (DefaultTableModel) ambulancejTable.getModel();
-        
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) ambulancejTable.getModel();
+
         model.setRowCount(0);
-       
-        for(Organization o : e.getOrganizationDirectory().getOrganizationList()){
-            
-            if(o.getSupportedRole().toString().equals("[Business.Role.AmbulanceRole]")){
-            for(UserAccount u : o.getUserAccountDirectory().getUserAccountList()){
-           
-            Object[] row = new Object[1];
-            
-            row[0] = u;
-            
-            model.addRow(row);
-            }
+
+        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+
+            if (o.getSupportedRole().toString().equals("[Business.Role.AmbulanceRole]")) {
+                for (UserAccount u : o.getUserAccountDirectory().getUserAccountList()) {
+
+                    Object[] row = new Object[1];
+
+                    row[0] = u;
+
+                    model.addRow(row);
+                }
             }
         }
     }
@@ -131,6 +131,9 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
         a.getWorkQueue().getWorkRequestList().add(wr);
         wr.setReceiver(a);
         wr.setStatus("Ambulance assigned to pickup patient!!");
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
         }
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);

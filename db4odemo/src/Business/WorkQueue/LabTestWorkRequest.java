@@ -4,6 +4,8 @@
  */
 package Business.WorkQueue;
 
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author yash
@@ -11,7 +13,8 @@ package Business.WorkQueue;
 public class LabTestWorkRequest extends WorkRequest{
     
     private String testResult;
-
+    private UserAccount account;
+    
     public String getTestResult() {
         return testResult;
     }
@@ -19,6 +22,15 @@ public class LabTestWorkRequest extends WorkRequest{
     public void setTestResult(String testResult) {
         this.testResult = testResult;
     }
+
+    public UserAccount getPatientAccount() {
+        return account;
+    }
+
+    public void setPatientAccount(UserAccount account) {
+        this.account = account;
+    }
+    
     
     
 }
