@@ -9,7 +9,14 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AmbulanceOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.CallingESWorkRequest;
+import Business.WorkQueue.PatientsAllocatedWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userinterface.AmbulanceRole.AmbulanceWorkAreaJPanel;
 
 /**
  *
@@ -31,6 +38,26 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         initComponents();
+        populateTable();
+    }
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) patientJTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+          
+            Object[] row = new Object[5];
+            row[0] = request;
+            row[1] = ((CallingESWorkRequest) request).getPatientAccount();
+            row[2] = ((CallingESWorkRequest) request).getHospital();
+            row[4] = request.getStatus();
+            row[3] = request.getSender();
+           
+            
+            model.addRow(row);
+            
+        }
+       
     }
 
     /**
@@ -44,40 +71,97 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        patientJTable = new javax.swing.JTable();
+        assignAmbulancejButton = new javax.swing.JButton();
+        refreshjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ambulance_reaching_hosp-GIF.gif"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ES Manager.jpg"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(662, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(206, 206, 206))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel3)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel2)
-                .addContainerGap(204, Short.MAX_VALUE))
-        );
+        patientJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Patient name", "Hospital Name", "Doctor Name", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(patientJTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 430, 97));
+
+        assignAmbulancejButton.setText("Assign Ambulance");
+        assignAmbulancejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignAmbulancejButtonActionPerformed(evt);
+            }
+        });
+        add(assignAmbulancejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+
+        refreshjButton.setText("Refresh");
+        refreshjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshjButtonActionPerformed(evt);
+            }
+        });
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void assignAmbulancejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignAmbulancejButtonActionPerformed
+        int selectedRow = patientJTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to Assign the Ambulance ?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) { 
+        CallingESWorkRequest wr = (CallingESWorkRequest)patientJTable.getValueAt(selectedRow, 0);
+        AssignAmbulanceJPanel assignAmbulanceJPanel = new AssignAmbulanceJPanel(userProcessContainer, wr, enterprise);
+        userProcessContainer.add("assignAmbulanceJPanel", assignAmbulanceJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_assignAmbulancejButtonActionPerformed
+
+    private void refreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshjButtonActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+        
+    }//GEN-LAST:event_refreshjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton assignAmbulancejButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable patientJTable;
+    private javax.swing.JButton refreshjButton;
     // End of variables declaration//GEN-END:variables
 }

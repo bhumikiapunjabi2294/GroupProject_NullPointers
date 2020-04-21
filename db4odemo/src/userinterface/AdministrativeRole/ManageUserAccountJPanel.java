@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -244,12 +245,27 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
+        boolean flag=false;
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         Employee employee = (Employee) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();
-        
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+              for(Employee emp : org.getEmployeeDirectory().getEmployeeList() ){ 
+                for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
+                    if(org.getName().equalsIgnoreCase(organization.toString()) && emp.getName().equalsIgnoreCase(employee.toString()) && ua.getUsername().equalsIgnoreCase(userName)){
+                    JOptionPane.showMessageDialog(null, "Username already Exists for Organization " +organization.toString() , "Duplicate Field Error", JOptionPane.WARNING_MESSAGE);  
+                    flag=true;
+                }
+                }
+            }
+          }
+          if(userName.equals("")){
+              JOptionPane.showMessageDialog(null, "UserName  cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+          }else if(password.equals("")){
+              JOptionPane.showMessageDialog(null, "Password  cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+          }else if(flag==false){
         organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
-        
+          }
         popData();
     }//GEN-LAST:event_createUserJButtonActionPerformed
 

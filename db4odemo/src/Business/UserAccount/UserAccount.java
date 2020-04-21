@@ -19,9 +19,14 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private PatientAccount patientAccount;
+    private PersonalInformation personalInformation;
 
+    
     public UserAccount() {
         workQueue = new WorkQueue();
+        patientAccount = new PatientAccount();
+        personalInformation = new PersonalInformation();
     }
     
     
@@ -62,6 +67,30 @@ public class UserAccount {
         return workQueue;
     }
 
+    public PatientAccount getPatientAccount() {
+        return patientAccount;
+    }
+
+    public void setPatientAccount(PatientAccount patientAccount) {
+        this.patientAccount = patientAccount;
+    }
+
+    public PersonalInformation getPersonalInformation() {
+        return personalInformation;
+    }
+
+    public void setPersonalInformation(PersonalInformation personalInformation) {
+        this.personalInformation = personalInformation;
+    }
+    public void AddPersonalInformation(String name,String Address, long ContectNum, String email){
+        personalInformation.setName(name);
+        personalInformation.setAddress(Address);
+        personalInformation.setContactNum(ContectNum);
+        personalInformation.setEmailAddress(email);
+        
+    }
+    
+    
     
     
     @Override

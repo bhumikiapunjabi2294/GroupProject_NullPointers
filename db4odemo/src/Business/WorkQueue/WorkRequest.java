@@ -19,10 +19,26 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
-    
-    public WorkRequest(){
+    private String x="B";
+    private String id;
+    private static int count = 101;
+
+    public WorkRequest() {
+        //id = id+count;
+        setId(x+count);
+        count++;
         requestDate = new Date();
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
 
     public String getMessage() {
         return message;
@@ -71,4 +87,10 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+  
+    @Override
+    public String toString() {
+        return id;
+    }
+    
 }

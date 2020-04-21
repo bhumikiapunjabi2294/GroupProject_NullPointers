@@ -10,8 +10,10 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.AdminRole;
 import Business.UserAccount.UserAccount;
+import Business.Validate.Validator;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -272,18 +274,43 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-        System.out.println(enterprise);
-        
+        //Validator validate = new Validator();
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
-        
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-        
-        
-        
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
-        populateTable();
+        String selectedEnterprise = enterprise.toString();
+        Network net = (Network) networkJComboBox.getSelectedItem();
+        String selectedNetwork = net.toString();
+        boolean flag = false;
+        //if (validate.emailFormat(username)) {
+            for (Network network : system.getNetworkList()) {
+                for (Enterprise enterpriselist : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (UserAccount userAccount : enterpriselist.getUserAccountDirectory().getUserAccountList()) {
+
+                        if (userAccount.getUsername().equalsIgnoreCase(username) && enterpriselist.getName().equalsIgnoreCase(selectedEnterprise) && network.getName().equalsIgnoreCase(selectedNetwork)) {
+                            JOptionPane.showMessageDialog(null, "Username already Exists for Enterprise " + selectedEnterprise + " and Network " + selectedNetwork, "Incorrect Field Error", JOptionPane.WARNING_MESSAGE);
+                            flag = true;
+                        }
+                    }
+                }
+            }
+            if (name.equals("") && username.equals("") && password.equals("")) {
+                JOptionPane.showMessageDialog(null, "Fields cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (username.equals("") && password.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please create username and password for Enterprise Employee", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (name.equals("")) {
+                JOptionPane.showMessageDialog(null, "Enterprise Employee Name cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (username.equals("")) {
+                JOptionPane.showMessageDialog(null, "UserName cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (password.equals("")) {
+                JOptionPane.showMessageDialog(null, "Password cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
+            } else if (flag == false) {
+                Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+                populateTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "UserName should be in xxx@domain.com format", "Invalid format Error", JOptionPane.WARNING_MESSAGE);
+            }
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 
