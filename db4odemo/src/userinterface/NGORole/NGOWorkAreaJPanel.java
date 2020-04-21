@@ -111,7 +111,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(patientTbl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 404, 290));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 404, 280));
 
         AddPatientBtn.setText("Add Patient");
         AddPatientBtn.addActionListener(new java.awt.event.ActionListener() {

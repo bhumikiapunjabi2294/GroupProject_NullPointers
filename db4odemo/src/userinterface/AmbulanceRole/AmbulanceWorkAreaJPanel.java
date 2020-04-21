@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CallingESWorkRequest;
 import Business.WorkQueue.PatientsAllocatedWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import Business.WorkQueue.PatientsInHospitalWorkRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,10 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     private AmbulanceOrganization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
-
+    private Enterprise e;
+    private UserAccount ua;
+    
+    
     public AmbulanceWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, AmbulanceOrganization organization, Enterprise enterprise) {
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
@@ -44,7 +48,7 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
             
             Object[] row = new Object[7];
           //UserAccount u = ((PatientsAllocatedWorkRequest) request).getPatientAccount();
-            UserAccount ua = ((CallingESWorkRequest) request).getPatientAccount();
+             ua = ((CallingESWorkRequest) request).getPatientAccount();
             System.out.println(ua);
             row[0] = request;
             row[1] = ua.getPersonalInformation().getName();
@@ -52,6 +56,7 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
             row[2] = ua.getPersonalInformation().getAddress();
             row[3] = ua.getPersonalInformation().getContactNum();
             row[4] = ((CallingESWorkRequest) request).getHospital();
+            e = ((CallingESWorkRequest) request).getHospital();
             row[5] = request.getSender();
             row[6] = request.getStatus();
           
@@ -151,9 +156,23 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to complete the request ?", "Warning", dialogButton);
+                    PatientsInHospitalWorkRequest request = new PatientsInHospitalWorkRequest();
+                    request.addPatient(ua);
+                    e.getWorkQueue().getWorkRequestList().add(request);
             if (dialogResult == JOptionPane.YES_OPTION) {
                 WorkRequest req = (WorkRequest) patientjTable.getValueAt(selectedRow, 0);
-                req.setStatus("Patient has been droped to the hospital!!!");
+                if (req.getStatus() == "Ambulance on the way!!!!!!") {
+                    req.setStatus("Patient has been dropped to the hospital!!!");
+                    populateTable();
+//                    PatientsInHospitalWorkRequest request = new PatientsInHospitalWorkRequest();
+//                    request.addPatient(ua);
+//                    e.getWorkQueue().getWorkRequestList().add(request);
+                } else if (req.getStatus() == "Patient has been dropped to the hospital!!!") {
+                    JOptionPane.showMessageDialog(null, "Already Dropped Patient", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                } else if (req.getStatus() == "Ambulance assigned to pickup patient!!") {
+                    JOptionPane.showMessageDialog(null, "Please First Process the Request", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -167,8 +186,18 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to process the request ?", "Warning", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {
-       WorkRequest req= (WorkRequest)patientjTable.getValueAt(selectedRow, 0);
-        req.setStatus("Ambulance on the way!!!!!!");
+                WorkRequest req = (WorkRequest) patientjTable.getValueAt(selectedRow, 0);
+                if (req.getStatus() == "Ambulance on the way!!!!!!") {
+                    JOptionPane.showMessageDialog(null, "Already proceesed", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                } else if (req.getStatus() == "Patient has been dropped to the hospital!!!") {
+                    JOptionPane.showMessageDialog(null, "Request is already completed", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                } else if (req.getStatus() == "Ambulance assigned to pickup patient!!") {
+                    req.setStatus("Ambulance on the way!!!!!!");
+                    populateTable();
+                }
+                
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);

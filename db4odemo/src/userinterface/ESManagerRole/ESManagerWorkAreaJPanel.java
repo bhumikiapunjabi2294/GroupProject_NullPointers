@@ -46,12 +46,13 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
           
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             row[0] = request;
             row[1] = ((CallingESWorkRequest) request).getPatientAccount();
             row[2] = ((CallingESWorkRequest) request).getHospital();
             row[4] = request.getStatus();
             row[3] = request.getSender();
+            row[5] = request.getReceiver();
            
             
             model.addRow(row);
@@ -87,20 +88,20 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         patientJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Patient name", "Hospital Name", "Doctor Name", "Status"
+                "ID", "Patient name", "Hospital Name", "Doctor Name", "Status", "Assigned Ambulance"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,7 +114,7 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(patientJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 430, 97));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 660, 97));
 
         assignAmbulancejButton.setText("Assign Ambulance");
         assignAmbulancejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -137,13 +138,19 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to Assign the Ambulance ?", "Warning", dialogButton);
-            if (dialogResult == JOptionPane.YES_OPTION) { 
-        CallingESWorkRequest wr = (CallingESWorkRequest)patientJTable.getValueAt(selectedRow, 0);
-        AssignAmbulanceJPanel assignAmbulanceJPanel = new AssignAmbulanceJPanel(userProcessContainer, wr, enterprise);
-        userProcessContainer.add("assignAmbulanceJPanel", assignAmbulanceJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        }
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                CallingESWorkRequest wr = (CallingESWorkRequest) patientJTable.getValueAt(selectedRow, 0);
+                if (wr.getReceiver() == null) {
+                    AssignAmbulanceJPanel assignAmbulanceJPanel = new AssignAmbulanceJPanel(userProcessContainer, wr, enterprise);
+                    userProcessContainer.add("assignAmbulanceJPanel", assignAmbulanceJPanel);
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.next(userProcessContainer);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Already Assigned", "Warning", dialogButton);
+                    
+                }
+                
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
         }
