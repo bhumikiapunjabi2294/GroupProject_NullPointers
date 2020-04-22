@@ -70,10 +70,12 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
         ambulancejTable = new javax.swing.JTable();
         assignjButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        ambulancejTable.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         ambulancejTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -102,7 +104,7 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ambulancejTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 42, -1, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, 540));
 
         assignjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         assignjButton.setText("Assign");
@@ -111,15 +113,19 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
                 assignjButtonActionPerformed(evt);
             }
         });
-        add(assignjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, -1));
+        add(assignjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
+        backJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ambu1.gif"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 140, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignjButtonActionPerformed
@@ -153,6 +159,7 @@ public class AssignAmbulanceJPanel extends javax.swing.JPanel {
     private javax.swing.JTable ambulancejTable;
     private javax.swing.JButton assignjButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -77,7 +77,6 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         patientjTable = new javax.swing.JTable();
@@ -85,15 +84,12 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         DelivredButton = new javax.swing.JButton();
         refreshjButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Ambulance on way!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 11, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ambulance_coverGIF.gif"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         patientjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,7 +119,7 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(patientjTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 610, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1050, 130));
 
         ProcessBtn.setBackground(new java.awt.Color(251, 251, 251));
         ProcessBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -133,8 +129,9 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
                 ProcessBtnActionPerformed(evt);
             }
         });
-        add(ProcessBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 50, -1, -1));
+        add(ProcessBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
+        DelivredButton.setBackground(new java.awt.Color(255, 255, 255));
         DelivredButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         DelivredButton.setText("Delivered");
         DelivredButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,8 +139,9 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
                 DelivredButtonActionPerformed(evt);
             }
         });
-        add(DelivredButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
+        add(DelivredButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
+        refreshjButton.setBackground(new java.awt.Color(255, 255, 255));
         refreshjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshjButton.setText("Refresh");
         refreshjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +149,7 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
                 refreshjButtonActionPerformed(evt);
             }
         });
-        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 150, -1, -1));
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void DelivredButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelivredButtonActionPerformed
@@ -160,14 +158,15 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to complete the request ?", "Warning", dialogButton);
-                    PatientsInHospitalWorkRequest request = new PatientsInHospitalWorkRequest();
-                    request.addPatient(ua);
-                    e.getWorkQueue().getWorkRequestList().add(request);
+                    
             if (dialogResult == JOptionPane.YES_OPTION) {
                 WorkRequest req = (WorkRequest) patientjTable.getValueAt(selectedRow, 0);
                 if (req.getStatus() == "Ambulance on the way!!!!!!") {
                     req.setStatus("Patient has been dropped to the hospital!!!");
                     populateTable();
+                    PatientsInHospitalWorkRequest request = new PatientsInHospitalWorkRequest();
+                    request.addPatient(ua);
+                    e.getWorkQueue().getWorkRequestList().add(request);
 //                    PatientsInHospitalWorkRequest request = new PatientsInHospitalWorkRequest();
 //                    request.addPatient(ua);
 //                    e.getWorkQueue().getWorkRequestList().add(request);
@@ -218,7 +217,6 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DelivredButton;
     private javax.swing.JButton ProcessBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable patientjTable;

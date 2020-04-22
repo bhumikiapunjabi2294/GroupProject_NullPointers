@@ -32,7 +32,8 @@ public abstract class Organization {
         NGOAdmin("NGO Admin Organization"),
         NGO("NGO Organization"),
         Patient("Patient"),
-        EmergencyServicesManager("Emergency Services Manager");
+        EmergencyServicesManager("Emergency Services Manager"),
+         HospitalManager("HospitalManager");
         
         private String value;
         private Type(String value) {

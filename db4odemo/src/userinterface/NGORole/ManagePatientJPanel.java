@@ -102,20 +102,20 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NameLbl.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         NameLbl.setText("Name:");
-        add(NameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 80, -1));
+        add(NameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 80, -1));
 
         UsernameLbl.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         UsernameLbl.setText("Username:");
-        add(UsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+        add(UsernameLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
 
         PasswordLbl.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         PasswordLbl.setText("Password:");
-        add(PasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
+        add(PasswordLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
 
         NameTxt.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         NameTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +123,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 NameTxtActionPerformed(evt);
             }
         });
-        add(NameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 120, -1));
+        add(NameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 120, -1));
 
         UsernameTxt.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         UsernameTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +131,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 UsernameTxtActionPerformed(evt);
             }
         });
-        add(UsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 120, -1));
+        add(UsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 120, -1));
 
         PasswordTxt.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         PasswordTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -139,20 +139,20 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 PasswordTxtActionPerformed(evt);
             }
         });
-        add(PasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, -1));
+        add(PasswordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 120, -1));
 
         AddBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        AddBtn.setText("Add ");
+        AddBtn.setText("Add Patients");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddBtnActionPerformed(evt);
             }
         });
-        add(AddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
+        add(AddBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 190, 40));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Select Hospital : ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
 
         HospitalJComboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         HospitalJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -161,7 +161,7 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 HospitalJComboBoxActionPerformed(evt);
             }
         });
-        add(HospitalJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
+        add(HospitalJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 180, 120, -1));
 
         doctorComboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -170,12 +170,13 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 doctorComboBoxActionPerformed(evt);
             }
         });
-        add(doctorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
+        add(doctorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setText("Select doctor");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
 
+        backJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,14 +187,14 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/symptoms-cough.png"))); // NOI18N
         jLabel4.setText("jLabel4");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 420, 430));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 420, 360));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/symptoms-fever.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 270, -1, 380));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/symptoms-shortnessOfBreath.png"))); // NOI18N
         jLabel3.setText("jLabel3");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 400, 430));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 400, 370));
     }// </editor-fold>//GEN-END:initComponents
 
     private void NameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTxtActionPerformed
@@ -227,6 +228,17 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
             String password = PasswordTxt.getText();
             String Emp = NameTxt.getText();
             boolean flag = true;
+            for (Network network : business.getNetworkList()) {
+                for (Enterprise enterpriselist : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (UserAccount userAccount : enterpriselist.getUserAccountDirectory().getUserAccountList()) {
+
+                        if (userAccount.getUsername().equalsIgnoreCase(userName)) {
+                            JOptionPane.showMessageDialog(null, "Username already Exists for Enterprise" ,"Incorrect Field Error", JOptionPane.WARNING_MESSAGE);
+                            flag = true;
+                        }
+                    }
+                }
+            }
             
             if (userName.equals("")) {
                 JOptionPane.showMessageDialog(null, "Username cannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
@@ -234,12 +246,17 @@ public class ManagePatientJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Passwordcannot be blank", "Empty Field Error", JOptionPane.WARNING_MESSAGE);
             } else if (Emp.equals("")) {
                 JOptionPane.showMessageDialog(null, "Name cannot be blank", "Invalid value Error", JOptionPane.WARNING_MESSAGE);
-            }
-              else if(flag){ 
+//           }
+                      //else if (enterprise.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+//                    JOptionPane.showMessageDialog(null, "Username already Exists!! " ,"Incorrect Field Error", JOptionPane.WARNING_MESSAGE);
+//                           
+            }else if(flag){ 
+                  
             Employee employee = business.getEmployeeDirectory().createEmployee(NameTxt.getText());
             UserAccount ua = organization.getUserAccountDirectory().createUserAccount(userName, password, employee, new PatientRole());
 
             ua.getPatientAccount().setCondition("Not Yet Reviewed by Doctor");
+            ua.getPatientAccount().setInfected(false);
             String message = "";
 
             PatientsAllocatedWorkRequest request = new PatientsAllocatedWorkRequest();

@@ -47,6 +47,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             for (Type type : Organization.Type.values()) {
                 if (!type.getValue().equals(Type.Admin.getValue())
                         && !type.getValue().equals(Type.EmergencyServicesAdmin.getValue())
+                        && !type.getValue().equals(Type.HospitalManager.getValue())
                         && !type.getValue().equals(Type.NGO.getValue())
                         && !type.getValue().equals(Type.Doctor.getValue())
                         && !type.getValue().equals(Type.NGOAdmin.getValue())
@@ -72,6 +73,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             for (Type type : Organization.Type.values()) {
                 if (!type.getValue().equals(Type.Admin.getValue())
                         && !type.getValue().equals(Type.EmergencyServicesAdmin.getValue())
+                        && !type.getValue().equals(Type.HospitalManager.getValue())
                         && !type.getValue().equals(Type.Ambulance.getValue())
                         && !type.getValue().equals(Type.Doctor.getValue())
                         && !type.getValue().equals(Type.Lab.getValue())
@@ -115,10 +117,12 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         organizationJComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        organizationJTable.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -151,7 +155,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             organizationJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 60, 480, 92));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 480, 140));
 
         addJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addJButton.setText("Add Organization");
@@ -160,19 +164,22 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, 20));
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, 200, 40));
 
+        organizationJComboBox.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizationJComboBoxActionPerformed(evt);
             }
         });
-        add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 225, 81, -1));
+        add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 460, 190, -1));
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Organization Type ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(237, 228, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 460, -1, -1));
 
+        backJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,12 +187,16 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/Cisco-Teleconf.gif"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 830, 410));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
         Type type = (Type) organizationJComboBox.getSelectedItem();
         directory.createOrganization(type);
+        JOptionPane.showMessageDialog(null, "New organization added");
         populateTable();
         
     }//GEN-LAST:event_addJButtonActionPerformed
@@ -205,6 +216,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addJButton;
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;

@@ -41,7 +41,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = account;
         this.business=business;
-        valueLabel.setText(enterprise.getName());
+        //valueLabel.setText(enterprise.getName());
         populateRequestTable();
         populatePatientTable();
        // checkNotification();
@@ -97,12 +97,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
          //   System.out.println(request.getSender().getRole());
             if(request.getSender().getRole().toString().equals("Business.Role.DoctorRole")){
-            Object[] row = new Object[4];
-            row[0] = request.getMessage();
-            row[1] = request.getReceiver();
-            row[2] = request.getStatus();
+            Object[] row = new Object[5];
+            row[0] = ((LabTestWorkRequest) request).getPatientAccount();
+            row[1] = request.getMessage();
+            row[2] = request.getReceiver();
+            row[3] = request.getStatus();
             String result = ((LabTestWorkRequest) request).getTestResult();
-            row[3] = result == null ? "Waiting" : result;
+            row[4] = result == null ? "Waiting" : result;
             
             model.addRow(row);
             }
@@ -122,15 +123,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         patientsListJTable = new javax.swing.JTable();
         refreshTestJButton = new javax.swing.JButton();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         workRequestJTable1 = new javax.swing.JTable();
         checkPatientBtn = new javax.swing.JButton();
         checkAvailablePatientsjButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         patientsListJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -160,7 +160,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             patientsListJTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 799, 97));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 560, 250));
 
         refreshTestJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshTestJButton.setText("Refresh");
@@ -169,35 +169,24 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 refreshTestJButtonActionPerformed(evt);
             }
         });
-        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, -1, -1));
-
-        enterpriseLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 127, 30));
-
-        valueLabel.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 158, 26));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/insideHospital_GIF.gif"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 630, 376));
+        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, -1, -1));
 
         workRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Patient Name", "Message", "Receiver", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -214,9 +203,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable1.getColumnModel().getColumn(1).setResizable(false);
             workRequestJTable1.getColumnModel().getColumn(2).setResizable(false);
             workRequestJTable1.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 799, 97));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 620, 250));
 
         checkPatientBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         checkPatientBtn.setText("Check Patients");
@@ -225,16 +215,24 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 checkPatientBtnActionPerformed(evt);
             }
         });
-        add(checkPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, -1, -1));
+        add(checkPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 340, 220, -1));
 
         checkAvailablePatientsjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        checkAvailablePatientsjButton.setText("Patients Available");
+        checkAvailablePatientsjButton.setText("Patients In Hospital");
         checkAvailablePatientsjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkAvailablePatientsjButtonActionPerformed(evt);
             }
         });
-        add(checkAvailablePatientsjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, -1, -1));
+        add(checkAvailablePatientsjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 340, 240, -1));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel2.setText("Lab Report List");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, -1, 20));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel3.setText("Patient List");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
@@ -273,13 +271,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkAvailablePatientsjButton;
     private javax.swing.JButton checkPatientBtn;
-    private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientsListJTable;
     private javax.swing.JButton refreshTestJButton;
-    private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable1;
     // End of variables declaration//GEN-END:variables
 }

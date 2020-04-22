@@ -14,6 +14,15 @@ public class PersonalInformation {
     private String Address;
     private long ContactNum;
     private String EmailAddress; 
+     private String photo;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getName() {
         return Name;
