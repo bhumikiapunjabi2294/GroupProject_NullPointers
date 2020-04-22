@@ -70,22 +70,16 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         patientJTable = new javax.swing.JTable();
         assignAmbulancejButton = new javax.swing.JButton();
         refreshjButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ambulance_reaching_hosp-GIF.gif"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ES Manager.jpg"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, -1, -1));
-
+        patientJTable.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         patientJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -114,7 +108,7 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(patientJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 660, 97));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 740, 97));
 
         assignAmbulancejButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         assignAmbulancejButton.setText("Assign Ambulance");
@@ -123,7 +117,7 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
                 assignAmbulancejButtonActionPerformed(evt);
             }
         });
-        add(assignAmbulancejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+        add(assignAmbulancejButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
 
         refreshjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshjButton.setText("Refresh");
@@ -132,7 +126,11 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
                 refreshjButtonActionPerformed(evt);
             }
         });
-        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, -1));
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/ambulance 2.gif"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 740, 370));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignAmbulancejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignAmbulancejButtonActionPerformed
@@ -167,8 +165,7 @@ public class ESManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignAmbulancejButton;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable patientJTable;
     private javax.swing.JButton refreshjButton;

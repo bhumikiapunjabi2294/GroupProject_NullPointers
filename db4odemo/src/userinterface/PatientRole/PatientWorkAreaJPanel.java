@@ -69,25 +69,16 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VitalSignsJTable = new javax.swing.JTable();
         PersonalInfoBtn = new javax.swing.JButton();
         addBTN1 = new javax.swing.JButton();
         refreshjButton = new javax.swing.JButton();
         HealthConditionjLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Welcome to the hospital Patients!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
-
-        jLabel2.setBackground(new java.awt.Color(153, 153, 255));
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/PatientGIF.gif"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 630, 430));
 
         VitalSignsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,8 +108,9 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(VitalSignsJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 800, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 810, 640));
 
+        PersonalInfoBtn.setBackground(new java.awt.Color(255, 255, 255));
         PersonalInfoBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         PersonalInfoBtn.setText("Personal Info");
         PersonalInfoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,17 +118,19 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 PersonalInfoBtnActionPerformed(evt);
             }
         });
-        add(PersonalInfoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, -1, -1));
+        add(PersonalInfoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 220, -1));
 
+        addBTN1.setBackground(new java.awt.Color(255, 255, 255));
         addBTN1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        addBTN1.setText("ADD");
+        addBTN1.setText("ADD New Vital Sign");
         addBTN1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBTN1ActionPerformed(evt);
             }
         });
-        add(addBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
+        add(addBTN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 220, -1));
 
+        refreshjButton.setBackground(new java.awt.Color(255, 255, 255));
         refreshjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshjButton.setText("Refresh");
         refreshjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -144,8 +138,11 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
                 refreshjButtonActionPerformed(evt);
             }
         });
-        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, -1, -1));
-        add(HealthConditionjLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 290, 70));
+        add(refreshjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 220, -1));
+        add(HealthConditionjLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 290, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/managePat.jpg"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTN1ActionPerformed
@@ -172,7 +169,6 @@ public class PatientWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable VitalSignsJTable;
     private javax.swing.JButton addBTN1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshjButton;
     // End of variables declaration//GEN-END:variables

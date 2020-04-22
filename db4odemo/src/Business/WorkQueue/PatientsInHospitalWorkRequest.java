@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class PatientsInHospitalWorkRequest extends WorkRequest {
     private ArrayList<UserAccount> PatientsList = new ArrayList<>();
+    private Boolean infection;
 
     public ArrayList<UserAccount> getPatientsList() {
         return PatientsList;
@@ -27,5 +28,20 @@ public class PatientsInHospitalWorkRequest extends WorkRequest {
     public void addPatient(UserAccount account){
         PatientsList.add(account);
     } 
+
+    public Boolean getInfection() {
+        return infection;
+    }
+
+    public void setInfection(Boolean infection) {
+        this.infection = infection;
+    }
+
+    
+   
+
+    
+    
+    
     
 }

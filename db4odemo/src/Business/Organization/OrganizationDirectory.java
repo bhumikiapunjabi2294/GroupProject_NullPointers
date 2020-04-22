@@ -45,6 +45,10 @@ public class OrganizationDirectory {
             organization = new EmergencyServicesManagerOrganization();
             organizationList.add(organization);
         }
+         else if (type.getValue().equals(Type.HospitalManager.getValue())){
+            organization = new HospitalManagerOrganization();
+            organizationList.add(organization);
+        }
         return organization;
     }
 }

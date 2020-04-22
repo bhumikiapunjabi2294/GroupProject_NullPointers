@@ -76,8 +76,8 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-    
-    public void GenerateEmail(String Email){
+
+    public void GenerateEmail(String Email) {
         String to = Email;
 
 // Add sender
@@ -95,7 +95,7 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
 
 // Get the Session object
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication() {
+            protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
         });
@@ -113,10 +113,7 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
 
             message.setText("You are Infected Due to corona virus plz stay at home we are sending ambulace to pick you up");
 
-
             Transport.send(message);
-
-           
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
@@ -140,9 +137,11 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
         GoodCndtnRadioButton = new javax.swing.JRadioButton();
         badCndtnRadioButton = new javax.swing.JRadioButton();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        backJButton.setBackground(new java.awt.Color(255, 255, 255));
+        backJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,8 +178,9 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(VitalSignsJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 800, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 840, 230));
 
+        submitBtn.setBackground(new java.awt.Color(255, 255, 255));
         submitBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -188,13 +188,15 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
                 submitBtnActionPerformed(evt);
             }
         });
-        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, -1, -1));
+        add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
 
+        GoodCndtnRadioButton.setBackground(new java.awt.Color(255, 255, 255));
         chooseOption.add(GoodCndtnRadioButton);
         GoodCndtnRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         GoodCndtnRadioButton.setText("Good condition");
-        add(GoodCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
+        add(GoodCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
+        badCndtnRadioButton.setBackground(new java.awt.Color(255, 255, 255));
         chooseOption.add(badCndtnRadioButton);
         badCndtnRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         badCndtnRadioButton.setText("Bad condition");
@@ -203,7 +205,7 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
                 badCndtnRadioButtonActionPerformed(evt);
             }
         });
-        add(badCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
+        add(badCndtnRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -217,65 +219,69 @@ public class CheckPatientsWorkArea extends javax.swing.JPanel {
         //account.get
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row from table first", "Warning", JOptionPane.WARNING_MESSAGE);
-        return;
-        } VitalSign sign = (VitalSign) VitalSignsJTable.getValueAt(selectedRow, 6);
-        
+            return;
+        }
+        VitalSign sign = (VitalSign) VitalSignsJTable.getValueAt(selectedRow, 6);
+if(sign.getHealthCondition().equals("")){
+        sign.setStatus("yes");
+        String s;
+        if (GoodCndtnRadioButton.isSelected()) {
+            s = GoodCndtnRadioButton.getText();
+        } else {
+            s = badCndtnRadioButton.getText();
 
-            sign.setStatus("yes");
-            String s;
-            if (GoodCndtnRadioButton.isSelected()) {
-                s = GoodCndtnRadioButton.getText();
-            } else {
-                s = badCndtnRadioButton.getText();
+        }
 
-            }
+        sign.setHealthCondition(s);
 
-            sign.setHealthCondition(s);
+        //System.out.println(s);
+        populateTable();
 
-            //System.out.println(s);
-            populateTable();
+        if (s == "Bad condition") {
+            CallingESWorkRequest ws = new CallingESWorkRequest();
+            ws.setSender(docAccount);
+            ws.setStatus("Patient is Infected,please send ambulance");
+            ws.setPatientAccount(account);
+            ws.setHospital(enterprise);
+            account.getPatientAccount().setCondition("Patient is Infected,please send ambulance");
+            GenerateEmail(account.getPersonalInformation().getEmailAddress());
+            Organization org = null;
+            for (Network n : business.getNetworkList()) {
 
-            if (s == "Bad condition") {
-                CallingESWorkRequest ws = new CallingESWorkRequest();
-                ws.setSender(docAccount);
-                ws.setStatus("Patient is Infected,please send ambulance");
-                ws.setPatientAccount(account);
-                ws.setHospital(enterprise);
-                account.getPatientAccount().setCondition("Patient is Infected,please send ambulance");
-                GenerateEmail(account.getPersonalInformation().getEmailAddress());
-                Organization org = null;
-                for (Network n : business.getNetworkList()) {
+                for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                        //System.out.println(o);
+                        if (o instanceof EmergencyServicesManagerOrganization) {
+                            org = o;
 
-                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                            //System.out.println(o);
-                            if (o instanceof EmergencyServicesManagerOrganization) {
-                                org = o;
-
-                                break;
-                            }
-                        }
-                        // System.out.println(org+"bhbjjuhhgggjkkkkkk" );
-
-                        if (org != null) {
-                            // System.out.println(org + "yash thakkar");
-                            org.getWorkQueue().getWorkRequestList().add(ws);
-                            account.getWorkQueue().getWorkRequestList().add(ws);
-                            System.out.println(org.getWorkQueue().getWorkRequestList());
                             break;
                         }
-
                     }
-                    break;
+                    // System.out.println(org+"bhbjjuhhgggjkkkkkk" );
+
+                    if (org != null) {
+                        // System.out.println(org + "yash thakkar");
+                        org.getWorkQueue().getWorkRequestList().add(ws);
+                        account.getWorkQueue().getWorkRequestList().add(ws);
+                        System.out.println(org.getWorkQueue().getWorkRequestList());
+                         JOptionPane.showMessageDialog(null, "PAtient is not well!! Notification has been sent to Patient's email-id.");
+                        break;
+                    }
+
                 }
-            } else if (s == "Good condition") {
-                CallingESWorkRequest ws = new CallingESWorkRequest();
-                ws.setStatus("Patient is Normal! No worries");
-                account.getPatientAccount().setCondition("Patient is Normal! No worries");
+                break;
             }
-         else {
-            JOptionPane.showMessageDialog(null, "this vital sign is already reviewed");
-        }
+        } else if (s == "Good condition") {
+            CallingESWorkRequest ws = new CallingESWorkRequest();
+            ws.setStatus("Patient is Normal! No worries");
+            account.getPatientAccount().setCondition("Patient is Normal! No worries");
+             JOptionPane.showMessageDialog(null, "Patient is normal!!!");
+        } 
+}
+else{
+    JOptionPane.showMessageDialog(null, "tHis vital sign has already been reviewed!!");
+}
+
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void badCndtnRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_badCndtnRadioButtonActionPerformed

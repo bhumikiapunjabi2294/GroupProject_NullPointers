@@ -49,7 +49,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
             for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {                
                 if(ua.getRole().toString().equals("Business.Role.PatientRole")){
                 Object row[] = new Object[4];
-                row[0] = ua;
+                row[0] = ua.getEmployee();
                 row[1] = ua.getUsername();
                 row[2] = ua.getPassword();
                 row[3]=  "Patient Added! yet to add vital sign";
@@ -73,16 +73,14 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         patientTbl = new javax.swing.JTable();
         AddPatientBtn = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         RefreshBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Welcome to NGO!!");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
+        patientTbl.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         patientTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -109,9 +107,10 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        patientTbl.setRowHeight(25);
         jScrollPane1.setViewportView(patientTbl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 404, 280));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 550, 530));
 
         AddPatientBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         AddPatientBtn.setText("Add Patient");
@@ -120,13 +119,10 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 AddPatientBtnActionPerformed(evt);
             }
         });
-        add(AddPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/assistingHand.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 297, 1001, 247));
+        add(AddPatientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/NGO.gif"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 225));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, 225));
 
         RefreshBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         RefreshBtn.setText("Refresh");
@@ -135,7 +131,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 RefreshBtnActionPerformed(evt);
             }
         });
-        add(RefreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, -1, -1));
+        add(RefreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPatientBtnActionPerformed
@@ -157,7 +153,6 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton AddPatientBtn;
     private javax.swing.JButton RefreshBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable patientTbl;

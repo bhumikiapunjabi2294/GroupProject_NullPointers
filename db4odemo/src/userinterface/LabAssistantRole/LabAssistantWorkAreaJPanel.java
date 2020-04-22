@@ -11,6 +11,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,10 +73,12 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        workRequestJTable.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -104,8 +107,9 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 590, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 600, 520));
 
+        assignJButton.setBackground(new java.awt.Color(255, 255, 255));
         assignJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +117,9 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                 assignJButtonActionPerformed(evt);
             }
         });
-        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
 
+        processJButton.setBackground(new java.awt.Color(255, 255, 255));
         processJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +127,9 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 130, -1));
 
+        refreshJButton.setBackground(new java.awt.Color(255, 255, 255));
         refreshJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -131,11 +137,10 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
                 refreshJButtonActionPerformed(evt);
             }
         });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/labtest.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/covid lab.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
@@ -143,14 +148,24 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Select first request!!!");
+             
             return;
         }
         
+           
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 1);
-        request.setReceiver(userAccount);
+        if(request.getReceiver()== null){
+            
+           request.setReceiver(userAccount);
         request.setStatus("Pending");
+         JOptionPane.showMessageDialog(null, "Assigned to you");
         populateTable();
         
+        }
+        else
+        {  JOptionPane.showMessageDialog(null, "Requeset has already been assigned!!");
+                } 
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -158,6 +173,8 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Select first request!!!");
+            
             return;
         }
         
@@ -178,7 +195,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;
     private javax.swing.JButton refreshJButton;

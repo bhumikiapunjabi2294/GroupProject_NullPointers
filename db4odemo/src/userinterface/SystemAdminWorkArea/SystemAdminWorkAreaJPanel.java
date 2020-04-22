@@ -82,20 +82,57 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTree = new javax.swing.JTree();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblSelectedNode = new javax.swing.JLabel();
         btnManageNetwork = new javax.swing.JButton();
         btnManageEnterprise = new javax.swing.JButton();
         btnManageAdmin = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree = new javax.swing.JTree();
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel1.setText("Selected Node:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+
+        lblSelectedNode.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblSelectedNode.setText("<View_selected_node>");
+        jPanel2.add(lblSelectedNode, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+
+        btnManageNetwork.setBackground(new java.awt.Color(255, 255, 255));
+        btnManageNetwork.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnManageNetwork.setText("Manage Network");
+        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageNetworkActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnManageNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 197, 160));
+
+        btnManageEnterprise.setBackground(new java.awt.Color(255, 255, 255));
+        btnManageEnterprise.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEnterpriseActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnManageEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, 170));
+
+        btnManageAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        btnManageAdmin.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        btnManageAdmin.setText("Manage Enterprise Admin");
+        btnManageAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageAdminActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnManageAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, 260, 170));
 
         jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
@@ -104,64 +141,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTree);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 295, Short.MAX_VALUE))
-        );
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 750));
 
-        jSplitPane.setLeftComponent(jPanel1);
-
-        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel1.setText("Selected Node:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 25, -1, -1));
-
-        lblSelectedNode.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        lblSelectedNode.setText("<View_selected_node>");
-        jPanel2.add(lblSelectedNode, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 25, -1, -1));
-
-        btnManageNetwork.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnManageNetwork.setText("Manage Network");
-        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageNetworkActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnManageNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 102, 197, -1));
-
-        btnManageEnterprise.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnManageEnterprise.setText("Manage Enterprise");
-        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageEnterpriseActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnManageEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 151, -1, -1));
-
-        btnManageAdmin.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        btnManageAdmin.setText("Manage Enterprise Admin");
-        btnManageAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageAdminActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnManageAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 200, -1, -1));
-
-        jSplitPane.setRightComponent(jPanel2);
-
-        add(jSplitPane, java.awt.BorderLayout.CENTER);
+        add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
@@ -199,10 +181,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JTree jTree;
     private javax.swing.JLabel lblSelectedNode;
     // End of variables declaration//GEN-END:variables

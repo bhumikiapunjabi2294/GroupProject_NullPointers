@@ -26,7 +26,8 @@ public abstract class Role {
         EmergencyServicesManager("Emergency Services Manager"),
         NGOAdmin("NGO Admin"),
         Patient("Patient"),
-        NGO("NGO");
+        NGO("NGO"),
+        HospitalManager("HospitalManager");
         
         private String value;
         private RoleType(String value){

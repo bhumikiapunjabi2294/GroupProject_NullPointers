@@ -10,6 +10,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.PatientsInHospitalWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,9 +43,10 @@ public class MoniteredPatientsJPanel extends javax.swing.JPanel {
 
             System.out.println(request.toString());
             for (UserAccount ua : ((PatientsInHospitalWorkRequest) request).getPatientsList()) {
-                System.out.println(ua +"              yash");
-                Object row[] = new Object[4];
+               // System.out.println(ua +"              yash");
+                Object row[] = new Object[2];
                 row[0] = ua;
+                row[1]=ua.getPatientAccount().getInfected();
                 model.addRow(row);
             }
 
@@ -62,37 +64,23 @@ public class MoniteredPatientsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backJButton = new javax.swing.JButton();
+        sendForRequestButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         patientsListJTable = new javax.swing.JTable();
-        sendForRequestButton = new javax.swing.JButton();
-        backJButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 204, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        patientsListJTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Patient name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        backJButton.setBackground(new java.awt.Color(255, 255, 255));
+        backJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        backJButton.setText("<< Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(patientsListJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 799, 180));
-
+        sendForRequestButton.setBackground(new java.awt.Color(255, 255, 255));
         sendForRequestButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         sendForRequestButton.setText("Send to Lab test");
         sendForRequestButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,15 +88,57 @@ public class MoniteredPatientsJPanel extends javax.swing.JPanel {
                 sendForRequestButtonActionPerformed(evt);
             }
         });
-        add(sendForRequestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
 
-        backJButton.setText("<< Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
+        patientsListJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Patient name", "Infected"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jScrollPane1.setViewportView(patientsListJTable);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backJButton)
+                        .addGap(268, 268, 268))
+                    .addComponent(sendForRequestButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(backJButton)
+                .addGap(193, 193, 193)
+                .addComponent(sendForRequestButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -124,9 +154,10 @@ public class MoniteredPatientsJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise,ac));
         layout.next(userProcessContainer);
+         JOptionPane.showMessageDialog(null, "Sent for Lab Test");
 
         } else {
-
+             JOptionPane.showMessageDialog(null, "Select Raw for it");
         }
         
         

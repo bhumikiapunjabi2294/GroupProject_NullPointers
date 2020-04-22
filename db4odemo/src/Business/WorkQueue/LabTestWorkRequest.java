@@ -14,6 +14,10 @@ public class LabTestWorkRequest extends WorkRequest{
     
     private String testResult;
     private UserAccount account;
+
+
+  
+    
     
     public String getTestResult() {
         return testResult;

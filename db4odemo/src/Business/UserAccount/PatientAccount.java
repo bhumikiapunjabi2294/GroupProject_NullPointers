@@ -14,9 +14,18 @@ import Business.VitalSign.VitalSignHistory;
 public class PatientAccount {
     
     private VitalSignHistory vitalSignHistory;
-   
-   
     private String Condition;
+    private Boolean infected;
+
+    public Boolean getInfected() {
+        return infected;
+    }
+
+    public void setInfected(Boolean infected) {
+        this.infected = infected;
+    }
+    
+    
 
     public String getCondition() {
         return Condition;

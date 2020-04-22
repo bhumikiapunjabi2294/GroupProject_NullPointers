@@ -9,6 +9,10 @@ import Business.Enterprise.Enterprise;
 import Business.UserAccount.PersonalInformation;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -38,11 +42,16 @@ public class AddPersonalInformation extends javax.swing.JPanel {
         addressTextField.setText(account.getPersonalInformation().getAddress());
         contectNumTextField.setText(Long.toString(account.getPersonalInformation().getContactNum()));
         emailTextField.setText(account.getPersonalInformation().getEmailAddress());
+        ImageIcon image=new ImageIcon(account.getPersonalInformation().getPhoto());
+        image.setImage(image.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+        label.setIcon(image);
         
         nameTextField.setEnabled(false);
         addressTextField.setEnabled(false);
         contectNumTextField.setEnabled(false);
         emailTextField.setEnabled(false);
+        SubmitjButton. setEnabled(false);
+        uploadjButton.setEnabled(false);
         
         
     }
@@ -67,20 +76,23 @@ public class AddPersonalInformation extends javax.swing.JPanel {
         SubmitjButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        uploadjButton = new javax.swing.JButton();
+        label = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Name :");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         nameTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 150, -1));
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 180, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setText("Address :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, 20));
 
         addressTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         addressTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -88,21 +100,21 @@ public class AddPersonalInformation extends javax.swing.JPanel {
                 addressTextFieldActionPerformed(evt);
             }
         });
-        add(addressTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 220, 30));
+        add(addressTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 180, 30));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel3.setText("Phone Number :");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
         contectNumTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        add(contectNumTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
+        add(contectNumTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel4.setText("Email Address :");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         emailTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 200, -1));
+        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 180, -1));
 
         SubmitjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         SubmitjButton.setText("Submit");
@@ -111,8 +123,10 @@ public class AddPersonalInformation extends javax.swing.JPanel {
                 SubmitjButtonActionPerformed(evt);
             }
         });
-        add(SubmitjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        add(SubmitjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, -1, -1));
 
+        backJButton.setBackground(new java.awt.Color(255, 255, 255));
+        backJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +143,20 @@ public class AddPersonalInformation extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, -1, -1));
+
+        uploadjButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        uploadjButton.setText("Upload Picture");
+        uploadjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadjButtonActionPerformed(evt);
+            }
+        });
+        add(uploadjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
+        add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 180, 130));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/personal info.jpg"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addressTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextFieldActionPerformed
@@ -166,6 +193,8 @@ public class AddPersonalInformation extends javax.swing.JPanel {
         addressTextField.setEnabled(false);
         contectNumTextField.setEnabled(false);
         emailTextField.setEnabled(false);
+        SubmitjButton.setEnabled(false);
+           btnUpdate.setEnabled(true);  ;
         
               }
        }catch (NumberFormatException e) {
@@ -181,12 +210,45 @@ public class AddPersonalInformation extends javax.swing.JPanel {
         contectNumTextField.setEnabled(true);
         emailTextField.setEnabled(true);
         btnUpdate.setEnabled(false);
+        SubmitjButton.setEnabled(true);
+        uploadjButton.setEnabled(true);
         
        
       
             
        
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void uploadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadjButtonActionPerformed
+//        // TODO add your handling code here:
+//        JFileChooser a = new JFileChooser();
+//           a.showOpenDialog(null);
+//           File f=a.getSelectedFile();
+//           String filename = f.getAbsolutePath();
+//          //String filename="ABCD";
+//          
+//         ImageIcon icon=new ImageIcon(new ImageIcon(filename).getImage());
+//         account.getPersonalInformation().setPhoto(filename);
+//         label.setIcon(icon);
+//         
+         String path=new String();
+        JFileChooser chooser=new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int i=chooser.showOpenDialog(null);
+        if(i == chooser.APPROVE_OPTION){
+            path = chooser.getSelectedFile().getAbsolutePath();
+            account.getPersonalInformation().setPhoto(path);
+            label.setText("Image Uploaded");
+        }else{
+            JOptionPane.showMessageDialog(null, "No file Selected");
+        }
+        ImageIcon image=new ImageIcon(path);
+        image.setImage(image.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+        label.setIcon(image);
+        
+    
+         JOptionPane.showMessageDialog(null, "Patient picture has been uploaded !!!!");
+    }//GEN-LAST:event_uploadjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -200,6 +262,9 @@ public class AddPersonalInformation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel label;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JButton uploadjButton;
     // End of variables declaration//GEN-END:variables
 }

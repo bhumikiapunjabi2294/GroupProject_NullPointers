@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author Gunjan
+ * @author bhumika
  */
 public class Validator {
 
@@ -23,13 +23,7 @@ public class Validator {
         return b;
     }
 
-    public boolean ssnPattern(String str) {
-        Pattern p = Pattern.compile("^\\d{3}-\\d{2}-\\d{4}$");
-        Matcher m = p.matcher(str);
-        boolean b = m.matches();
-        return b;
-    }
-    
+  
     public String dateFormat(){
         String pattern = "MM-dd-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);

@@ -9,12 +9,13 @@ import Business.VitalSign.VitalSign;
 import Business.WorkQueue.LabTestWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author yash
  */
 
 
@@ -32,6 +33,8 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         this.ua = ua;
         this.userProcessContainer = userProcessContainer;
         this.request = request;
+        infectedRadioButton.setSelected(true);
+        
         populateTable();
     }
     public void populateTable(){
@@ -59,19 +62,21 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         submitJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         resultJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VitalSignsJTable = new javax.swing.JTable();
+        infectedRadioButton = new javax.swing.JRadioButton();
+        noIinfectedRadioButton = new javax.swing.JRadioButton();
 
-        setBackground(new java.awt.Color(153, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        submitJButton.setBackground(new java.awt.Color(255, 255, 255));
         submitJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         submitJButton.setText("Submit Result");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -79,32 +84,29 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel1.setText("Result");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, -1, -1));
 
         resultJTextField.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 240, -1));
+        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 270, 240, 50));
 
-        backJButton.setText("Back");
+        backJButton.setBackground(new java.awt.Color(255, 255, 255));
+        backJButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/COVID-19_TEST_BLUE.gif"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/lab.gif"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 600, 560));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/covid lab.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Image/test.jpg"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, -1));
-
+        VitalSignsJTable.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         VitalSignsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -133,7 +135,24 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(VitalSignsJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 800, 90));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 800, 90));
+
+        infectedRadioButton.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(infectedRadioButton);
+        infectedRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        infectedRadioButton.setText("Infected");
+        add(infectedRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, -1, -1));
+
+        noIinfectedRadioButton.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(noIinfectedRadioButton);
+        noIinfectedRadioButton.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        noIinfectedRadioButton.setText("Not Infected");
+        noIinfectedRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noIinfectedRadioButtonActionPerformed(evt);
+            }
+        });
+        add(noIinfectedRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -151,16 +170,27 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setTestResult(resultJTextField.getText());
         request.setStatus("Completed");
+      
+        if (infectedRadioButton.isSelected()) {
+               
+               ua.getPatientAccount().setInfected(true);
+            }
+      JOptionPane.showMessageDialog(null, "Lab report sent to Hospital");
     }//GEN-LAST:event_submitJButtonActionPerformed
+
+    private void noIinfectedRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noIinfectedRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noIinfectedRadioButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable VitalSignsJTable;
     private javax.swing.JButton backJButton;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton infectedRadioButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton noIinfectedRadioButton;
     private javax.swing.JTextField resultJTextField;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
